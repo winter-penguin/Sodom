@@ -160,9 +160,9 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
 			Debug.Log("Day : " + Day + "\nTime : " + DayTime.Hour + " : " + DayTime.Min);
 #endif
-			yield return new WaitForSeconds(1.0f); // 60초를 기다린 후 72분 추가
+			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
 			DayTime.Min = DayTime.Min + 1; // Default : 1, Day Test : 720
-			DayTime.Sec = DayTime.Sec + 12;
+			// DayTime.Sec = DayTime.Sec + 24;
 		}
 	}
 
