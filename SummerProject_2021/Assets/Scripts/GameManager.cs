@@ -1,5 +1,12 @@
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+///  AUTHOR : Kim Jihun
+///  Last edit date : 2021-07-09
+///  Contact : kjhcorgi99@gmail.com
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,16 +16,18 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	/// 게임 매니저 단일 인스턴스 유지를 위한 싱글톤 패턴 생성
 	private static GameManager _instance = null;
+
 	public static GameManager Instance
 	{
 		get { return _instance; }
 	}
-	
+
 	// 이벤트 핸들러
 	private static EventHandler eventHandler;
 
 	// 현재 플레이 하고 있는 날짜
-	private static int _day;
+	private static int _day = 1;
+
 	public static int Day
 	{
 		get { return _day; }
@@ -27,7 +36,7 @@ public class GameManager : MonoBehaviour
 			_day = value;
 			if (_day == 5)
 			{
-				eventHandler.CreateEvent();
+				eventHandler.EventAlert();
 			}
 		}
 	}
@@ -35,10 +44,11 @@ public class GameManager : MonoBehaviour
 	/// <summary>
 	/// 시간 계산을 위한 시계 타입 구조체
 	/// </summary>
-	private struct Clock
+	public struct Clock
 	{
-		private static int _hour;
-		private static int _min;
+		private int _hour;
+		private int _min;
+		private int _sec;
 
 		public int Hour
 		{
@@ -65,10 +75,26 @@ public class GameManager : MonoBehaviour
 			set
 			{
 				_min = value;
-				if (_min >= 60)
+
+				while (_min >= 60)
 				{
 					Hour++;
-					_min = 0;
+					_min = _min - 60;
+				}
+			}
+		}
+
+		public int Sec
+		{
+			get { return _sec; }
+			set
+			{
+				_sec = value;
+
+				while (_sec >= 60)
+				{
+					Min++;
+					_sec = _sec - 60;
 				}
 			}
 		}
@@ -125,19 +151,19 @@ public class GameManager : MonoBehaviour
 	/// 시간 계산
 	/// </summary>
 	/// <returns></returns>
+	public Clock DayTime = new Clock(0, 0);
+
 	private IEnumerator TimeControl()
 	{
-		Clock DayTime = new Clock(0, 0);
 		while (!isDead)
 		{
 #if UNITY_EDITOR
-			Debug.Log("Day : " +Day + "\nTime : "+DayTime.Hour+ " : " + DayTime.Min );
+			Debug.Log("Day : " + Day + "\nTime : " + DayTime.Hour + " : " + DayTime.Min);
 #endif
-			yield return new WaitForSeconds(1.0f); // 60초를 기다린 후 1분 추가
-			Day++;
-
+			yield return new WaitForSeconds(1.0f); // 60초를 기다린 후 72분 추가
+			DayTime.Min = DayTime.Min + 1; // Default : 1, Day Test : 720
+			DayTime.Sec = DayTime.Sec + 12;
 		}
-
 	}
 
 	/// <summary>
