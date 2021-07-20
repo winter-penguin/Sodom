@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 8476829768347297166}
   - component: {fileID: 8476829768347297167}
   - component: {fileID: 8476829768347297152}
-  - component: {fileID: 5398836622318547917}
   - component: {fileID: 9027017414346197245}
+  - component: {fileID: 5398836622318547917}
+  - component: {fileID: 663067397229998350}
   m_Layer: 0
-  m_Name: carcass meat
+  m_Name: Raw_Meat
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,19 +112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16, y: 7.93}
   m_EdgeRadius: 0
---- !u!114 &5398836622318547917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8476829768347297153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754800ff0e54eca49a83a7af8bda8eff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 9ef8ec21161e2394988714a4a7288d6f, type: 2}
 --- !u!50 &9027017414346197245
 Rigidbody2D:
   serializedVersion: 4
@@ -145,3 +133,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &5398836622318547917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476829768347297153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754800ff0e54eca49a83a7af8bda8eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 9ef8ec21161e2394988714a4a7288d6f, type: 2}
+--- !u!114 &663067397229998350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476829768347297153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5b23a56d655c5419a08af6074a95dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentItem: 2
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  Charge_Space: 0
