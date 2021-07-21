@@ -1,6 +1,6 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-07-09
+///  Last edit date : 2021-07-21
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -157,9 +157,6 @@ public class GameManager : MonoBehaviour
 	{
 		while (!isDead)
 		{
-#if UNITY_EDITOR
-			Debug.Log("Day : " + Day + "\nTime : " + DayTime.Hour + " : " + DayTime.Min);
-#endif
 			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
 			DayTime.Min = DayTime.Min + 1; // Default : 1, Day Test : 720
 			// DayTime.Sec = DayTime.Sec + 24;
