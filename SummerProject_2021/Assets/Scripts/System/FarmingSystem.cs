@@ -1,5 +1,6 @@
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-07-20
+///  Last edit date : 2021-07-22
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -11,8 +12,8 @@ using UnityEngine;
 public class FarmingSystem : MonoBehaviour
 {
 	#region Variables
-
-	private GameObject dbInstance; // 캐릭터 DB 가져오기
+	
+	private DB_Character dbInstance; // 캐릭터 DB 가져오기
 	private float charBagAmount; // 캐릭터 하루 파밍 양
 	private float farmingAmount; // 최종 파밍 양
 	private float foodAmount; // 음식 파밍 양
@@ -55,7 +56,7 @@ public class FarmingSystem : MonoBehaviour
 	{
 		float totalAmount, foodAmount, medAmount;
 		MaterialPack[] tempPack;
-		totalAmount = CalculateFarmingAmout(40); // 나중에 수를 charBagAmount로 변경할것
+		totalAmount = CalculateFarmingAmout(charBagAmount); // 나중에 수를 charBagAmount로 변경할것
 		foodAmount = CalculateFoodAmount(totalAmount);
 		medAmount = CalculateMedAmount(totalAmount);
 		tempPack = CalculateMatAmount(totalAmount, foodAmount, medAmount);
@@ -73,7 +74,9 @@ public class FarmingSystem : MonoBehaviour
 
 	private void Init()
 	{
-		dbInstance = GameObject.Find("" /*DB 정보를 가져오는 게임 오브젝트*/);
+		dbInstance = GameObject.Find("DB_Character").GetComponent<DB_Character>();
+		charBagAmount = dbInstance.characterDB[1/*캐릭터 번호*/].farming_amount;
+		Debug.Log(charBagAmount);
 		//TODO: dbInstance로부터 캐릭터 정보를 받아와 저장 
 	}
 

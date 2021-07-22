@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1411394873482462109}
   m_Layer: 0
   m_Name: CHG_Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: []
-  speed: 5
+  speed: 200
 --- !u!50 &1411394873482462109
 Rigidbody2D:
   serializedVersion: 4
