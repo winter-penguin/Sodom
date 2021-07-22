@@ -11,7 +11,7 @@ public class ItemPickUp : MonoBehaviour
     private Inventory Ingredient;
     private Inventory Medicine;
     private Inventory Product;
-    private Item.ItemType itemType;
+    private Item_Base.ItemType itemType;
     void Update()
     {
         Food = GameObject.Find("Food Grid Setting").GetComponent<Inventory>();
@@ -25,27 +25,27 @@ public class ItemPickUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Item"))
         {
-            Item mItem = other.transform.GetComponent<ItemType>().item;
-            Debug.Log(mItem.itemName);
-            itemType = mItem.itemType;
+            Item_Base mItem = other.transform.GetComponent<Item_Base>();
+            Debug.Log(mItem.CurrentItem);
+            itemType = mItem.CurrentitemType;
             
-            if (itemType == Item.ItemType.Food)
+            if (itemType == Item_Base.ItemType.Food)
             {
                 Food.AcquireItem(mItem);
             }
-            else if (itemType == Item.ItemType.Weapon || itemType == Item.ItemType.Tool)
+            else if (itemType == Item_Base.ItemType.Weapon || itemType == Item_Base.ItemType.Tool)
             {
                 ToolWeapon.AcquireItem(mItem);
             }
-            else if (itemType == Item.ItemType.Ingredient)
+            else if (itemType == Item_Base.ItemType.Ingredient)
             {
                 Ingredient.AcquireItem(mItem);
             }
-            else if (itemType == Item.ItemType.Medicine)
+            else if (itemType == Item_Base.ItemType.Medicine)
             {
                 Medicine.AcquireItem(mItem);
             }
-            else if (itemType == Item.ItemType.Product)
+            else if (itemType == Item_Base.ItemType.Product)
             {
                 Product.AcquireItem(mItem);
             }

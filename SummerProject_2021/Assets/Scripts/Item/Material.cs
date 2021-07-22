@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food_Medicien : Item_Base
+public class Material : Item_Base
 {
 
 }

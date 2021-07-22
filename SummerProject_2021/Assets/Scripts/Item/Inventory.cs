@@ -14,15 +14,15 @@ public class Inventory : MonoBehaviour
         slots = go_SlotsParent.GetComponentsInChildren<Slot>();
     }
 
-    public void AcquireItem(Item _item, int _count = 1)
+    public void AcquireItem(Item_Base _item, int _count = 1)
     {
-        if (Item.ItemType.Weapon != _item.itemType || Item.ItemType.Tool != _item.itemType)
+        if (Item_Base.ItemType.Weapon != _item.CurrentitemType || Item_Base.ItemType.Tool != _item.CurrentitemType)
         {
             for (int i = 0; i < slots.Length; i++)
             {
                 if (slots[i].item != null)
                 {
-                    if (slots[i].item.itemName == _item.itemName)
+                    if (slots[i].item.CurrentItem.ToString() == _item.CurrentItem.ToString())
                     {
                         slots[i].SetSlotCount(_count);
                         return;

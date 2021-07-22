@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3183378568990063969}
   - component: {fileID: 9030379819112281290}
   - component: {fileID: 2045046797890556317}
-  - component: {fileID: 3366455826036670917}
+  - component: {fileID: 3815438941379272856}
   m_Layer: 0
   m_Name: shovel
   m_TagString: Item
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3366455826036670917
+--- !u!114 &3815438941379272856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1840488438496487509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754800ff0e54eca49a83a7af8bda8eff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4786378ec32843f4cb76fd44738b8e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 4f0d307f69de25747b0541b0054b7156, type: 2}
+  CurrentItem: 9
+  CurrentitemType: 1
+  ID: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  itemImage: {fileID: 21300000, guid: 2727783c706e28749ab090d3ba037166, type: 3}
+  itemPrefab: {fileID: 1840488438496487509}

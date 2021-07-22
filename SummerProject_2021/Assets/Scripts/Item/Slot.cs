@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    public Item item;
+    public Item_Base item;
     public int itemCount;
     public Image itemImage;
 
@@ -21,13 +21,13 @@ public class Slot : MonoBehaviour
         itemImage.color = color;
     }
 
-    public void AddItem(Item _item, int _count = 1)
+    public void AddItem(Item_Base _item, int _count = 1)
     {
         item = _item;
         itemCount = _count;
         itemImage.sprite = item.itemImage;
 
-        if (item.itemType != Item.ItemType.Weapon || item.itemType != Item.ItemType.Tool)
+        if (item.CurrentitemType != Item_Base.ItemType.Weapon || item.CurrentitemType != Item_Base.ItemType.Tool)
         {
             go_CountImage.SetActive(true);
             text_Count.text = itemCount.ToString();

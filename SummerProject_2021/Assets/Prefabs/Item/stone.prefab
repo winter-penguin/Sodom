@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9149779525739005159}
   - component: {fileID: 6124244270026755646}
   - component: {fileID: 7069122714244454143}
-  - component: {fileID: 1843684575982756648}
+  - component: {fileID: 3951185079770813358}
   m_Layer: 0
   m_Name: stone
   m_TagString: Item
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 20}
   m_EdgeRadius: 0
---- !u!114 &1843684575982756648
+--- !u!114 &3951185079770813358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6970606709210300415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754800ff0e54eca49a83a7af8bda8eff, type: 3}
+  m_Script: {fileID: 11500000, guid: a2ccc02a6c43a614ea2f3e04964aea34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 8a6fbbca10e8dd044a9aef862896d9e0, type: 2}
+  CurrentItem: 14
+  CurrentitemType: 3
+  ID: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  itemImage: {fileID: 21300000, guid: 7703b2feaaef0ea41a7b4d0a61b7f537, type: 3}
+  itemPrefab: {fileID: 6970606709210300415}

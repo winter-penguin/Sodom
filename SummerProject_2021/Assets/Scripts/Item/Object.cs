@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemType : MonoBehaviour
+public class Object : Item_Base
 {
-    public Item item;
+
 }
