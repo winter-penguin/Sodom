@@ -74,9 +74,8 @@ public class FarmingSystem : MonoBehaviour
 
 	private void Init()
 	{
-		dbInstance = GameObject.Find("DB_Character").GetComponent<DB_Character>();
+		dbInstance = GameObject.Find("DBManager").GetComponent<DB_Character>();
 		charBagAmount = dbInstance.characterDB[1/*캐릭터 번호*/].farming_amount;
-		Debug.Log(charBagAmount);
 		//TODO: dbInstance로부터 캐릭터 정보를 받아와 저장 
 	}
 
