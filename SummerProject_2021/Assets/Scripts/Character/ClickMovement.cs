@@ -83,7 +83,7 @@ public class ClickMovement : MonoBehaviour
             //rb.velocity = new Vector2(speed, 0); //질량을 고려하지 않고 움직임, y로 움직이지 않을 때 용이
             //rb.AddForce(new Vector2(-speed, 0)); //질량을 고려하여 움직임
             ///*
-            if (transform.position.x > destination.x)
+            if (isMoving == true && transform.position.x > destination.x)
             {
                 rb.velocity = new Vector2(-speed, 0);//velocity를 사용하면 목적지에 다다랐을때 떨림
                 if (transform.position.x < destination.x)
@@ -91,7 +91,7 @@ public class ClickMovement : MonoBehaviour
                     isMoving = false;
                 }
             }
-            else
+            else if(isMoving == true && transform.position.x <= destination.x)
             {
                 rb.velocity = new Vector2(speed, 0);
                 if(transform.position.x > destination.x)

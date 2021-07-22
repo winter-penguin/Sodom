@@ -24,9 +24,11 @@ public class DB_Character : MonoBehaviour
 {
     [SerializeField]
     public CharacterDB[] characterDB; //스크립트 내에서 character.Length-1의 크기만큼 선언해보려고 했는데 실패함
-    public string sql_string;
+    
     [SerializeField]
     public string[] character;
+    public string sql_string;
+    public bool isCharacterDB = false;
 
     void Start()
     {
@@ -40,8 +42,8 @@ public class DB_Character : MonoBehaviour
     }
     IEnumerator GetCharacter()
     {
-        //using UnityWebRequest www = UnityWebRequest.Get("http://220.127.167.244:8080/SummerProject_2021/Character_CHG.php");
-        using UnityWebRequest www = UnityWebRequest.Get("http://localhost:8080/test/Character_CHG_test.php");
+        using UnityWebRequest www = UnityWebRequest.Get("http://220.127.167.244:8080/SummerProject_2021/Character_CHG.php");
+        //using UnityWebRequest www = UnityWebRequest.Get("http://localhost:8080/test/Character_CHG_test.php");
 
         yield return www.SendWebRequest();
         string sql_string = www.downloadHandler.text;
@@ -60,6 +62,9 @@ public class DB_Character : MonoBehaviour
             characterDB[i].move_speed = Convert.ToSingle(GetDataValue(character[i], "move_speed:"));
             characterDB[i].farming_amount = Convert.ToSingle(GetDataValue(character[i], "farming_amount:"));
         }
+
+        isCharacterDB = true;
+
         string GetDataValue(string data, string index)//index 뒤에있는 값을 가져오는 함수, ;는 없앤다.
         {
             string value = data.Substring(data.IndexOf(index) + index.Length);
