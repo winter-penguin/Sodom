@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     private GameObject player;
 
     public GameObject[] background;
-    private const int BACKGROUND_IMAGE_CNT = 3; // ¹è°æ¿¡ »ç¿ëµÇ´Â ÀÌ¹ÌÁö °¹¼ö
+    private const int BACKGROUND_IMAGE_CNT = 3; // ï¿½ï¿½æ¿¡ ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private GameObject foreBuilding;
     [SerializeField] private GameObject midBuilding;
     [SerializeField] private GameObject backBuilding;
@@ -41,9 +41,9 @@ public class CameraController : MonoBehaviour
     {
         Vector3 playerCurrentPos = player.transform.position;
 
-        while (player.GetComponent<MainCharacter>().isLive)
+        while (/*player.GetComponent<MainCharacter>().isLive*/true)
         {
-            playerDifferenceX =player.transform.position.x- playerCurrentPos.x;  // Ä³¸¯ÅÍÀÇ ÇöÀç À§Ä¡¿Í ¸¶Áö¸·À¸·Î ÀÖ´ø ÁöÁ¡ÀÇ Â÷ÀÌÁ¡   (-) <---> (+)
+            playerDifferenceX =player.transform.position.x- playerCurrentPos.x;  // Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   (-) <---> (+)
             playerCurrentPos = player.transform.position;
             yield return new WaitForEndOfFrame();
         }

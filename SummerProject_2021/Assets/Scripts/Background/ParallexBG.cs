@@ -41,16 +41,16 @@ public class ParallexBG : MonoBehaviour
         switch (sort)
         {
             case BackgroundKinds.mainBuilding:
-                speed = 1;
+                speed = 50f;
                 break;
             case BackgroundKinds.frontBuilding:
-                speed = 0.2f;
+                speed = 50f;
                 break;
             case BackgroundKinds.midBuilding:
-                speed = 0.05f;
+                speed = 20f;
                 break;
             case BackgroundKinds.backBuilding:
-                speed = 0.02f;
+                speed = 10f;
                 break;
             default:
                 speed = 0;
@@ -61,10 +61,10 @@ public class ParallexBG : MonoBehaviour
 
     private IEnumerator ParallexMove()
     {
-        while (player.isLive)
+        while (/*player.isLive*/ true)
         {
             Vector3 dir = new Vector3(cameraInfo.playerDifferenceX, 0, 0).normalized;
-            gameObject.transform.Translate(dir * parallexSpeed * Time.deltaTime) ;
+            gameObject.transform.Translate(-dir * parallexSpeed * Time.deltaTime) ;
 
             yield return new WaitForEndOfFrame();
         }
