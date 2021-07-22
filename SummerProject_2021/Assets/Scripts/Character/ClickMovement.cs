@@ -41,10 +41,24 @@ public class ClickMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                if (Physics.Raycast(ray, out hit, 100))
+                {
+                    // whatever tag you are looking for on your game object
+                    if (hit.collider.tag == "Trigger")
+                    {
+                        Debug.Log("---> Hit: ");
+                    }
+                }
+            }
+
+                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             destination = new Vector2(MousePosition.x, transform.position.y);
-            Debug.Log(destination);
+            //Debug.Log(destination);
             
             isClick = true; //애니메이션 할때 필요함
         }
