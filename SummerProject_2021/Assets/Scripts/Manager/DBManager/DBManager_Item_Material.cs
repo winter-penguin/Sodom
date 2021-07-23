@@ -5,25 +5,25 @@ using UnityEngine;
 using System;
 
 [System.Serializable]
-public struct ItemDB
+public struct ItemDB_Material
 {
     [SerializeField]
     public int ID;
     [SerializeField]
     public string name;
     [SerializeField]
-    public float Item_Type, Hunger, Thirst, Heal, Fatigue, Charge_Space;
+    public float Item_Type, AD, Attack_Range, Charge_Space;
 }
 
-public class DBManager_Item_food_medicien: MonoBehaviour
+public class DBManager_Item_Material: MonoBehaviour
 {
     [SerializeField]
-    public ItemDB[] itemDB;
+    public ItemDB_Material[] itemDB;
     public string[] Item;
 
     IEnumerator Start()
     {
-        string url = "http://220.127.167.244:8080/summerproject_2021/ItemData_FoodMedicien.php";
+        string url = "http://220.127.167.244:8080/summerproject_2021/ItemData_Material.php";
         UnityWebRequest www = UnityWebRequest.Get(url);
         yield return www.SendWebRequest();
         if(www.error == null)
@@ -42,10 +42,8 @@ public class DBManager_Item_food_medicien: MonoBehaviour
             itemDB[i].ID = Convert.ToInt32(GetDataValue(Item[i], "ID:"));
             itemDB[i].name = GetDataValue(Item[i], "Name:");
             itemDB[i].Item_Type = Convert.ToSingle(GetDataValue(Item[i], "Item_Type:"));
-            itemDB[i].Hunger = Convert.ToSingle(GetDataValue(Item[i], "Hunger:"));
-            itemDB[i].Thirst = Convert.ToSingle(GetDataValue(Item[i], "Thirst:"));
-            itemDB[i].Heal = Convert.ToSingle(GetDataValue(Item[i], "Heal:"));
-            itemDB[i].Fatigue = Convert.ToSingle(GetDataValue(Item[i], "Fatigue:"));
+            itemDB[i].AD = Convert.ToSingle(GetDataValue(Item[i], "AD:"));
+            itemDB[i].Attack_Range = Convert.ToSingle(GetDataValue(Item[i], "Attack_Range:"));
             itemDB[i].Charge_Space = Convert.ToSingle(GetDataValue(Item[i], "Charge_Space:"));
         }
 

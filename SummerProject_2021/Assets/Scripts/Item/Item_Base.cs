@@ -17,17 +17,21 @@ public class Item_Base : MonoBehaviour
     [SerializeField] protected float Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
     public Sprite itemImage;
     public GameObject itemPrefab;
-    private DBManager_Item_food_medicien itemData_Food_Medicien;
+    private DBManager_Item_Food_Medicine itemData_Food_Medicine;
     private DBManager_Item_Material itemData_Material;
     private DBManager_Item_Object itemData_Object;
 
     private bool useItem = false;
     // Start is called before the first frame update
+    public float m_DoubleClickSecond = 0.25f;
+    private bool m_IsOneClick = false;
+    private double m_Timer = 0;
+
     void Start()
     {
-        itemData_Food_Medicien = GameObject.Find("ItemDB").GetComponent<DBManager_Item_food_medicien>();
-        itemData_Material = GameObject.Find("ItemDB").GetComponent<DBManager_Item_Material>();
-        itemData_Object = GameObject.Find("ItemDB").GetComponent<DBManager_Item_Object>();
+        itemData_Food_Medicine = GameObject.Find("DBManager").GetComponent<DBManager_Item_Food_Medicine>();
+        itemData_Material = GameObject.Find("DBManager").GetComponent<DBManager_Item_Material>();
+        itemData_Object = GameObject.Find("DBManager").GetComponent<DBManager_Item_Object>();
         StartCoroutine(DataSet());
     }
     protected IEnumerator DataSet()
@@ -37,16 +41,16 @@ public class Item_Base : MonoBehaviour
         {
             if (CurrentitemType == ItemType.Food || CurrentitemType == ItemType.Medicine)
             {
-                for (int i = 0; i < itemData_Food_Medicien.itemDB.Length; i++)
+                for (int i = 0; i < itemData_Food_Medicine.itemDB.Length; i++)
                 {
 
-                    if (itemData_Food_Medicien.itemDB[i].name == CurrentItem.ToString())
+                    if (itemData_Food_Medicine.itemDB[i].name == CurrentItem.ToString())
                     {
-                        Hunger = itemData_Food_Medicien.itemDB[i].Hunger;
-                        Thirst = itemData_Food_Medicien.itemDB[i].Thirst;
-                        Heal = itemData_Food_Medicien.itemDB[i].Heal;
-                        Fatigue = itemData_Food_Medicien.itemDB[i].Fatigue;
-                        Charge_Space = itemData_Food_Medicien.itemDB[i].Charge_Space;
+                        Hunger = itemData_Food_Medicine.itemDB[i].Hunger;
+                        Thirst = itemData_Food_Medicine.itemDB[i].Thirst;
+                        Heal = itemData_Food_Medicine.itemDB[i].Heal;
+                        Fatigue = itemData_Food_Medicine.itemDB[i].Fatigue;
+                        Charge_Space = itemData_Food_Medicine.itemDB[i].Charge_Space;
                         DataLoading = false;
                     }
                 }
@@ -85,6 +89,31 @@ public class Item_Base : MonoBehaviour
     }
     void Update()
     {
+        if (CurrentitemType != ItemType.Ingredient)
+        {
+            if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
+            {
+                Debug.Log("One Click");
+                m_IsOneClick = false;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!m_IsOneClick)
+                {
+                    m_Timer = Time.time;
+                    m_IsOneClick = true;
+                }
+
+                else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+                {
+                    Debug.Log("Double Click");
+                    m_IsOneClick = false;
+                    useItem = true;
+                }
+            }
+        }
+
         if (useItem)
         {
             UseItem();
