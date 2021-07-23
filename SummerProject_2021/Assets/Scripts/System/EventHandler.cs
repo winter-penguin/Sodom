@@ -1,6 +1,6 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-07-09
+///  Last edit date : 2021-07-23
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -17,17 +17,10 @@ public class EventHandler : MonoBehaviour
 	private void Awake()
 	{
 		Player = GameObject.FindGameObjectWithTag("Player");
-		exclamationMark = GameObject.Find("EventOccur");
 	}
 
 	private void Start()
 	{
-		Init();
-	}
-
-	private void Init()
-	{
-		exclamationMark.GetComponent<Image>().enabled = false;
 	}
 
 	public void EventAlert()
