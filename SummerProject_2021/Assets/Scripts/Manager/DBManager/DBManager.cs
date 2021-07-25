@@ -10,14 +10,14 @@ using UnityEngine.Networking;
 
 public class DBManager : MonoBehaviour
 {
-    [SerializeField] protected string phpFile;  //php ÆÄÀÏ ÀÌ¸§
+    [SerializeField] protected string phpFile;  //php íŒŒì¼ ì´ë¦„
     protected string url; //LocalHost URL
     protected string queryResult;
     
 /// <summary>
-/// µ¥ÀÌÅÍº£ÀÌ½º Á¢¼ÓÀ» À§ÇÑ ¼¼ÆÃ
+/// ë°ì´í„°ë² ì´ìŠ¤ ì ‘ì†ì„ ìœ„í•œ ì„¸íŒ…
 /// </summary>
-/// <param name="_phpFile">php ÆÄÀÏ ÀÌ¸§</param>
+/// <param name="_phpFile">php íŒŒì¼ ì´ë¦„</param>
     protected void Init(string _phpFile)
     {
         url = "http://220.127.167.244:8080/summerproject_2021/";
@@ -25,7 +25,7 @@ public class DBManager : MonoBehaviour
     }
 
     /// <summary>
-    /// µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¬°á
+    /// ë°ì´í„°ë² ì´ìŠ¤ì— ì—°ê²°
     /// </summary>
     protected virtual IEnumerator ConnectDB()
     {
@@ -33,7 +33,7 @@ public class DBManager : MonoBehaviour
         yield return www.SendWebRequest();
         if (www.error != null)
         {
-            //TODO: ¼­¹ö Á¢¼Ó ½ÇÆĞ½Ã ¿¡·¯ ¹®±¸
+            //TODO: ì„œë²„ ì ‘ì† ì‹¤íŒ¨ì‹œ ì—ëŸ¬ ë¬¸êµ¬
             yield break;
         }
 
@@ -41,12 +41,12 @@ public class DBManager : MonoBehaviour
     }
     
     /// <summary>
-    /// Å×ÀÌºíÀÇ ÇÏ³ªÀÇ ÇàÀ» ¿©·¯ ¿­·Î ±¸ºĞ
+    /// í…Œì´ë¸”ì˜ í•˜ë‚˜ì˜ í–‰ì„ ì—¬ëŸ¬ ì—´ë¡œ êµ¬ë¶„
     /// </summary>
-    /// <param name="data">±¸ºĞÇÏ·Á°í ÇÏ´Â Çà</param>
-    /// <param name="index">ÇàÀÇ ÀÌ¸§ ex)"id:"</param>
-    /// <param name="seperator">ÇàÀ» ¿­·Î ±¸ºĞÇÏ±â À§ÇÑ seperator</param>
-    /// <returns>ÇÏ³ªÀÇ ÇàÀÇ index¿­ ¿¡ ÇØ´çÇÏ´Â °ª</returns>
+    /// <param name="data">êµ¬ë¶„í•˜ë ¤ê³  í•˜ëŠ” í–‰</param>
+    /// <param name="index">í–‰ì˜ ì´ë¦„ ex)"id:"</param>
+    /// <param name="seperator">í–‰ì„ ì—´ë¡œ êµ¬ë¶„í•˜ê¸° ìœ„í•œ seperator</param>
+    /// <returns>í•˜ë‚˜ì˜ í–‰ì˜ indexì—´ ì— í•´ë‹¹í•˜ëŠ” ê°’</returns>
     protected string GetDataValue(string data, string index, string seperator)
     {
         string value = data.Substring(data.IndexOf(index) + index.Length);

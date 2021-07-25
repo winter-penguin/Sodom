@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 	// 현재 플레이 하고 있는 날짜
 	private static int _day = 1;
 
-	public static int Day
+	public int Day
 	{
 		get { return _day; }
 		set
@@ -46,63 +46,63 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	public struct Clock
 	{
-		private int _hour;
-		private int _min;
-		private int _sec;
-
-		public int Hour
-		{
-			get { return _hour; }
-			set
-			{
-				_hour = value;
-				if (_hour >= 24)
-				{
-					Day++;
-					_hour = 0;
-				}
-
-				if (Day == 30 && _hour == 18)
-				{
-					GameClear();
-				}
-			}
-		}
-
-		public int Min
-		{
-			get { return _min; }
-			set
-			{
-				_min = value;
-
-				while (_min >= 60)
-				{
-					Hour++;
-					_min = _min - 60;
-				}
-			}
-		}
-
-		public int Sec
-		{
-			get { return _sec; }
-			set
-			{
-				_sec = value;
-
-				while (_sec >= 60)
-				{
-					Min++;
-					_sec = _sec - 60;
-				}
-			}
-		}
+		public int hour;
+		public int min;
+		public int sec;
 
 		public Clock(int _hour, int _min) : this()
 		{
-			Hour = _hour;
-			Min = _min;
+			hour = _hour;
+			min = _min;
+		}
+	}
+
+	public int Hour
+	{
+		get { return DayTime.hour; }
+		set
+		{
+			DayTime.hour = value;
+			if (DayTime.hour >= 24)
+			{
+				Day++;
+				DayTime.hour = 0;
+			}
+
+			if (Day == 30 && DayTime.hour == 18)
+			{
+				GameClear();
+			}
+		}
+	}
+
+	public int Min
+	{
+		get { return DayTime.min; }
+		set
+		{
+			DayTime.min = value;
+
+			while (DayTime.min >= 60)
+			{
+				Hour++;
+				DayTime.min = DayTime.min - 60;
+			}
+		}
+	}
+
+	public int Sec
+	{
+		get { return DayTime.sec; }
+		set
+		{
+			DayTime.sec = value;
+
+			while (DayTime.sec >= 60)
+			{
+				Min++;
+				DayTime.sec = DayTime.sec - 60;
+			}
 		}
 	}
 
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
 		while (!isDead)
 		{
 			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
-			DayTime.Min = DayTime.Min + 1; // Default : 1, Day Test : 720
+			Min = Min + 1; // Default : 1, Day Test : 720
 			// DayTime.Sec = DayTime.Sec + 24;
 		}
 	}
