@@ -132,7 +132,7 @@ public class FarmingSystem : MonoBehaviour
 
 		// TODO : 파밍 양 정해지면 마저 확률 및 획득하는 아이템 종류 지정해주기
 
-		MaterialPack mat1Pack, mat2Pack, mat3Pack, mat4Pack;
+		MaterialPack mat1Pack, mat2Pack, mat3Pack/*, mat4Pack*/;
 		mat1Pack = new MaterialPack(mat1, mat1Amount);
 		mat2Pack = new MaterialPack(mat2, mat2Amount);
 		mat3Pack = new MaterialPack(mat3, mat3Amount);

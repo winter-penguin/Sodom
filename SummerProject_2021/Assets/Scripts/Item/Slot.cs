@@ -27,7 +27,7 @@ public class Slot : MonoBehaviour
         itemCount = _count;
         itemImage.sprite = item.itemImage;
 
-        if (item.CurrentitemType != Item_Base.ItemType.Weapon || item.CurrentitemType != Item_Base.ItemType.Tool)
+        if (item.CurrentItemType != Item_Base.ItemType.Weapon || item.CurrentItemType != Item_Base.ItemType.Tool)
         {
             go_CountImage.SetActive(true);
             text_Count.text = itemCount.ToString();

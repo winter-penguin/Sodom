@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
 
     public void AcquireItem(Item_Base _item, int _count = 1)
     {
-        if (Item_Base.ItemType.Weapon != _item.CurrentitemType || Item_Base.ItemType.Tool != _item.CurrentitemType)
+        if (Item_Base.ItemType.Weapon != _item.CurrentItemType || Item_Base.ItemType.Tool != _item.CurrentItemType)
         {
             for (int i = 0; i < slots.Length; i++)
             {

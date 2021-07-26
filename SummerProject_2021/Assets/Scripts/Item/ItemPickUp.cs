@@ -27,7 +27,7 @@ public class ItemPickUp : MonoBehaviour
         {
             Item_Base mItem = other.transform.GetComponent<Item_Base>();
             Debug.Log(mItem.CurrentItem);
-            itemType = mItem.CurrentitemType;
+            itemType = mItem.CurrentItemType;
             
             if (itemType == Item_Base.ItemType.Food)
             {

@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
 
 	private void Update()
 	{
-		CalendarObject.GetComponent<Text>().text = "Day " + GameManager.Day;
-		TimeObject.GetComponent<Text>().text = GM.DayTime.Hour + ":" + GM.DayTime.Min;
+		CalendarObject.GetComponent<Text>().text = "Day " + GM.Day;
+		TimeObject.GetComponent<Text>().text = GM.Hour + ":" + GM.Min;
 	}
 }
