@@ -1,3 +1,9 @@
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+///  AUTHOR : Kim Jihun
+///  Last edit date : 2021-07-25
+///  Contact : kjhcorgi99@gmail.com
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,22 +15,9 @@ public class NPC_Moving : MonoBehaviour
     [SerializeField] protected float speed;
     [SerializeField] protected GameObject Door;
     public bool isDead;
-    private float movingTime;
-    public Vector3 targetPos;
 
-    protected float CurrentTime
-    {
-        get { return CurrentTime;}
-        set
-        {
-            CurrentTime = value;
-            if (CurrentTime % 3 == 0 && CurrentTime != 0) // 
-            {
-                StartCoroutine(NPCMoving());
-            }
-        }
-    }
-
+    public bool activeOver = false; // NPC 고유 기능이 완료 되었는가?
+    
     private void Awake()
     {
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
@@ -32,20 +25,27 @@ public class NPC_Moving : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(NPC_Clock());
-        StartCoroutine(NPCMoving());
+        
     }
 
-    protected virtual IEnumerator NPC_Clock()
+    /// <summary>
+    /// NPC 고유의 기능을 수행합니다. 
+    /// </summary>
+    /// <param name="pos">목적지 포지션</param>
+    /// <param name="time">목적지까지 가는데 걸리는 시간</param>
+    public virtual void Operate(Vector3 pos, float time)
     {
-        while (isDead)
-        {
-            CurrentTime = GM.Day;
-            yield return null;
-        }
+        activeOver = false;
+        StartCoroutine(NPCMoving(pos, time));
     }
     
-    protected virtual IEnumerator NPCMoving()
+    /// <summary>
+    /// NPC가 지정된 장소로 이동합니다.
+    /// </summary>
+    /// <param name="targetPos">목적지 포지션</param>
+    /// <param name="movingTime">목적지까지 가는데 걸리는 시간</param>
+    /// <returns></returns>
+    protected virtual IEnumerator NPCMoving(Vector3 targetPos, float movingTime)
     {
         float elapsedTime = 0;
         Vector3 currentPos = transform.position;
@@ -57,5 +57,10 @@ public class NPC_Moving : MonoBehaviour
         }
         transform.position = targetPos;
         
+    }
+
+    public virtual bool NpcTerminate()
+    {
+        return activeOver = true;
     }
 }

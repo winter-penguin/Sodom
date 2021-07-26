@@ -1,6 +1,6 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-07-21
+///  Last edit date : 2021-07-25
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -34,10 +34,6 @@ public class GameManager : MonoBehaviour
 		set
 		{
 			_day = value;
-			if (_day == 5)
-			{
-				eventHandler.EventAlert();
-			}
 		}
 	}
 
@@ -106,8 +102,8 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	// 플레이어 정보
-	public bool isDead;
+	// 게임이 끝났는가?
+	public bool isEnd = false;
 
 	private void Awake()
 	{
@@ -128,25 +124,6 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(TimeControl());
 	}
 
-	private void EventRise()
-	{
-	}
-
-	/// <summary>
-	/// 게임 오버
-	/// </summary>
-	/// <returns>함수 처리 완료 여부</returns>
-	public bool GameOver()
-	{
-		if (isDead)
-		{
-			// GameOver UI
-			return true;
-		}
-
-		return false;
-	}
-
 	/// <summary>
 	/// 시간 계산
 	/// </summary>
@@ -155,7 +132,7 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator TimeControl()
 	{
-		while (!isDead)
+		while (!isEnd)
 		{
 			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
 			Min = Min + 1; // Default : 1, Day Test : 720
@@ -167,7 +144,7 @@ public class GameManager : MonoBehaviour
 	/// 게임 클리어
 	/// </summary>
 	/// <returns>함수 처리 완료 여부</returns>
-	public static bool GameClear()
+	public bool GameClear()
 	{
 		// 게임 클리어 
 		return true;
