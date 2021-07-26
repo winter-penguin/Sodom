@@ -3,6 +3,7 @@
 // LAST EDITED DATE : 2021.07.19
 // Script Purpose : Character_ClickMove
 //*******************************
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,21 +14,33 @@ public class ClickMovement : MonoBehaviour
     //[SerializeField] // private 변수를 인스펙터에서 보여줌
     public class Floor
     {
-        public string name;
-        public Transform enemy;
+        public Transform up;
+        public Transform down;
+        public GameObject floor;
     }
     public Floor[] floor;
+    public float speed = 5;
+    public float stairspeed;
+
+    private Vector2 destination;
+    private Vector2 first_destination;
     private Camera camera1;
+    private Rigidbody2D rb;
+    private Transform stairstart;
+    private Transform stairend;
 
     private bool isClick;
-    private bool isMoving;
-    
-    private Vector2 destination;
-    public float speed = 5;
+    private bool isMoving = false;
+    private bool isFirst = false;
+    private bool isSecond = false;
+    private bool isFirst_ing = false;
+    private bool isSecond_ing = false;
 
-    private Rigidbody2D rb;
+    private int MovingCase;
+    private int WhereCharacteris;
+    private int WhatFloorToGo;
 
-    
+
     Vector2 MousePosition;
 
 
@@ -41,73 +54,163 @@ public class ClickMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                if (Physics.Raycast(ray, out hit, 100))
-                {
-                    // whatever tag you are looking for on your game object
-                    if (hit.collider.tag == "Trigger")
-                    {
-                        Debug.Log("---> Hit: ");
-                    }
-                }
-            }
-
-                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+            isFirst = false;
+            isSecond = false;
+            isMoving = false;
+            MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             destination = new Vector2(MousePosition.x, transform.position.y);
-            //Debug.Log(destination);
+            //destination = new Vector2(MousePosition.x, MousePosition.y);
+            Debug.Log(MousePosition);
             
-            isClick = true; //애니메이션 할때 필요함
+            //isClick = true; //애니메이션 할때 필요함
+            if (transform.position.x != destination.x)
+            {
+                isClick = true;
+                WhereToGo();
+                WhereCharacter();
+                CaseSetting();
+            }
         }
-        if (isClick && transform.position.x != destination.x)
-        {
-            isMoving = true;
-            isClick = false;
-            //transform.Translate(new Vector2(MousePosition.x - transform.position.x, 0)* Time.deltaTime * speed);
-            
-        }
+        
         else
         {
-            isClick = false;
+            //isClick = false;
         }
     }
+    
     private void FixedUpdate()
     {
-        if (isMoving == true)
+        if(isClick == true)
         {
-            //transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
-            //transform.position += (Vector3.right)*speed*Time.deltaTime; // 여기선 무조건 Vector3를 써야한다고함, 이거하면 계속 한쪽으로만 감
-            //rb.velocity = new Vector2(speed, 0); //질량을 고려하지 않고 움직임, y로 움직이지 않을 때 용이
-            //rb.AddForce(new Vector2(-speed, 0)); //질량을 고려하여 움직임
-            ///*
-            if (isMoving == true && transform.position.x > destination.x)
+            switch (MovingCase)
             {
-                rb.velocity = new Vector2(-speed, 0);//velocity를 사용하면 목적지에 다다랐을때 떨림
-                if (transform.position.x < destination.x)
-                {
-                    isMoving = false;
-                }
+                case 1:
+                    Move();
+                    break;
+                case 2:
+                    if(isFirst == false)
+                    {
+                        firstmove();
+                        if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
+                        {
+                            isFirst = true;
+                            isFirst_ing = false;
+
+                        }
+                    }
+                    
+                    if (isFirst == true)
+                    {
+                        secondmove();
+                        if (Math.Abs(transform.position.y - stairend.position.y) < 0.1f)
+                        {
+                            isFirst = false;
+                            isMoving = true;
+                            //floor[WhatFloorToGo - 1].floor.gameObject.SetActive(true);
+                            //Move();
+                        }
+                            
+                    }
+                    
+                    break;
             }
-            else if(isMoving == true && transform.position.x <= destination.x)
-            {
-                rb.velocity = new Vector2(speed, 0);
-                if(transform.position.x > destination.x)
-                {
-                    isMoving = false;
-                }
-            }
-            //*/
         }
-        
-        if(isMoving == false)
-        {
-            rb.AddForce(new Vector2(0, 0));
-            
-        }
-        
-            //transform.position = new Vector2(0, 0);
     }
+    void firstmove()
+    {
+        isFirst_ing = true;
+        //first_destination = new Vector2(stairstart.position.x, transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, stairstart.position, Time.deltaTime * speed);
+    }
+    public void secondmove()
+    {
+        isSecond_ing = true;
+        //transform.position = Vector2.MoveTowards(stairstart.position, stairend.position, Time.deltaTime * speed);
+        transform.position = Vector2.Lerp(transform.position, stairend.position, Time.deltaTime * stairspeed);
+        floor[WhatFloorToGo - 1].floor.gameObject.SetActive(true);
+    }
+    public void Move()
+    {
+        switch (MovingCase)
+        {
+            case 1:
+                transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
+                if (Math.Abs(transform.position.x - destination.x) < 0.01f)
+                {
+                    isMoving = false;
+                    isClick = false;
+                }
+                break;
+            case 2:
+                destination = new Vector2(MousePosition.x, transform.position.y); //계단 다 올라간뒤의 y좌표로 다시 목표설정
+                transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime * speed);
+                if (Math.Abs(transform.position.x - destination.x) < 0.01f)
+                {
+                    isMoving = false;
+                    isClick = false;
+                }
+                break;
+
+
+        }
+    }
+    void StairMove(Transform start, Transform end, float stairspeed)
+    {
+        transform.position = Vector2.MoveTowards(start.transform.position, end.transform.position, Time.deltaTime * stairspeed);
+    }
+    void WhereToGo()
+    {
+        if (MousePosition.y > -500 && MousePosition.y < 50)
+        {
+            WhatFloorToGo = 1;//1층에 갈것
+        }
+        if (MousePosition.y > 50 && MousePosition.y < 600)
+        {
+            WhatFloorToGo = 2;//2층에 갈것
+        }
+    }
+    private void WhereCharacter()
+    {
+        if (transform.position.y > -500 && transform.position.y < 50)
+        {
+            WhereCharacteris = 1;//캐릭터가 1층에 있음
+        }
+        if (transform.position.y > 50 && transform.position.y < 600)
+        {
+            WhereCharacteris = 2;//캐릭터가 2층에 있음
+        }
+    }
+    private void CaseSetting()
+    {
+        if(WhatFloorToGo == WhereCharacteris)//같은 층내에서 움직이기
+        {
+            MovingCase = 1; 
+        }
+        if(WhatFloorToGo > WhereCharacteris)//올라가기
+        {
+            MovingCase = 2; 
+            stairstart = floor[WhereCharacteris - 1].down;
+            stairend = floor[WhereCharacteris - 1].up;
+            floor[WhatFloorToGo - 1].floor.gameObject.SetActive(false);
+        }
+        if (WhatFloorToGo < WhereCharacteris)//내려가기
+        {
+            MovingCase = 3; 
+            stairstart = floor[WhereCharacteris - 2].up;
+            stairend = floor[WhereCharacteris - 2].down;
+        }
+    }
+    private void GoUp()
+    {
+
+    }
+    private void GoDown()
+    {
+
+    }
+    private void StairMove()
+    {
+
+    }
+
 }
