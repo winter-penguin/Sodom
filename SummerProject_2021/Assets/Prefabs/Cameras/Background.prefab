@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 586746631294159635}
   - component: {fileID: 8414317454443819967}
   - component: {fileID: 1683954005887378098}
+  - component: {fileID: 1015405847422526372}
   m_Layer: 30
   m_Name: Ground
   m_TagString: Untagged
@@ -322,6 +323,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sort: 0
+--- !u!61 &1015405847422526372
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2168237966698795147}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1920, y: 149}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1920, y: 149}
+  m_EdgeRadius: 0
 --- !u!1 &5863607057674338805
 GameObject:
   m_ObjectHideFlags: 0

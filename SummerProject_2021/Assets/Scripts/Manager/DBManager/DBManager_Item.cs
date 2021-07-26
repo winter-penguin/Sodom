@@ -50,12 +50,15 @@ public class DBManager_Item: DBManager
     public string[] Item_Object;
     void Start()
     {
-        Init("ItemData_FoodMedicien.php");
-        ConnectDB();
+        StartCoroutine(ConnectItenDB());
+    }
 
-        string itemDataString_Food = queryResult;
-        Item_Food_Medicine = itemDataString_Food.Split(';');
-
+    private IEnumerator ConnectItenDB()
+    {
+        Init("ItemData_FoodMedicine.php");
+        yield return StartCoroutine(ConnectDB());
+        
+        Item_Food_Medicine = queryResult.Split(';');
         for (int i = 0; i < itemDB_Food_Medicine.Length; i++)
         {
             itemDB_Food_Medicine[i].ID = Convert.ToInt32(GetDataValue(Item_Food_Medicine[i], "ID:", "|"));
@@ -67,12 +70,11 @@ public class DBManager_Item: DBManager
             itemDB_Food_Medicine[i].Fatigue = Convert.ToSingle(GetDataValue(Item_Food_Medicine[i], "Fatigue:", "|"));
             itemDB_Food_Medicine[i].Charge_Space = Convert.ToSingle(GetDataValue(Item_Food_Medicine[i], "Charge_Space:", "|"));
         }
+        
         Init("ItemData_Material.php");
-        ConnectDB();
+        yield return StartCoroutine(ConnectDB());
 
-        string itemDataString_Material = queryResult;
-        Item_Material = itemDataString_Material.Split(';');
-
+        Item_Material = queryResult.Split(';');
         for (int i = 0; i < itemDB_Material.Length; i++)
         {
             itemDB_Material[i].ID = Convert.ToInt32(GetDataValue(Item_Material[i], "ID:", "|"));
@@ -82,13 +84,11 @@ public class DBManager_Item: DBManager
             itemDB_Material[i].Attack_Range = Convert.ToSingle(GetDataValue(Item_Material[i], "Attack_Range:", "|"));
             itemDB_Material[i].Charge_Space = Convert.ToSingle(GetDataValue(Item_Material[i], "Charge_Space:", "|"));
         }
-
+        
         Init("ItemData_Object.php");
-        ConnectDB();
+        yield return StartCoroutine(ConnectDB());
 
-        string itemDataString_Object = queryResult;
-        Item_Object = itemDataString_Object.Split(';');
-
+        Item_Object = queryResult.Split(';');
         for (int i = 0; i < itemDB_Object.Length; i++)
         {
             itemDB_Object[i].ID = Convert.ToInt32(GetDataValue(Item_Object[i], "ID:", "|"));
@@ -105,6 +105,8 @@ public class DBManager_Item: DBManager
             itemDB_Object[i].Charge_Space = Convert.ToSingle(GetDataValue(Item_Object[i], "Charge_Space:", "|"));
 
         }
+
+
     }
 
 }

@@ -30,7 +30,7 @@ public class DBManager : MonoBehaviour
     protected virtual IEnumerator ConnectDB()
     {
         using UnityWebRequest www = UnityWebRequest.Get(url + phpFile);
-        yield return www.SendWebRequest();
+        yield return www.SendWebRequest(); // 멈춤
         if (www.error != null)
         {
             //TODO: 서버 접속 실패시 에러 문구

@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1088191321
-  m_SortingLayer: 0
+  m_SortingLayerID: -533758531
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f99bd2d8662ca9e40ac6454e3bcc634c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 116.07994, y: 197.09195}
+  m_Size: {x: 120, y: 200}
   m_EdgeRadius: 0
 --- !u!50 &3022548707195792497
 Rigidbody2D:
@@ -148,4 +148,4 @@ MonoBehaviour:
   speed: 0
   Door: {fileID: 0}
   isDead: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  activeOver: 0
