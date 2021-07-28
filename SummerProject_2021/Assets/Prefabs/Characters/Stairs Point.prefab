@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6600197740167130251}
   m_Layer: 0
-  m_Name: Staris Point
+  m_Name: Stairs Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

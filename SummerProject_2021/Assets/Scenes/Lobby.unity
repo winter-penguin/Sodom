@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 7611793271240579505, guid: adfe1590d3809cb4eac5ffc0c57c8309, type: 3}
     - target: {fileID: 8708404503220875364, guid: de3b090c2133f7a49bee9145f931b51e, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8708404503220875364, guid: de3b090c2133f7a49bee9145f931b51e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -433,7 +433,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6600197740167130250, guid: 9c12feff94816a44299119e0ec1ceb0b, type: 3}
       propertyPath: m_Name
-      value: Staris Point
+      value: Stairs Point
       objectReference: {fileID: 0}
     - target: {fileID: 6600197740167130251, guid: 9c12feff94816a44299119e0ec1ceb0b, type: 3}
       propertyPath: m_RootOrder
