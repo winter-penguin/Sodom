@@ -35,10 +35,11 @@ public class ClickMovement : MonoBehaviour
     private bool isSecond = false;
     private bool isFirst_ing = false;
     private bool isSecond_ing = false;
+    public bool isSecond_ing_click = false;
 
-    private int MovingCase;
-    private int WhereCharacteris;
-    private int WhatFloorToGo;
+    public int MovingCase;
+    public int Wherecharacteris;
+    public int Wheretogo;
 
 
     Vector2 MousePosition;
@@ -52,72 +53,141 @@ public class ClickMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (isSecond_ing == false)
         {
-            isFirst = false;
-            isSecond = false;
-            isMoving = false;
-            MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            destination = new Vector2(MousePosition.x, transform.position.y);
-            //destination = new Vector2(MousePosition.x, MousePosition.y);
-            Debug.Log(MousePosition);
-            
-            //isClick = true; //애니메이션 할때 필요함
-            if (transform.position.x != destination.x)
+            if (Input.GetMouseButtonUp(0))
             {
-                isClick = true;
+                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);//항상 제일 먼저
                 WhereToGo();
+                Debug.Log("Wheretogo: " + Wheretogo);
+
+                if (Wheretogo != 0)
+                {
+                    WhereCharacter();
+                    //Debug.Log("Whereis: " + Wherecharacteris);
+                    CaseSetting();
+                }
+                //Debug.Log(MousePosition);
+                //isClick = true; //애니메이션 할때 필요함
+            }
+            else if (isSecond_ing_click == true)
+            {
                 WhereCharacter();
+                //Debug.Log("Whereis: " + Wherecharacteris);
                 CaseSetting();
+                isSecond_ing_click = false;
             }
         }
-        
-        else
+        if (isSecond_ing == true)
         {
-            //isClick = false;
+            if (Input.GetMouseButtonUp(0))
+            {
+                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                WhereToGo();
+                //Debug.Log("Wheretogo: " + Wheretogo);
+                if (Wheretogo != 0)
+                {
+                    isSecond_ing_click = true;
+                    
+                    
+                }
+            }
         }
     }
+    //계단 올라가는중 => 클릭 => 일단 위치 저장 => 계단 이동이 끝나면 바로 이 저장한 위치로 이동해야함
     
     private void FixedUpdate()
     {
-        if(isClick == true)
+        if(isSecond_ing == false)
         {
-            switch (MovingCase)
-            {
-                case 1:
-                    Move();
-                    break;
-                case 2:
-                    if(isFirst == false)
-                    {
-                        firstmove();
-                        if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
-                        {
-                            isFirst = true;
-                            isFirst_ing = false;
 
-                        }
-                    }
-                    
-                    if (isFirst == true)
+        }
+        switch (MovingCase)
+        {
+            case 1:
+                NormalMove();
+                break;
+            case 2:
+                if (isFirst == false)
+                {
+                    firstmove();
+                    if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
                     {
-                        secondmove();
-                        if (Math.Abs(transform.position.y - stairend.position.y) < 0.1f)
-                        {
-                            isFirst = false;
-                            isMoving = true;
-                            //floor[WhatFloorToGo - 1].floor.gameObject.SetActive(true);
-                            //Move();
-                        }
-                            
+                        isFirst = true;
+                        isFirst_ing = false;
                     }
-                    
-                    break;
-            }
+                }
+                else if (isFirst == true && isSecond == false)
+                {
+                    rb.isKinematic = true;
+                    secondmove();
+                    if (Math.Abs(transform.position.y - stairend.position.y) < 0.01f)
+                    {
+                        rb.isKinematic = false;
+                        isSecond = true;
+                        isSecond_ing = false;
+                        if(Wheretogo == 2)
+                            floor[Wheretogo - 1].floor.gameObject.SetActive(true);
+                        if(isSecond_ing_click == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+                else if(isSecond == true)
+                {
+                    NormalMove();
+                }
+                break;
+            case 3:
+                if (isFirst == false && isSecond_ing == false)
+                {
+                    firstmove();
+                    if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
+                    {
+                        isFirst = true;
+                        isFirst_ing = false;
+                    }
+                }
+                else if (isFirst == true && isSecond == false)
+                {
+                    rb.isKinematic = true;
+                    secondmove();
+                    if (Math.Abs(transform.position.y - stairend.position.y) < 0.01f)
+                    {
+                        rb.isKinematic = false;
+                        isSecond = true;
+                        isSecond_ing = false;
+                        if (Wheretogo == 2)
+                            floor[Wherecharacteris - 1].floor.gameObject.SetActive(true);
+                        if (isSecond_ing_click == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+                else if (isSecond == true)
+                {
+                    NormalMove();
+                }
+                break;
+
+
+                
+        }
+        if (Wheretogo != 0)
+        {
+            
+        }
+        
+        if (isClick == true)
+        {
+            
         }
     }
     void firstmove()
     {
+        isMoving = true;
         isFirst_ing = true;
         //first_destination = new Vector2(stairstart.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, stairstart.position, Time.deltaTime * speed);
@@ -126,8 +196,19 @@ public class ClickMovement : MonoBehaviour
     {
         isSecond_ing = true;
         //transform.position = Vector2.MoveTowards(stairstart.position, stairend.position, Time.deltaTime * speed);
-        transform.position = Vector2.Lerp(transform.position, stairend.position, Time.deltaTime * stairspeed);
-        floor[WhatFloorToGo - 1].floor.gameObject.SetActive(true);
+        transform.position = Vector2.MoveTowards(transform.position, stairend.position, Time.deltaTime * stairspeed);
+        
+    }
+    public void NormalMove()
+    {
+        destination = new Vector2(MousePosition.x, transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
+        isMoving = true;
+        if (Math.Abs(transform.position.x - destination.x) < 0.01f)
+        {
+            isMoving = false;
+            isClick = false;
+        }
     }
     public void Move()
     {
@@ -154,61 +235,72 @@ public class ClickMovement : MonoBehaviour
 
         }
     }
-    void StairMove(Transform start, Transform end, float stairspeed)
+    
+    void StairMove()
     {
-        transform.position = Vector2.MoveTowards(start.transform.position, end.transform.position, Time.deltaTime * stairspeed);
+        transform.position = Vector2.MoveTowards(transform.position, stairend.transform.position, Time.deltaTime * stairspeed);
     }
     void WhereToGo()
     {
-        if (MousePosition.y > -500 && MousePosition.y < 50)
+        if (MousePosition.y > -390 && MousePosition.y < -25)
         {
-            WhatFloorToGo = 1;//1층에 갈것
+            Wheretogo = 1;//1층에 갈것
         }
-        if (MousePosition.y > 50 && MousePosition.y < 600)
+        else if (MousePosition.y > 25 && MousePosition.y < 390)
         {
-            WhatFloorToGo = 2;//2층에 갈것
+            Wheretogo = 2;//2층에 갈것
         }
+        else
+            Wheretogo = 0; //집 외에 다른곳 선택
     }
     private void WhereCharacter()
     {
-        if (transform.position.y > -500 && transform.position.y < 50)
+        if (transform.position.y > -290 && transform.position.y < -125)
         {
-            WhereCharacteris = 1;//캐릭터가 1층에 있음
+            Wherecharacteris = 1;//캐릭터가 1층에 있음
         }
-        if (transform.position.y > 50 && transform.position.y < 600)
+        if (transform.position.y > 124 && transform.position.y < 290)
         {
-            WhereCharacteris = 2;//캐릭터가 2층에 있음
+            Wherecharacteris = 2;//캐릭터가 2층에 있음
         }
+        
     }
     private void CaseSetting()
     {
-        if(WhatFloorToGo == WhereCharacteris)//같은 층내에서 움직이기
+        if(Wheretogo == Wherecharacteris)//같은 층내에서 움직이기
         {
             MovingCase = 1; 
         }
-        if(WhatFloorToGo > WhereCharacteris)//올라가기
+        if(Wheretogo > Wherecharacteris)//올라가기
         {
+            isFirst = false;
+            isSecond = false;
             MovingCase = 2; 
-            stairstart = floor[WhereCharacteris - 1].down;
-            stairend = floor[WhereCharacteris - 1].up;
-            floor[WhatFloorToGo - 1].floor.gameObject.SetActive(false);
+            stairstart = floor[Wherecharacteris - 1].down;
+            stairend = floor[Wherecharacteris - 1].up;
+            floor[Wheretogo - 1].floor.gameObject.SetActive(false);
         }
-        if (WhatFloorToGo < WhereCharacteris)//내려가기
+        if (Wheretogo < Wherecharacteris)//내려가기(3층이상 되면 달라져야함)
         {
-            MovingCase = 3; 
-            stairstart = floor[WhereCharacteris - 2].up;
-            stairend = floor[WhereCharacteris - 2].down;
+            isFirst = false;
+            isSecond = false;
+            MovingCase = 3;
+            stairstart = floor[Wherecharacteris - 2].up;
+            stairend = floor[Wherecharacteris - 2].down;
+            floor[Wherecharacteris - 1].floor.gameObject.SetActive(false);
         }
+        /*
+        if(isSecond_ing_click == true)//계단 올라가거나 내려가던 중에 클릭됐을때
+        {
+            MovingCase = 4;
+        }
+        */
     }
     private void GoUp()
     {
 
     }
     private void GoDown()
-    {
-
-    }
-    private void StairMove()
     {
 
     }
