@@ -78,7 +78,7 @@ public class EventHandler : MonoBehaviour
 	{
 		while (!GM.isEnd)
 		{
-			if (GM.Day == 1 && !doEvent)
+			if (GM.Day == 2 && !doEvent)
 			{
 				doEvent = true;
 				TraderEvent();
@@ -97,6 +97,6 @@ public class EventHandler : MonoBehaviour
 	{
 		trader.transform.position = spawn.transform.position;
 		trader.SetActive(true);
-		traderFunc.Operate(GameObject.FindGameObjectWithTag("Player").transform.position, 2f);
+		traderFunc.Operate(GameObject.FindGameObjectWithTag("Player").transform.position);
 	}
 }
