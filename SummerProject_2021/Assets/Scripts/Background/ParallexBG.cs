@@ -39,7 +39,7 @@ public class ParallexBG : MonoBehaviour
 {
 	private MainCharacter player;
 	private CameraController cameraInfo;
-	private const float SCREEN_HALF_WIDTH = 960;
+	private const float SCREEN_HALF_WIDTH = 1250;
 
 	[HideInInspector] public BackgroundKinds sort;
 	[HideInInspector] public BuildingKinds building;
@@ -134,15 +134,13 @@ public class ParallexBG : MonoBehaviour
 	{
 		Vector3 cameraPos;
 		Vector3 dir = Vector3.left;	// 구름 이미지가 좌측으로 이동
+		float spriteSize = GetComponent<SpriteRenderer>().bounds.size.x;
 		while (true)
 		{
 			cameraPos = Camera.main.transform.position;
-			if ((transform.position.x - cameraPos.x) > SCREEN_HALF_WIDTH)
+			if (transform.position.x + spriteSize/2 < -SCREEN_HALF_WIDTH)
 			{
-				transform.position = new Vector3(cameraPos.x - SCREEN_HALF_WIDTH,transform.position.y,transform.position.z);
-			}else if ((transform.position.x - cameraPos.x) < -SCREEN_HALF_WIDTH)
-			{
-				transform.position = new Vector3(cameraPos.x + SCREEN_HALF_WIDTH, transform.position.y, transform.position.z);
+				transform.position = new Vector3(transform.position.x+ 3*spriteSize, transform.position.y, transform.position.z);
 			}
 			transform.Translate(dir*parallexSpeed*Time.deltaTime);
 			yield return null;
