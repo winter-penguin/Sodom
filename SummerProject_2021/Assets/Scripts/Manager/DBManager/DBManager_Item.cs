@@ -50,11 +50,13 @@ public class DBManager_Item: DBManager
     public string[] Item_Object;
     void Start()
     {
-        Init("ItemData_FoodMedicien.php");
-        ConnectDB();
-
-        string itemDataString_Food = queryResult;
-        Item_Food_Medicine = itemDataString_Food.Split(';');
+        StartCoroutine(ConnectItemDB());
+    }
+    private IEnumerator ConnectItemDB()
+    {
+        Init(_phpFile : "ItemData_FoodMedicine.php");
+        yield return StartCoroutine(routine: ConnectDB());
+        Item_Food_Medicine = queryResult.Split(';');
 
         for (int i = 0; i < itemDB_Food_Medicine.Length; i++)
         {
@@ -67,11 +69,10 @@ public class DBManager_Item: DBManager
             itemDB_Food_Medicine[i].Fatigue = Convert.ToSingle(GetDataValue(Item_Food_Medicine[i], "Fatigue:", "|"));
             itemDB_Food_Medicine[i].Charge_Space = Convert.ToSingle(GetDataValue(Item_Food_Medicine[i], "Charge_Space:", "|"));
         }
-        Init("ItemData_Material.php");
-        ConnectDB();
 
-        string itemDataString_Material = queryResult;
-        Item_Material = itemDataString_Material.Split(';');
+        Init(_phpFile: "ItemData_Material.php");
+        yield return StartCoroutine(routine: ConnectDB());
+        Item_Material = queryResult.Split(';');
 
         for (int i = 0; i < itemDB_Material.Length; i++)
         {
@@ -83,11 +84,9 @@ public class DBManager_Item: DBManager
             itemDB_Material[i].Charge_Space = Convert.ToSingle(GetDataValue(Item_Material[i], "Charge_Space:", "|"));
         }
 
-        Init("ItemData_Object.php");
-        ConnectDB();
-
-        string itemDataString_Object = queryResult;
-        Item_Object = itemDataString_Object.Split(';');
+        Init(_phpFile: "ItemData_Object.php");
+        yield return StartCoroutine(routine: ConnectDB());
+        Item_Object = queryResult.Split(';');
 
         for (int i = 0; i < itemDB_Object.Length; i++)
         {
