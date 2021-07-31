@@ -23,7 +23,7 @@ public struct CharacterDB
 public class DB_Character : DBManager
 {
     [SerializeField]
-    public CharacterDB[] characterDB; //½ºÅ©¸³Æ® ³»¿¡¼­ character.Length-1ÀÇ Å©±â¸¸Å­ ¼±¾ğÇØº¸·Á°í Çß´Âµ¥ ½ÇÆĞÇÔ
+    public CharacterDB[] characterDB; //ìŠ¤í¬ë¦½íŠ¸ ë‚´ì—ì„œ character.Length-1ì˜ í¬ê¸°ë§Œí¼ ì„ ì–¸í•´ë³´ë ¤ê³  í–ˆëŠ”ë° ì‹¤íŒ¨í•¨
     
     [SerializeField]
     public string[] character;
@@ -45,7 +45,7 @@ public class DB_Character : DBManager
         Init("Character_CHG.php");
         yield return StartCoroutine(ConnectDB());
         
-        character = queryResult.Split('|'); //| °¡ ÀÖ´Â °¹¼ö¸¸Å­ ³ª´« ¹®ÀÚ¿­µéÀ» ¹è¿­·Î ³ÖÀº°Í
+        character = queryResult.Split('|'); //| ê°€ ìˆëŠ” ê°¯ìˆ˜ë§Œí¼ ë‚˜ëˆˆ ë¬¸ìì—´ë“¤ì„ ë°°ì—´ë¡œ ë„£ì€ê²ƒ
         
         for (int i =0; i < character.Length - 1; i++)
         {

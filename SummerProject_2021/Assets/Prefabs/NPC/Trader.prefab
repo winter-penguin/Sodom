@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6213940191464396713}
   - component: {fileID: 6479381081805504074}
   - component: {fileID: 3022548707195792497}
-  - component: {fileID: 1662938020627246150}
+  - component: {fileID: 8603061874165358407}
   m_Layer: 0
   m_Name: Trader
   m_TagString: NPC
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &1662938020627246150
+--- !u!114 &8603061874165358407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533935667765589812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70603c59c06dbfc48b1e4747ec2e7e35, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d20c281a7747ed459671e0298b0eb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}

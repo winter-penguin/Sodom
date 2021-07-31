@@ -133,7 +133,7 @@ public class ParallexBG : MonoBehaviour
 	private IEnumerator ParallexScrolling()
 	{
 		Vector3 cameraPos;
-		Vector3 dir = Vector3.left;	// ±¸¸§ ÀÌ¹ÌÁö°¡ ÁÂÃøÀ¸·Î ÀÌµ¿
+		Vector3 dir = Vector3.left;	// êµ¬ë¦„ ì´ë¯¸ì§€ê°€ ì¢Œì¸¡ìœ¼ë¡œ ì´ë™
 		float spriteSize = GetComponent<SpriteRenderer>().bounds.size.x;
 		while (true)
 		{
