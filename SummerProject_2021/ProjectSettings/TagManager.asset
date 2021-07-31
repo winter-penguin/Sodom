@@ -46,9 +46,12 @@ TagManager:
   - name: Background
     uniqueID: 2753165585
     locked: 0
-  - name: Player
-    uniqueID: 1616731973
-    locked: 0
   - name: Flatform
     uniqueID: 794487721
+    locked: 0
+  - name: NPC
+    uniqueID: 3761208765
+    locked: 0
+  - name: Player
+    uniqueID: 1616731973
     locked: 0
