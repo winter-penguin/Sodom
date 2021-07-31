@@ -1,6 +1,6 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-07-27
+///  Last edit date : 2021-07-30
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -48,13 +48,14 @@ public class FarmingSystem : MonoBehaviour
 	}
 
 	private MaterialPack[] matPack; // 재료는 총 4개 수집
+	[SerializeField] private GameObject farmingPoint;
 
 	private void Start()
 	{
-		StartCoroutine(Init());
+		StartCoroutine(InitDB());
 	}
 	
-	private IEnumerator Init()
+	private IEnumerator InitDB()
 	{
 		dataLoaded = false;
 		dbInstance = GameObject.Find("DBManager").GetComponent<DB_Character>();
@@ -63,6 +64,14 @@ public class FarmingSystem : MonoBehaviour
 		dataLoaded = true;
 		//TODO: dbInstance로부터 캐릭터 정보를 받아와 저장 
 	}
+
+	private void InitProp()
+    {
+		if(farmingPoint == null)
+        {
+			farmingPoint = GameObject.Find("FarmingPoing");
+        }
+    }
 
 	public void Farming()
 	{
@@ -194,5 +203,13 @@ public class FarmingSystem : MonoBehaviour
 		return mat;
 	}
 
-	#endregion
+    #endregion
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+		if (collision.gameObject == farmingPoint)
+        {
+
+        }
+    }
 }
