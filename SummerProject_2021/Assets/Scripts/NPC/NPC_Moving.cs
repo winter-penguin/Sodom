@@ -12,7 +12,7 @@ using UnityEngine;
 public class NPC_Moving : MonoBehaviour
 {
     [SerializeField] private GameManager GM;
-    [SerializeField] protected float speed;
+    [SerializeField][Range(0.0f, 200.0f)] protected float speed;
     [SerializeField] protected GameObject Door;
     public bool isDead;
 
@@ -33,10 +33,10 @@ public class NPC_Moving : MonoBehaviour
     /// </summary>
     /// <param name="pos">목적지 포지션</param>
     /// <param name="time">목적지까지 가는데 걸리는 시간</param>
-    public virtual void Operate(Vector3 pos, float time)
+    public virtual void Operate(Vector3 pos)
     {
         activeOver = false;
-        StartCoroutine(NPCMoving(pos, time));
+        StartCoroutine(NPCMoving(pos));
     }
     
     /// <summary>
@@ -45,13 +45,16 @@ public class NPC_Moving : MonoBehaviour
     /// <param name="targetPos">목적지 포지션</param>
     /// <param name="movingTime">목적지까지 가는데 걸리는 시간</param>
     /// <returns></returns>
-    protected virtual IEnumerator NPCMoving(Vector3 targetPos, float movingTime)
+    protected virtual IEnumerator NPCMoving(Vector3 targetPos)
     {
         float elapsedTime = 0;
         Vector3 currentPos = transform.position;
+        float movingTime = (targetPos - currentPos).magnitude;
+        
         while (movingTime - elapsedTime > Mathf.Epsilon)
         {
-            transform.position = Vector3.Lerp(currentPos, targetPos, (elapsedTime / movingTime) * speed);
+            transform.position = Vector3.Lerp(currentPos, targetPos, (elapsedTime)*speed / movingTime );
+            Debug.Log(elapsedTime/movingTime);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame(); 
         }

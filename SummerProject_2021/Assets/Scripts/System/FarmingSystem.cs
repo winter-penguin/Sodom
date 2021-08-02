@@ -1,6 +1,6 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-07-22
+///  Last edit date : 2021-07-30
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -19,6 +19,8 @@ public class FarmingSystem : MonoBehaviour
 	private float foodAmount; // 음식 파밍 양
 	private float medAmount; // 의약품 파밍 양
 	private float matAmount; // 재료 파밍 양
+
+	private bool dataLoaded;
 
 	#endregion
 
@@ -46,17 +48,42 @@ public class FarmingSystem : MonoBehaviour
 	}
 
 	private MaterialPack[] matPack; // 재료는 총 4개 수집
+	[SerializeField] private GameObject farmingPoint;
 
 	private void Start()
 	{
-		Init();
+		StartCoroutine(InitDB());
 	}
+	
+	private IEnumerator InitDB()
+	{
+		dataLoaded = false;
+		dbInstance = GameObject.Find("DBManager").GetComponent<DB_Character>();
+		yield return new WaitUntil(() => dbInstance.isCharacterDB);
+		charBagAmount = dbInstance.characterDB[0/*캐릭터 번호*/].farming_amount;
+		dataLoaded = true;
+		//TODO: dbInstance로부터 캐릭터 정보를 받아와 저장 
+	}
+
+	private void InitProp()
+    {
+		if(farmingPoint == null)
+        {
+			farmingPoint = GameObject.Find("FarmingPoing");
+        }
+    }
 
 	public void Farming()
 	{
+		if (!dataLoaded)
+		{
+			Debug.Log("Data loading is failed in FarmingSystem");
+			return;
+		}
+		
 		float totalAmount, foodAmount, medAmount;
 		MaterialPack[] tempPack;
-		totalAmount = CalculateFarmingAmout(charBagAmount); // 나중에 수를 charBagAmount로 변경할것
+		totalAmount = CalculateFarmingAmount(charBagAmount); // 나중에 수를 charBagAmount로 변경할것
 		foodAmount = CalculateFoodAmount(totalAmount);
 		medAmount = CalculateMedAmount(totalAmount);
 		tempPack = CalculateMatAmount(totalAmount, foodAmount, medAmount);
@@ -72,21 +99,16 @@ public class FarmingSystem : MonoBehaviour
 #endif
 	}
 
-	private void Init()
-	{
-		dbInstance = GameObject.Find("DBManager").GetComponent<DB_Character>();
-		charBagAmount = dbInstance.characterDB[1/*캐릭터 번호*/].farming_amount;
-		//TODO: dbInstance로부터 캐릭터 정보를 받아와 저장 
-	}
+
 
 	/// <summary>
 	/// 캐릭터의 최종 파밍 양을 계산합니다.
 	/// </summary>
 	/// <param name="charAmount">캐릭터의 파밍 양</param>
 	/// <returns>최종 파밍 양</returns>
-	private float CalculateFarmingAmout(float charAmount)
+	private float CalculateFarmingAmount(float charAmount)
 	{
-		return UnityEngine.Random.Range((float)charAmount * 0.7f, (float)charAmount); // 파밍 양 계산
+		return UnityEngine.Random.Range(charAmount * 0.7f, charAmount); // 파밍 양 계산
 	}
 
 	/// <summary>
@@ -96,7 +118,7 @@ public class FarmingSystem : MonoBehaviour
 	/// <returns>음식 파밍 양</returns>
 	private float CalculateFoodAmount(float totalAmount)
 	{
-		return UnityEngine.Random.Range(0, (float)totalAmount * 0.1f);
+		return UnityEngine.Random.Range(0, totalAmount * 0.1f);
 	}
 
 	/// <summary>
@@ -106,7 +128,7 @@ public class FarmingSystem : MonoBehaviour
 	/// <returns>의약품 파밍 양</returns>
 	private float CalculateMedAmount(float totalAmount)
 	{
-		return UnityEngine.Random.Range(0, (float)totalAmount * 0.02f);
+		return UnityEngine.Random.Range(0, totalAmount * 0.02f);
 	}
 
 	/// <summary>
@@ -181,5 +203,13 @@ public class FarmingSystem : MonoBehaviour
 		return mat;
 	}
 
-	#endregion
+    #endregion
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+		if (collision.gameObject == farmingPoint)
+        {
+
+        }
+    }
 }

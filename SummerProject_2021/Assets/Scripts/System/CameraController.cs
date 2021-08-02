@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     private GameObject player;
 
     public GameObject[] background;
-    private const int BACKGROUND_IMAGE_CNT = 3; // ��濡 ���Ǵ� �̹��� ����
+    private const int BACKGROUND_IMAGE_CNT = 3; // � �濡 ���Ǵ� �̹��� ����
     [SerializeField] private GameObject foreBuilding;
     [SerializeField] private GameObject midBuilding;
     [SerializeField] private GameObject backBuilding;
