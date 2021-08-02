@@ -58,7 +58,7 @@ public class ClickMovement : MonoBehaviour
 
     void Start()
     {
-        enemynpc = GameObject.Find("EnemyNPC").GetComponent<EnemyNPC>();
+        enemynpc = GameObject.Find("EnemyNPC_CHG").GetComponent<EnemyNPC>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         AttackRange.SetActive(false);
     }
