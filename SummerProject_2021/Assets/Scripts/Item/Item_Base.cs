@@ -13,19 +13,13 @@ public class Item_Base : MonoBehaviour
     };
     public ItemName CurrentItem = ItemName.Cloth;
     public ItemType CurrentItemType = ItemType.Food;
-    private ItemName rayItemName;
-    private ItemType rayItemType;
     [SerializeField] protected float Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
     public Sprite itemImage;
     public GameObject itemPrefab;
     private DBManager_Item itemData;
-
-    private bool useItem = false;
     // Start is called before the first frame update
-    public float m_DoubleClickSecond = 0.25f;
-    private bool m_IsOneClick = false;
-    private double m_Timer = 0;
-
+    public bool useItem = false;
+    public bool ItemEquip = false;
     void Start()
     {
         itemData = GameObject.Find("DBManager").GetComponent<DBManager_Item>();
@@ -84,60 +78,52 @@ public class Item_Base : MonoBehaviour
         }
         yield return null;
     }
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Click");
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.Log(hit.transform.gameObject);
-                rayItemType = hit.transform.gameObject.GetComponent<Item_Base>().CurrentItemType;
-                rayItemName = hit.transform.gameObject.GetComponent<Item_Base>().CurrentItem;
-            }
-
-            if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
-            {
-                m_IsOneClick = false;
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (rayItemType != ItemType.Ingredient)
-                {
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        if (!m_IsOneClick)
-                        {
-                            m_Timer = Time.time;
-                            m_IsOneClick = true;
-                        }
-                    }
-
-                    else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
-                    {
-                        if (Physics.Raycast(ray, out hit))
-                        {
-                            Debug.Log("Double Click");
-                            m_IsOneClick = false;
-                            useItem = true;
-                        }
-                    }
-                }
-            }
-        }
         if (useItem)
         {
-            UseItem();
+            StartCoroutine(CheckUseItem());
         }
+
     }
 
-
-    void UseItem()
+    IEnumerator CheckUseItem()
     {
+        switch (CurrentItemType)
+        {
+            case ItemType.Ingredient:
 
+            case ItemType.Food:
+                break;
+            case ItemType.Medicine:
+                break;
+            case ItemType.Weapon:
+                if (ItemEquip)
+                {
+                    ItemEquip = false;
+                    Debug.Log("¾ÆÀÌÅÛ ÀåÂøÇØÁ¦");
+                }
+                else if (ItemEquip == false)
+                {
+                    ItemEquip = true;
+                    Debug.Log("¾ÆÀÌÅÛ ÀåÂø");
+                }
+                break;
+            case ItemType.Tool:
+                if (ItemEquip)
+                {
+                    ItemEquip = false;
+                    Debug.Log("¾ÆÀÌÅÛ ÀåÂøÇØÁ¦");
+                }
+                else if (ItemEquip == false)
+                {
+                    ItemEquip = true;
+                    Debug.Log("¾ÆÀÌÅÛ ÀåÂø");
+                }
+                break;
+        }
+        useItem = false;
+        yield return null;
     }
-    
 }
