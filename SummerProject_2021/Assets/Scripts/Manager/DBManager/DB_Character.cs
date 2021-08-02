@@ -18,7 +18,7 @@ public struct CharacterDB
     [SerializeField]
     public string crime_name, guilty, character_type;
     [SerializeField]
-    public float health, attack_power, attack_speed, attack_range, move_speed, farming_amount;
+    public float health, attack_power, attack_speed, attack_range, move_speed, farming_amount, hunger, thirst, fatigue;
 }
 public class DB_Character : DBManager
 {
@@ -59,10 +59,10 @@ public class DB_Character : DBManager
             characterDB[i].attack_range = Convert.ToSingle(GetDataValue(character[i], "attack_range:",";"));
             characterDB[i].move_speed = Convert.ToSingle(GetDataValue(character[i], "move_speed:",";"));
             characterDB[i].farming_amount = Convert.ToSingle(GetDataValue(character[i], "farming_amount:",";"));
+            characterDB[i].hunger = Convert.ToSingle(GetDataValue(character[i], "hunger:", ";"));
+            characterDB[i].thirst = Convert.ToSingle(GetDataValue(character[i], "thirst:", ";"));
+            characterDB[i].fatigue = Convert.ToSingle(GetDataValue(character[i], "fatigue:", ";"));
         }
-
         isCharacterDB = true;
-
-      
     }
 }

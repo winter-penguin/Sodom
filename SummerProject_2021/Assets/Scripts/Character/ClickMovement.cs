@@ -10,17 +10,19 @@ using UnityEngine;
 
 public class ClickMovement : MonoBehaviour
 {
+    EnemyNPC enemynpc;
     [System.Serializable] // class를 인스펙터에서 보여줌
     //[SerializeField] // private 변수를 인스펙터에서 보여줌
     public class Floor
     {
         public Transform up;
         public Transform down;
-        public GameObject floor;
     }
     public Floor[] floor;
-    public float speed = 5;
-    public float stairspeed;
+    public Transform pos;
+    public Vector2 boxSize;
+    public LayerMask EnemyNPCMask;
+    public GameObject AttackRange;
 
     private Vector2 destination;
     private Vector2 first_destination;
@@ -28,18 +30,26 @@ public class ClickMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Transform stairstart;
     private Transform stairend;
+    private RaycastHit2D hit;
+    
+    public bool isNormalMoving = false;
+    public bool isFirst_ing = false;
+    public bool isSecond_ing = false;
+    public bool isClickEnemy;
+    public bool isCollideEnemy = false;
+    public bool attack =true;
 
-    private bool isClick;
-    private bool isMoving = false;
     private bool isFirst = false;
     private bool isSecond = false;
-    private bool isFirst_ing = false;
-    private bool isSecond_ing = false;
-    public bool isSecond_ing_click = false;
+    private bool isClick;
+    private bool isSecond_ing_click = false;
 
     public int MovingCase;
     public int Wherecharacteris;
     public int Wheretogo;
+    public int HP;
+    public float speed = 5;
+    public float stairspeed;
 
 
     Vector2 MousePosition;
@@ -48,7 +58,9 @@ public class ClickMovement : MonoBehaviour
 
     void Start()
     {
+        enemynpc = GameObject.Find("EnemyNPC").GetComponent<EnemyNPC>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        AttackRange.SetActive(false);
     }
 
     void Update()
@@ -57,6 +69,7 @@ public class ClickMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
+                EnemyClick();
                 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);//항상 제일 먼저
                 WhereToGo();
                 Debug.Log("Wheretogo: " + Wheretogo);
@@ -64,16 +77,12 @@ public class ClickMovement : MonoBehaviour
                 if (Wheretogo != 0)
                 {
                     WhereCharacter();
-                    //Debug.Log("Whereis: " + Wherecharacteris);
                     CaseSetting();
                 }
-                //Debug.Log(MousePosition);
-                //isClick = true; //애니메이션 할때 필요함
             }
             else if (isSecond_ing_click == true)
             {
                 WhereCharacter();
-                //Debug.Log("Whereis: " + Wherecharacteris);
                 CaseSetting();
                 isSecond_ing_click = false;
             }
@@ -82,6 +91,7 @@ public class ClickMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
+                EnemyClick();
                 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 WhereToGo();
                 //Debug.Log("Wheretogo: " + Wheretogo);
@@ -98,147 +108,130 @@ public class ClickMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if(isSecond_ing == false)
-        {
-
-        }
         switch (MovingCase)
         {
             case 1:
-                NormalMove();
+                if(isNormalMoving == true) NormalMove();
                 break;
             case 2:
                 if (isFirst == false)
                 {
                     firstmove();
-                    if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
-                    {
-                        isFirst = true;
-                        isFirst_ing = false;
-                    }
+                    
                 }
                 else if (isFirst == true && isSecond == false)
                 {
                     rb.isKinematic = true;
                     secondmove();
-                    if (Math.Abs(transform.position.y - stairend.position.y) < 0.01f)
+                    if (isSecond_ing_click == true)
                     {
-                        rb.isKinematic = false;
-                        isSecond = true;
-                        isSecond_ing = false;
-                        if(Wheretogo == 2)
-                            floor[Wheretogo - 1].floor.gameObject.SetActive(true);
-                        if(isSecond_ing_click == true)
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
                 else if(isSecond == true)
                 {
-                    NormalMove();
+                    if (isNormalMoving == true) NormalMove();
                 }
                 break;
             case 3:
                 if (isFirst == false && isSecond_ing == false)
                 {
                     firstmove();
-                    if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
-                    {
-                        isFirst = true;
-                        isFirst_ing = false;
-                    }
                 }
                 else if (isFirst == true && isSecond == false)
                 {
                     rb.isKinematic = true;
                     secondmove();
-                    if (Math.Abs(transform.position.y - stairend.position.y) < 0.01f)
-                    {
-                        rb.isKinematic = false;
-                        isSecond = true;
-                        isSecond_ing = false;
-                        if (Wheretogo == 2)
-                            floor[Wherecharacteris - 1].floor.gameObject.SetActive(true);
-                        if (isSecond_ing_click == true)
-                        {
-                            break;
-                        }
-                    }
                 }
                 else if (isSecond == true)
                 {
-                    NormalMove();
+                    if (isNormalMoving == true) NormalMove();
                 }
                 break;
-
-
-                
-        }
-        if (Wheretogo != 0)
-        {
-            
         }
         
-        if (isClick == true)
+        if (isClickEnemy)
         {
-            
+            if (enemynpc.iscollide)
+            {
+                if (attack == true)
+                {
+                    enemynpc.EnemyHP -= 5;
+                    attack = false;
+                    StartCoroutine(WaitForAttack());
+                }
+            }
         }
+    }
+    IEnumerator WaitForAttack()
+    {
+        yield return new WaitForSeconds(1.0f);
+        attack = true;
     }
     void firstmove()
     {
-        isMoving = true;
         isFirst_ing = true;
         //first_destination = new Vector2(stairstart.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, stairstart.position, Time.deltaTime * speed);
+        if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
+        {
+            isFirst = true;
+            isFirst_ing = false;
+        }
     }
     public void secondmove()
     {
         isSecond_ing = true;
         //transform.position = Vector2.MoveTowards(stairstart.position, stairend.position, Time.deltaTime * speed);
         transform.position = Vector2.MoveTowards(transform.position, stairend.position, Time.deltaTime * stairspeed);
-        
+        if (Math.Abs(transform.position.y - stairend.position.y) < 0.1f)
+        {
+            rb.isKinematic = false;
+            isSecond = true;
+            isSecond_ing = false;
+            isNormalMoving = true;
+        }
     }
     public void NormalMove()
     {
+        if (isClickEnemy == true)
+        {
+            AttackRange.SetActive(true);
+        }
         destination = new Vector2(MousePosition.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
-        isMoving = true;
         if (Math.Abs(transform.position.x - destination.x) < 0.01f)
         {
-            isMoving = false;
+            isNormalMoving = false;
             isClick = false;
         }
     }
-    public void Move()
-    {
-        switch (MovingCase)
-        {
-            case 1:
-                transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
-                if (Math.Abs(transform.position.x - destination.x) < 0.01f)
-                {
-                    isMoving = false;
-                    isClick = false;
-                }
-                break;
-            case 2:
-                destination = new Vector2(MousePosition.x, transform.position.y); //계단 다 올라간뒤의 y좌표로 다시 목표설정
-                transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime * speed);
-                if (Math.Abs(transform.position.x - destination.x) < 0.01f)
-                {
-                    isMoving = false;
-                    isClick = false;
-                }
-                break;
-
-
-        }
-    }
     
-    void StairMove()
+    void EnemyClick()
     {
-        transform.position = Vector2.MoveTowards(transform.position, stairend.transform.position, Time.deltaTime * stairspeed);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        hit = Physics2D.Raycast(ray.origin, ray.direction, 10f);
+        if (hit)
+        {
+            //Debug.DrawRay(ray.origin, ray.direction * 10f, Color.red, 1f);
+            Debug.Log(hit.collider.tag);
+            if (hit.collider.tag == "EnemyNPC")
+            {
+                //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+                isClickEnemy = true;
+            }
+            else
+            {
+                isClickEnemy = false;
+                AttackRange.SetActive(false);
+            }
+        }
+        else
+        {
+            isClickEnemy = false;
+            AttackRange.SetActive(false);
+        }
     }
     void WhereToGo()
     {
@@ -269,7 +262,8 @@ public class ClickMovement : MonoBehaviour
     {
         if(Wheretogo == Wherecharacteris)//같은 층내에서 움직이기
         {
-            MovingCase = 1; 
+            MovingCase = 1;
+            isNormalMoving = true;
         }
         if(Wheretogo > Wherecharacteris)//올라가기
         {
@@ -278,7 +272,6 @@ public class ClickMovement : MonoBehaviour
             MovingCase = 2; 
             stairstart = floor[Wherecharacteris - 1].down;
             stairend = floor[Wherecharacteris - 1].up;
-            floor[Wheretogo - 1].floor.gameObject.SetActive(false);
         }
         if (Wheretogo < Wherecharacteris)//내려가기(3층이상 되면 달라져야함)
         {
@@ -287,7 +280,6 @@ public class ClickMovement : MonoBehaviour
             MovingCase = 3;
             stairstart = floor[Wherecharacteris - 2].up;
             stairend = floor[Wherecharacteris - 2].down;
-            floor[Wherecharacteris - 1].floor.gameObject.SetActive(false);
         }
         /*
         if(isSecond_ing_click == true)//계단 올라가거나 내려가던 중에 클릭됐을때
@@ -295,6 +287,11 @@ public class ClickMovement : MonoBehaviour
             MovingCase = 4;
         }
         */
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(pos.position, boxSize);
     }
     private void GoUp()
     {
