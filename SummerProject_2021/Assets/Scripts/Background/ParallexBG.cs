@@ -25,8 +25,6 @@ public enum BuildingKinds
 	frontBuilding,
 	midBuilding,
 	backBuilding,
-	frontCloud,
-	backCloud
 };
 
 public enum CloudKinds
@@ -156,7 +154,6 @@ public class ParallexBGEditor : Editor
 	private SerializedProperty building;
 	private SerializedProperty cloud;
 	
-	
 	private void OnEnable()
 	{
 		sort = serializedObject.FindProperty("sort");
@@ -175,12 +172,10 @@ public class ParallexBGEditor : Editor
 		{
 			case BackgroundKinds.building:
 				EditorGUILayout.PropertyField(building);
-				/*script.building = (BuildingKinds)EditorGUILayout.EnumPopup("Building kinds", script.building);*/
 				break;
 			
 			case BackgroundKinds.cloud:
 				EditorGUILayout.PropertyField(cloud);
-				/*script.cloud = (CloudKinds) EditorGUILayout.EnumPopup("Cloud Kinds", script.cloud);*/
 				break;
 		}
 
