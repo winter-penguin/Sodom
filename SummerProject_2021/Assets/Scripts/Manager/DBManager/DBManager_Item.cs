@@ -34,6 +34,17 @@ public struct ItemDB_Obejct
     [SerializeField]
     public float Item_Type, Fatigue, Capacity, Charge_Space;
 }
+[System.Serializable]
+public struct ItemDB_Craft
+{
+    [SerializeField]
+    public int ID;
+    [SerializeField]
+    public string name;
+    [SerializeField]
+    public int Necessary_Material_ID1, Amount_Of_Material1, Necessary_Material_ID2, Amount_Of_Material2,
+                Necessary_Material_ID3, Amount_Of_Material3, Necessary_Object_ID;
+}
 
 public class DBManager_Item: DBManager
 {
@@ -48,6 +59,10 @@ public class DBManager_Item: DBManager
     [SerializeField]
     public ItemDB_Obejct[] itemDB_Object;
     public string[] Item_Object;
+
+    [SerializeField]
+    public ItemDB_Craft[] itemDB_Craft;
+    public string[] Item_Craft;
     void Start()
     {
         StartCoroutine(ConnectItenDB());
@@ -106,6 +121,34 @@ public class DBManager_Item: DBManager
 
         }
 
+        Init("ItemData_Craft.php");
+        yield return StartCoroutine(ConnectDB());
+
+        Item_Craft = queryResult.Split(';');
+        for (int i = 0; i < itemDB_Craft.Length; i++)
+        {
+            itemDB_Craft[i].ID = Convert.ToInt32(GetDataValue(Item_Craft[i], "ID:", "|"));
+            itemDB_Craft[i].name = GetDataValue(Item_Craft[i], "Name:", "|");
+            itemDB_Craft[i].Necessary_Material_ID1 = Convert.ToInt32(GetDataValue(Item_Craft[i], "Necessary_Material_ID1:", "|"));
+            itemDB_Craft[i].Amount_Of_Material1 = Convert.ToInt32(GetDataValue(Item_Craft[i], "Amount_Of_Material1:", "|"));
+            if (GetDataValue(Item_Craft[i], "Necessary_Material_ID2:", "|") != "")
+            {
+                itemDB_Craft[i].Necessary_Material_ID2 = Convert.ToInt32(GetDataValue(Item_Craft[i], "Necessary_Material_ID2:", "|"));
+            }
+            if (GetDataValue(Item_Craft[i], "Amount_Of_Material2:", "|") != "")
+            {
+                itemDB_Craft[i].Amount_Of_Material2 = Convert.ToInt32(GetDataValue(Item_Craft[i], "Amount_Of_Material2:", "|"));
+            }
+            if (GetDataValue(Item_Craft[i], "Necessary_Material_ID3:", "|") != "")
+            {
+                itemDB_Craft[i].Necessary_Material_ID3 = Convert.ToInt32(GetDataValue(Item_Craft[i], "Necessary_Material_ID3:", "|"));
+            }
+            if (GetDataValue(Item_Craft[i], "Amount_Of_Material3:", "|") != "")
+            {
+                itemDB_Craft[i].Amount_Of_Material3 = Convert.ToInt32(GetDataValue(Item_Craft[i], "Amount_Of_Material3:", "|"));
+            }
+            itemDB_Craft[i].Necessary_Object_ID = Convert.ToInt32(GetDataValue(Item_Craft[i], "Necessary_Object_ID:", "|"));
+        }
 
     }
 
