@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3885884538598465439}
   - component: {fileID: 2473332934738677669}
-  - component: {fileID: 5119053642879337929}
   m_Layer: 0
   m_Name: DBManager
   m_TagString: Untagged
@@ -44,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eaaf75d54f2c55429ffcd63cb405bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phpFile: 
   characterDB:
   - characterType: 0
     id: 0
@@ -56,6 +56,9 @@ MonoBehaviour:
     attack_range: 0
     move_speed: 0
     farming_amount: 0
+    hunger: 0
+    thirst: 0
+    fatigue: 0
   - characterType: 0
     id: 0
     crime_name: 
@@ -67,6 +70,9 @@ MonoBehaviour:
     attack_range: 0
     move_speed: 0
     farming_amount: 0
+    hunger: 0
+    thirst: 0
+    fatigue: 0
   - characterType: 0
     id: 0
     crime_name: 
@@ -78,175 +84,9 @@ MonoBehaviour:
     attack_range: 0
     move_speed: 0
     farming_amount: 0
+    hunger: 0
+    thirst: 0
+    fatigue: 0
   character: []
   sql_string: 
   isCharacterDB: 0
---- !u!114 &5119053642879337929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3642054728254379208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 227c11f488726494b96e6ea4cf1c405b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phpFile: 
-  itemDB_Food_Medicine:
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  Item_Food_Medicine: []
-  itemDB_Material:
-  - ID: 0
-    name: 
-    Item_Type: 0
-    AD: 0
-    Attack_Range: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    AD: 0
-    Attack_Range: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    AD: 0
-    Attack_Range: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    AD: 0
-    Attack_Range: 0
-    Charge_Space: 0
-  Item_Material: []
-  itemDB_Object:
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
-    Capacity: 0
-    Charge_Space: 0
-  Item_Object: []
