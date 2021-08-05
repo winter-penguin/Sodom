@@ -12,20 +12,20 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-	private GameManager GM;
+	private ClockSystem clock;
 	private GameObject CalendarObject;
 	private GameObject TimeObject;
 
 	private void Awake()
 	{
-		GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+		clock = GameObject.Find("Clock").GetComponent<ClockSystem>();
 		CalendarObject = GameObject.Find("Calendar");
 		TimeObject = GameObject.Find("Time");
 	}
 
 	private void Update()
 	{
-		CalendarObject.GetComponent<Text>().text = "Day " + GM.Day;
-		TimeObject.GetComponent<Text>().text = GM.Hour + ":" + GM.Min;
+		CalendarObject.GetComponent<Text>().text = "Day " + clock.Day;
+		TimeObject.GetComponent<Text>().text = clock.Hour + ":" + clock.Min;
 	}
 }
