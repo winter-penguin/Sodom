@@ -21,7 +21,7 @@ public class Slot : MonoBehaviour
         itemImage.color = color;
     }
 
-    public void AddItem(Item _item, int _count = 1)
+    public void AddItem(Item _item, int _count)
     {
         item = _item;
         itemCount = _count;

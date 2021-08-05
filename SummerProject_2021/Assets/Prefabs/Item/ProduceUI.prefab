@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5039207650627621729}
   - component: {fileID: 7570588543213446220}
   m_Layer: 5
-  m_Name: Produce_GridSetting
+  m_Name: ProduceGridSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,6 +161,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5039207650627621730}
     m_Modifications:
+    - target: {fileID: 959197753264705314, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_Text
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575841973452408669, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_Name
+      value: ItemImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131894145298107317, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: itemCount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3131894145298107317, guid: 40832a799df167341888707a684964e8, type: 3}
       propertyPath: itemImage
       value: 
@@ -269,9 +281,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8298462267347935535, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 82f972434b6450943bc2f54dc091c0f7, type: 3}
+    - target: {fileID: 8298462267347935535, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8455085992670205481, guid: 40832a799df167341888707a684964e8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8961938826855934096, guid: 40832a799df167341888707a684964e8, type: 3}
       propertyPath: m_Name
@@ -432,6 +452,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5039207650179182034}
     m_Modifications:
+    - target: {fileID: 959197753264705314, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_Text
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131894145298107317, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: itemCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7399261580834446444, guid: 40832a799df167341888707a684964e8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -527,6 +555,18 @@ PrefabInstance:
     - target: {fileID: 7399261580834446444, guid: 40832a799df167341888707a684964e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298462267347935535, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2727783c706e28749ab090d3ba037166, type: 3}
+    - target: {fileID: 8298462267347935535, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455085992670205481, guid: 40832a799df167341888707a684964e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8961938826855934096, guid: 40832a799df167341888707a684964e8, type: 3}
       propertyPath: m_Name

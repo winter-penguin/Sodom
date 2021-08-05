@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phpFile: 
-  itemDB_Food_Medicine:
+  itemDB:
   - ID: 0
     name: 
     Item_Type: 0
@@ -112,155 +112,243 @@ MonoBehaviour:
     Thirst: 0
     Heal: 0
     Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Hunger: 0
-    Thirst: 0
-    Heal: 0
-    Fatigue: 0
-    Charge_Space: 0
-  Item_Food_Medicine: []
-  itemDB_Material:
-  - ID: 0
-    name: 
-    Item_Type: 0
     AD: 0
     Attack_Range: 0
+    Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
     AD: 0
     Attack_Range: 0
+    Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
     AD: 0
     Attack_Range: 0
+    Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
     AD: 0
     Attack_Range: 0
-    Charge_Space: 0
-  Item_Material: []
-  itemDB_Object:
-  - ID: 0
-    name: 
-    Item_Type: 0
-    Fatigue: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
   - ID: 0
     name: 
     Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
     Fatigue: 0
+    AD: 0
+    Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
-  Item_Object: []
-  itemDB_Craft:
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  - ID: 0
+    name: 
+    Item_Type: 0
+    Hunger: 0
+    Thirst: 0
+    Heal: 0
+    Fatigue: 0
+    AD: 0
+    Attack_Range: 0
+    Capacity: 0
+    Charge_Space: 0
+  item: []
+  itemDBCraft:
   - ID: 0
     name: 
     Necessary_Material_ID1: 0
@@ -369,4 +457,4 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  Item_Craft: []
+  DataLoading: 0

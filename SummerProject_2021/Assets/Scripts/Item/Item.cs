@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
     [SerializeField]
     public Craft[] itemCraft;
 
-    public enum ItemType { Food, Tool, Weapon, Ingredient, Medicine, Product };
+    public enum ItemTypeEnum { Food, Tool, Weapon, Material, Medicine, Product };
     public enum ItemName
     {
         Brown_Water, Water, Raw_Meat, Vegetable, Vegetable_Soup, Fried_Meat, Bandage, Pill,
@@ -16,8 +16,8 @@ public class Item : MonoBehaviour
     };
 
     public ItemName CurrentItem = ItemName.Cloth;
-    public ItemType CurrentItemType = ItemType.Food;
-    public float ID, Item_Type, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
+    public ItemTypeEnum CurrentItemType = ItemTypeEnum.Food;
+    public float ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
     public Sprite itemImage;
     public GameObject itemPrefab;
     private DBManagerItem itemData;
@@ -26,13 +26,10 @@ public class Item : MonoBehaviour
     public bool ItemEquip = false;
     #endregion
 
-    private DB_Character db_character;
     private CharacterValue playerValue;
-    private float maxHealth, maxHunger, maxThirst, maxFatigue;
     void Start()
     {
         playerValue = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterValue>();
-        db_character = GameObject.Find("DBManager").GetComponent<DB_Character>();
         itemData = GameObject.Find("DBManager").GetComponent<DBManagerItem>();
     }
     void Update()
@@ -55,7 +52,7 @@ public class Item : MonoBehaviour
                 if (CurrentItem.ToString() == itemData.itemDB[i].name)
                 {
                     ID = itemData.itemDB[i].ID;
-                    Item_Type = itemData.itemDB[i].Item_Type;
+                    ItemType = itemData.itemDB[i].Item_Type;
                     Hunger = itemData.itemDB[i].Hunger;
                     Thirst = itemData.itemDB[i].Thirst;
                     Heal = itemData.itemDB[i].Heal;
@@ -64,6 +61,7 @@ public class Item : MonoBehaviour
                     Attack_Range = itemData.itemDB[i].Attack_Range;
                     Capacity = itemData.itemDB[i].Capacity;
                     Charge_Space = itemData.itemDB[i].Charge_Space;
+                    break;
                 }
             }
 
@@ -75,7 +73,6 @@ public class Item : MonoBehaviour
                     break;
                 }
             }
-            itemData.DataLoading = false;
             yield return null;
 
         }
@@ -83,18 +80,14 @@ public class Item : MonoBehaviour
     }
     IEnumerator CheckUseItem()
     {
-        maxHealth = db_character.characterDB[0].health;
-        maxHunger = db_character.characterDB[0].hunger;
-        maxThirst = db_character.characterDB[0].thirst;
-        maxFatigue = db_character.characterDB[0].fatigue;
-        if (CurrentItemType == ItemType.Food || CurrentItemType == ItemType.Medicine)
+        if (ItemType == 0 || ItemType == 4)
         {
             playerValue.HpChanged(Heal);
             playerValue.HungerChanged(Hunger);
             playerValue.ThirstChanged(Thirst);
             playerValue.FatigueChanged(Fatigue);
         }
-        else if (CurrentItemType == ItemType.Weapon || CurrentItemType == ItemType.Tool)
+        else if (ItemType == 1 || ItemType == 2)
         {
             if (ItemEquip)
             {
