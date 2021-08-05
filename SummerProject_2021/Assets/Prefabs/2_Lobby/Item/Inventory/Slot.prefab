@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4658433258419300907}
   - component: {fileID: 959197753264705314}
   m_Layer: 5
-  m_Name: Item_Count_Text
+  m_Name: ItemCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5128445286475165831}
   - component: {fileID: 8298462267347935535}
   m_Layer: 5
-  m_Name: Item_Image
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 929954753005313792}
   - component: {fileID: 4308846127191926735}
   m_Layer: 5
-  m_Name: Item_Count_Image
+  m_Name: ItemCountImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,8 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7399261580834446444}
   - component: {fileID: 7498750717412887670}
-  - component: {fileID: 4576250704191116836}
-  - component: {fileID: 2875870736193560271}
+  - component: {fileID: 3131894145298107317}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -280,37 +279,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8961938826855934096}
   m_CullTransparentMesh: 1
---- !u!114 &4576250704191116836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8961938826855934096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8209481, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &2875870736193560271
+--- !u!114 &3131894145298107317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
