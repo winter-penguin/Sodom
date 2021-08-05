@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 7399261580834446444}
   - component: {fileID: 7498750717412887670}
   - component: {fileID: 4576250704191116836}
-  - component: {fileID: 2875870736193560271}
+  - component: {fileID: 3131894145298107317}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8209481, b: 0, a: 1}
+  m_Color: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2875870736193560271
+--- !u!114 &3131894145298107317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
