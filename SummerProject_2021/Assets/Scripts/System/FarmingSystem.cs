@@ -1,6 +1,6 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-07-30
+///  Last edit date : 2021-08-01
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -204,12 +204,4 @@ public class FarmingSystem : MonoBehaviour
 	}
 
     #endregion
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-		if (collision.gameObject == farmingPoint)
-        {
-
-        }
-    }
 }
