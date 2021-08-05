@@ -12,20 +12,39 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-	private GameManager GM;
-	private GameObject CalendarObject;
-	private GameObject TimeObject;
+	[SerializeField] private ClockSystem clock;
+	[SerializeField] private GameObject calendarObject;
+	[SerializeField] private GameObject timeObject;
+
+	private void PropInit()
+    {
+		if (clock == null)
+		{
+			clock = GameObject.Find("clock").GetComponent<ClockSystem>();
+		}
+		if (calendarObject == null)
+		{
+			calendarObject = GameObject.Find("Calendar");
+		}
+		if (timeObject == null)
+		{
+			timeObject = GameObject.Find("Time");
+		}
+	}
 
 	private void Awake()
 	{
-		GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-		CalendarObject = GameObject.Find("Calendar");
-		TimeObject = GameObject.Find("Time");
+		PropInit();
 	}
 
 	private void Update()
 	{
-		CalendarObject.GetComponent<Text>().text = "Day " + GM.Day;
-		TimeObject.GetComponent<Text>().text = GM.Hour + ":" + GM.Min;
+		TimeController();
+	}
+
+	private void TimeController()
+    {
+		calendarObject.GetComponent<Text>().text = "Day " + clock.Day;
+		timeObject.GetComponent<Text>().text = clock.Hour + ":" + clock.Min;
 	}
 }
