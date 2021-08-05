@@ -6,10 +6,12 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class ClockSystem : MonoBehaviour
 {
+	#region Clock
 // 현재 플레이 하고 있는 날짜
 	private static int _day = 1;
 
@@ -52,7 +54,7 @@ public class ClockSystem : MonoBehaviour
 
 			if (Day == 30 && DayTime.hour == 18)
 			{
-				GameClear();
+				//TODO: 게임 클리어
 			}
 		}
 	}
@@ -86,12 +88,23 @@ public class ClockSystem : MonoBehaviour
 			}
 		}
 	}
-	
+	#endregion
+
+	#region Variables
+	private GameManager GM;
+
+	#endregion
+
+	private void Init()
+	{
+		if (GM == null) { GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>(); }
+		
+	}
 	public Clock DayTime = new Clock(0, 0);
     
     	private IEnumerator TimeControl()
     	{
-    		while (!isEnd)
+    		while (!GM.isEnd)
     		{
     			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
     			Min = Min + 1; // Default : 1, Day Test : 720
