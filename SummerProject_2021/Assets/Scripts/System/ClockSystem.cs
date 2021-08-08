@@ -1,12 +1,19 @@
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+///  AUTHOR : Kim Jihun
+///  Last edit date : 2021-08-05
+///  Contact : kjhcorgi99@gmail.com
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class ClockSystem : MonoBehaviour
 {
-    #region Clock
-    // ÇöÀç ÇÃ·¹ÀÌ ÇÏ°í ÀÖ´Â ³¯Â¥
-    private int _day = 1;
+	#region Clock
+// í˜„ì¬ í”Œë ˆì´ í•˜ê³  ìˆëŠ” ë‚ ì§œ
+	private static int _day = 1;
 
 	public int Day
 	{
@@ -18,7 +25,7 @@ public class ClockSystem : MonoBehaviour
 	}
 
 	/// <summary>
-	/// ½Ã°£ °è»êÀ» À§ÇÑ ½Ã°è Å¸ÀÔ ±¸Á¶Ã¼
+	/// ì‹œê°„ ê³„ì‚°ì„ ìœ„í•œ ì‹œê³„ íƒ€ì… êµ¬ì¡°ì²´
 	/// </summary>
 	public struct Clock
 	{
@@ -47,6 +54,7 @@ public class ClockSystem : MonoBehaviour
 
 			if (Day == 30 && DayTime.hour == 18)
 			{
+				//TODO: ê²Œì„ í´ë¦¬ì–´
 			}
 		}
 	}
@@ -80,41 +88,27 @@ public class ClockSystem : MonoBehaviour
 			}
 		}
 	}
-
 	#endregion
 
 	#region Variables
 	private GameManager GM;
+
 	#endregion
 
-	private void PropInit()
-    {
-		GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-    }
-
-    private void Awake()
-    {
-		PropInit();
-    }
-
-    private void Start()
-    {
-		StartCoroutine(TimeControl());
-    }
-
-    /// <summary>
-    /// ½Ã°£ °è»ê
-    /// </summary>
-    /// <returns></returns>
-    public Clock DayTime = new Clock(0, 0);
-
-	private IEnumerator TimeControl()
+	private void Init()
 	{
-		while (!GM.isEnd)
-		{
-			yield return new WaitForSeconds(0.417f); // 60ÃÊ´ç 144ºĞ Ãß°¡ => 1ÃÊ¸¦ ±â´Ù¸®°í 
-			Min = Min + 1; // Default : 1, Day Test : 720
-						   // DayTime.Sec = DayTime.Sec + 24;
-		}
+		if (GM == null) { GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>(); }
+		
 	}
+	public Clock DayTime = new Clock(0, 0);
+    
+    	private IEnumerator TimeControl()
+    	{
+    		while (!GM.isEnd)
+    		{
+    			yield return new WaitForSeconds(0.417f); // 60ì´ˆë‹¹ 144ë¶„ ì¶”ê°€ => 1ì´ˆë¥¼ ê¸°ë‹¤ë¦¬ê³  
+    			Min = Min + 1; // Default : 1, Day Test : 720
+    			// DayTime.Sec = DayTime.Sec + 24;
+    		}
+    	}
 }

@@ -16,34 +16,15 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private GameObject calendarObject;
 	[SerializeField] private GameObject timeObject;
 
-	private void PropInit()
-    {
-		if (clock == null)
-		{
-			clock = GameObject.Find("clock").GetComponent<ClockSystem>();
-		}
-		if (calendarObject == null)
-		{
-			calendarObject = GameObject.Find("Calendar");
-		}
-		if (timeObject == null)
-		{
-			timeObject = GameObject.Find("Time");
-		}
-	}
-
 	private void Awake()
-	{
-		PropInit();
+	{	
+		if(clock == null) clock = GameObject.Find("Clock").GetComponent<ClockSystem>();
+		if(calendarObject == null) calendarObject = GameObject.Find("Calendar");
+		if(timeObject == null) timeObject = GameObject.Find("Time");
 	}
 
 	private void Update()
 	{
-		TimeController();
-	}
-
-	private void TimeController()
-    {
 		calendarObject.GetComponent<Text>().text = "Day " + clock.Day;
 		timeObject.GetComponent<Text>().text = clock.Hour + ":" + clock.Min;
 	}

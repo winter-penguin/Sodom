@@ -16,7 +16,7 @@ public class EventHandler : MonoBehaviour
 	[SerializeField] private GameObject[] npcGroup;
 	[SerializeField] private GameManager GM;
 	[SerializeField] private ClockSystem clock;
-
+	
 	[SerializeField] private GameObject spawn;
 	private GameObject trader;
 	private GameObject criminal;
@@ -28,9 +28,9 @@ public class EventHandler : MonoBehaviour
 	private bool doEvent = false;	// 이벤트가 현재 진행중인가?
 	private void Init()
 	{
-		if(spawn == null) { spawn = GameObject.Find("SpawnPoint"); } // NPC가 생성될 위치
-		if (GM == null) { GM = GameObject.FindWithTag("GameController").GetComponent<GameManager>(); }
-		if (clock == null) { clock = GameObject.Find("Clock").GetComponent<ClockSystem>(); }
+		if(spawn== null) spawn = GameObject.Find("SpawnPoint");	// NPC가 생성될 위치
+		if(GM == null) GM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+		if (clock == null) clock = GameObject.Find("Clock").GetComponent<ClockSystem>();
 		
 		if (npcGroup.Length != NPC_COUNT)	// trader 객체가 배정되어있지 않을 경우
 		{

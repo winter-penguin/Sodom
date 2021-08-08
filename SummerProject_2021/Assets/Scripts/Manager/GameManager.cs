@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,11 +23,6 @@ public class GameManager : MonoBehaviour
 		get { return _instance; }
 	}
 
-	// 이벤트 핸들러
-	private static EventHandler eventHandler;
-
-	
-
 	// 게임이 끝났는가?
 	public bool isEnd = false;
 
@@ -40,21 +36,9 @@ public class GameManager : MonoBehaviour
 
 		_instance = this;
 		DontDestroyOnLoad(gameObject);
-
-		eventHandler = GetComponent<EventHandler>();
 	}
 
 	private void Start()
 	{
-	}
-
-	/// <summary>
-	/// 게임 클리어
-	/// </summary>
-	/// <returns>함수 처리 완료 여부</returns>
-	public bool GameClear()
-	{
-		// 게임 클리어 
-		return true;
 	}
 }
