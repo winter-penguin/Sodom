@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5039207650627621730}
   - component: {fileID: 5039207650627621729}
-  - component: {fileID: 7570588543213446220}
+  - component: {fileID: 8873603226418171723}
   m_Layer: 5
   m_Name: ProduceGridSetting
   m_TagString: Untagged
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 50}
   m_Constraint: 1
   m_ConstraintCount: 4
---- !u!114 &7570588543213446220
+--- !u!114 &8873603226418171723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5039207650627621731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a629b61a0b6d1f4ab17db465dcaf69b, type: 3}
+  m_Script: {fileID: 11500000, guid: c7ba783ee6c8d6a4894d556fd7002fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceGridSetting: {fileID: 5039207650627621731}

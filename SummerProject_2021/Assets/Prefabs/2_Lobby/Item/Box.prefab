@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 8589129337741650837}
   - component: {fileID: 8589129337741650836}
   - component: {fileID: 966233516635002260}
-  - component: {fileID: 929793471608634004}
+  - component: {fileID: 1951250721054003186}
   - component: {fileID: 8589129337741650838}
   m_Layer: 5
   m_Name: Shovel
@@ -838,7 +838,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   useItem: 0
   ItemEquip: 0
---- !u!114 &929793471608634004
+--- !u!114 &1951250721054003186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -847,7 +847,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8589129337741650824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299e71e6549e68846b858d45eb14f9de, type: 3}
+  m_Script: {fileID: 11500000, guid: 23d2765b8ab2ed64ea450874f3e953e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 5039207650179182035, guid: 70d646d28f4f7904c92b75b127b79d6d, type: 3}
