@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330820649037991170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8708404503220875364}
@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -100, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 280, y: 100}
+  m_Size: {x: 240, y: 100}
   m_EdgeRadius: 0
 --- !u!1 &3399560747422472408
 GameObject:
@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 7331241994351679182}
   - component: {fileID: 7894263817045056966}
   - component: {fileID: 390660922}
+  - component: {fileID: 1117821339}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -188,17 +189,24 @@ MonoBehaviour:
   - up: {fileID: 0}
     down: {fileID: 0}
   pos: {fileID: 4062484019068199931}
-  boxSize: {x: 80, y: 100}
+  boxSize: {x: 240, y: 100}
   EnemyNPCMask:
     serializedVersion: 2
     m_Bits: 128
   AttackRange: {fileID: 330820649037991170}
+  rb: {fileID: 0}
+  anim: {fileID: 0}
   isNormalMoving: 0
   isFirst_ing: 0
   isSecond_ing: 0
   isClickEnemy: 0
   isCollideEnemy: 0
   attack: 1
+  isFirstChanged: 0
+  isSecondChanged: 0
+  isNormalChanged: 0
+  LeftRight: 0
+  FinalDirection: 1
   MovingCase: 0
   Wherecharacteris: 0
   Wheretogo: 0
@@ -212,7 +220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3399560747422472408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3efee76ad2d904fa0d63bbb19c09f4, type: 3}
   m_Name: 
@@ -247,3 +255,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &1117821339
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399560747422472408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d56d1d9646576e74fbb86992086419bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
