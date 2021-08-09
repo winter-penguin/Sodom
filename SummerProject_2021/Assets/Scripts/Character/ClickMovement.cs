@@ -11,8 +11,8 @@ using UnityEngine;
 public class ClickMovement : MonoBehaviour
 {
     EnemyNPC enemynpc;
-    [System.Serializable] // class∏¶ ¿ŒΩ∫∆Â≈Õø°º≠ ∫∏ø©¡‹
-    //[SerializeField] // private ∫Øºˆ∏¶ ¿ŒΩ∫∆Â≈Õø°º≠ ∫∏ø©¡‹
+    [System.Serializable] // classÎ•º Ïù∏Ïä§ÌéôÌÑ∞ÏóêÏÑú Î≥¥Ïó¨Ï§å
+    //[SerializeField] // private Î≥ÄÏàòÎ•º Ïù∏Ïä§ÌéôÌÑ∞ÏóêÏÑú Î≥¥Ïó¨Ï§å
     public class Floor
     {
         public Transform up;
@@ -85,7 +85,7 @@ public class ClickMovement : MonoBehaviour
                 anim.SetBool("isPunching", false);
                 rb.isKinematic = true;
                 EnemyClick();
-                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);//«◊ªÛ ¡¶¿œ ∏’¿˙
+                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Ìï≠ÏÉÅ Ï†úÏùº Î®ºÏ†Ä
                 WhereToGo();
                 Debug.Log("Wheretogo: " + Wheretogo);
 
@@ -118,7 +118,7 @@ public class ClickMovement : MonoBehaviour
             }
         }
     }
-    //∞Ë¥‹ ø√∂Û∞°¥¬¡ﬂ => ≈¨∏Ø => ¿œ¥‹ ¿ßƒ° ¿˙¿Â => ∞Ë¥‹ ¿Ãµø¿Ã ≥°≥™∏È πŸ∑Œ ¿Ã ¿˙¿Â«— ¿ßƒ°∑Œ ¿Ãµø«ÿæﬂ«‘
+    //Í≥ÑÎã® Ïò¨ÎùºÍ∞ÄÎäîÏ§ë => ÌÅ¥Î¶≠ => ÏùºÎã® ÏúÑÏπò Ï†ÄÏû• => Í≥ÑÎã® Ïù¥ÎèôÏù¥ ÎÅùÎÇòÎ©¥ Î∞îÎ°ú Ïù¥ Ï†ÄÏû•Ìïú ÏúÑÏπòÎ°ú Ïù¥ÎèôÌï¥ÏïºÌï®
     
     private void FixedUpdate()
     {
@@ -352,36 +352,36 @@ public class ClickMovement : MonoBehaviour
     {
         if (MousePosition.y > -390 && MousePosition.y < -125)
         {
-            Wheretogo = 1;//1√˛ø° ∞•∞Õ
+            Wheretogo = 1;//1Ï∏µÏóê Í∞àÍ≤É
         }
         else if (MousePosition.y > -75 && MousePosition.y < 390)
         {
-            Wheretogo = 2;//2√˛ø° ∞•∞Õ
+            Wheretogo = 2;//2Ï∏µÏóê Í∞àÍ≤É
         }
         else
-            Wheretogo = 0; //¡˝ ø‹ø° ¥Ÿ∏•∞˜ º±≈√
+            Wheretogo = 0; //Ïßë Ïô∏Ïóê Îã§Î•∏Í≥≥ ÏÑ†ÌÉù
     }
     private void WhereCharacter()
     {
         if (transform.position.y > -290 && transform.position.y < -25)
         {
-            Wherecharacteris = 1;//ƒ≥∏Ø≈Õ∞° 1√˛ø° ¿÷¿Ω
+            Wherecharacteris = 1;//Ï∫êÎ¶≠ÌÑ∞Í∞Ä 1Ï∏µÏóê ÏûàÏùå
         }
         if (transform.position.y > 24 && transform.position.y < 290)
         {
-            Wherecharacteris = 2;//ƒ≥∏Ø≈Õ∞° 2√˛ø° ¿÷¿Ω
+            Wherecharacteris = 2;//Ï∫êÎ¶≠ÌÑ∞Í∞Ä 2Ï∏µÏóê ÏûàÏùå
         }
         
     }
     private void CaseSetting()
     {
-        if(Wheretogo == Wherecharacteris)//∞∞¿∫ √˛≥ªø°º≠ øÚ¡˜¿Ã±‚
+        if(Wheretogo == Wherecharacteris)//Í∞ôÏùÄ Ï∏µÎÇ¥ÏóêÏÑú ÏõÄÏßÅÏù¥Í∏∞
         {
             MovingCase = 1;
             isNormalMoving = true;
             isNormalChanged = false;
         }
-        if(Wheretogo > Wherecharacteris)//ø√∂Û∞°±‚
+        if(Wheretogo > Wherecharacteris)//Ïò¨ÎùºÍ∞ÄÍ∏∞
         {
             isFirst = false;
             isSecond = false;
@@ -393,7 +393,7 @@ public class ClickMovement : MonoBehaviour
             stairstart = floor[Wherecharacteris - 1].down;
             stairend = floor[Wherecharacteris - 1].up;
         }
-        if (Wheretogo < Wherecharacteris)//≥ª∑¡∞°±‚(3√˛¿ÃªÛ µ«∏È ¥ﬁ∂Û¡Ææﬂ«‘)
+        if (Wheretogo < Wherecharacteris)//ÎÇ¥Î†§Í∞ÄÍ∏∞(3Ï∏µÏù¥ÏÉÅ ÎêòÎ©¥ Îã¨ÎùºÏ†∏ÏïºÌï®)
         {
             isFirst = false;
             isSecond = false;
@@ -405,7 +405,7 @@ public class ClickMovement : MonoBehaviour
             stairend = floor[Wherecharacteris - 2].down;
         }
         /*
-        if(isSecond_ing_click == true)//∞Ë¥‹ ø√∂Û∞°∞≈≥™ ≥ª∑¡∞°¥¯ ¡ﬂø° ≈¨∏Øµ∆¿ª∂ß
+        if(isSecond_ing_click == true)//Í≥ÑÎã® Ïò¨ÎùºÍ∞ÄÍ±∞ÎÇò ÎÇ¥Î†§Í∞ÄÎçò Ï§ëÏóê ÌÅ¥Î¶≠ÎêêÏùÑÎïå
         {
             MovingCase = 4;
         }
