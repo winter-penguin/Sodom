@@ -12,22 +12,20 @@ using UnityEngine;
 public class ClockSystem : MonoBehaviour
 {
 	#region Clock
+
 // 현재 플레이 하고 있는 날짜
-	private static int _day = 1;
+	private int _day = 1;
 
 	public int Day
 	{
 		get { return _day; }
-		set
-		{
-			_day = value;
-		}
+		set { _day = value; }
 	}
 
 	/// <summary>
 	/// 시간 계산을 위한 시계 타입 구조체
 	/// </summary>
-	public struct Clock
+	private struct Clock
 	{
 		public int hour;
 		public int min;
@@ -88,9 +86,11 @@ public class ClockSystem : MonoBehaviour
 			}
 		}
 	}
+
 	#endregion
 
 	#region Variables
+
 	private GameManager GM;
 
 	#endregion
@@ -98,17 +98,27 @@ public class ClockSystem : MonoBehaviour
 	private void Init()
 	{
 		if (GM == null) { GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>(); }
-		
 	}
-	public Clock DayTime = new Clock(0, 0);
-    
-    	private IEnumerator TimeControl()
-    	{
-    		while (!GM.isEnd)
-    		{
-    			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
-    			Min = Min + 1; // Default : 1, Day Test : 720
-    			// DayTime.Sec = DayTime.Sec + 24;
-    		}
-    	}
+
+	private Clock DayTime = new Clock(0, 0);
+
+	private void Awake()
+	{
+		Init();
+	}
+
+	private void Start()
+	{
+		StartCoroutine(TimeControl());
+	}
+	
+	private IEnumerator TimeControl()
+	{
+		while (!GM.isEnd)
+		{
+			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
+			Min = Min + 1; // Default : 1, Day Test : 720
+			// DayTime.Sec = DayTime.Sec + 24;
+		}
+	}
 }
