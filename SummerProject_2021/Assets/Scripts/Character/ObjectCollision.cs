@@ -6,7 +6,7 @@ public class ObjectCollision : MonoBehaviour
 {
     ClickMovement clickmovement;
     public int Case;
-    private bool iscollide;
+    public bool iscollide;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +24,20 @@ public class ObjectCollision : MonoBehaviour
         {
             clickmovement = collision.gameObject.GetComponent<ClickMovement>();
             clickmovement.isNormalMoving = false;
+            clickmovement.anim.SetBool("isWalking", false);
+            iscollide = true;
+            
         }
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (Case == 1)
+        {
+            clickmovement = collision.gameObject.GetComponent<ClickMovement>();
+            clickmovement.rb.isKinematic = false;
+
+        }
         if (Case == 2)
         {
             iscollide = true;

@@ -26,23 +26,34 @@ public class ClickMovement : MonoBehaviour
 
     private Vector2 destination;
     private Vector2 first_destination;
+    private Vector2 MousePosition;
     private Camera camera1;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Transform stairstart;
     private Transform stairend;
     private RaycastHit2D hit;
-    
+    public Animator anim;
+
+
     public bool isNormalMoving = false;
     public bool isFirst_ing = false;
     public bool isSecond_ing = false;
     public bool isClickEnemy;
     public bool isCollideEnemy = false;
     public bool attack =true;
+    public bool isFirstChanged = false;
+    public bool isSecondChanged = false;
+    public bool isNormalChanged = false;
 
     private bool isFirst = false;
     private bool isSecond = false;
-    private bool isClick;
+    private bool isNormalMove = false;
+    //private bool isClick;
     private bool isSecond_ing_click = false;
+    
+
+    public int LeftRight;
+    public int FinalDirection = 1;
 
     public int MovingCase;
     public int Wherecharacteris;
@@ -52,7 +63,7 @@ public class ClickMovement : MonoBehaviour
     public float stairspeed;
 
 
-    Vector2 MousePosition;
+    
 
 
 
@@ -60,7 +71,9 @@ public class ClickMovement : MonoBehaviour
     {
         enemynpc = GameObject.Find("EnemyNPC_CHG").GetComponent<EnemyNPC>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         AttackRange.SetActive(false);
+
     }
 
     void Update()
@@ -69,6 +82,8 @@ public class ClickMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
+                anim.SetBool("isPunching", false);
+                rb.isKinematic = true;
                 EnemyClick();
                 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Ìï≠ÏÉÅ Ï†úÏùº Î®ºÏ†Ä
                 WhereToGo();
@@ -91,6 +106,7 @@ public class ClickMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
+                rb.isKinematic = true;
                 EnemyClick();
                 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 WhereToGo();
@@ -98,8 +114,6 @@ public class ClickMovement : MonoBehaviour
                 if (Wheretogo != 0)
                 {
                     isSecond_ing_click = true;
-                    
-                    
                 }
             }
         }
@@ -121,7 +135,7 @@ public class ClickMovement : MonoBehaviour
                 }
                 else if (isFirst == true && isSecond == false)
                 {
-                    rb.isKinematic = true;
+                    //rb.isKinematic = true;
                     secondmove();
                     if (isSecond_ing_click == true)
                     {
@@ -140,7 +154,7 @@ public class ClickMovement : MonoBehaviour
                 }
                 else if (isFirst == true && isSecond == false)
                 {
-                    rb.isKinematic = true;
+                    //rb.isKinematic = true;
                     secondmove();
                 }
                 else if (isSecond == true)
@@ -171,22 +185,62 @@ public class ClickMovement : MonoBehaviour
     void firstmove()
     {
         isFirst_ing = true;
-        //first_destination = new Vector2(stairstart.position.x, transform.position.y);
+        if (this.transform.localScale.x > 0)
+        {
+            FinalDirection = 1;
+        }
+        else FinalDirection = -1;
+
+        LeftOrRight(isFirstChanged);
+
+        anim.SetBool("isWalking", true);
         transform.position = Vector2.MoveTowards(transform.position, stairstart.position, Time.deltaTime * speed);
+        
         if (Math.Abs(transform.position.x - stairstart.position.x) < 1f)
         {
             isFirst = true;
             isFirst_ing = false;
+            
         }
     }
     public void secondmove()
     {
         isSecond_ing = true;
+        if (this.transform.localScale.x > 0)//∏∂¡ˆ∏∑ πŸ∂Û∫∏∞Ì ¿÷¥¯ πÊ«‚¿Ã ø¿∏•¬ ¿Ã∏È 1, øﬁ¬ ¿Ã∏È -1
+        {
+            FinalDirection = 1;
+        }
+        else FinalDirection = -1;
+        if (transform.position.x > stairend.position.x)//∏∂¡ˆ∏∑ πŸ∂Û∫∏∞Ì ¿÷¥¯ πÊ«‚∞˙ æ’¿∏∑Œ ∞• ∏Ò¿˚¡ˆ¿« πÊ«‚¿Ã ¥Ÿ∏¶∂ß Ω∫ƒ…¿œ¿ª ª©∞≈≥™ ¥ı«ÿ¡‹
+        {
+            LeftRight = -1;
+
+            if (isSecondChanged == false)
+            {
+                if (FinalDirection != LeftRight)
+                {
+                    this.transform.localScale += new Vector3(-2f, 0f, 0f);
+                }
+                isSecondChanged = true;
+            }
+        }
+        else
+        {
+            LeftRight = 1;
+            if (isSecondChanged == false)
+            {
+                if (FinalDirection != LeftRight)
+                {
+                    this.transform.localScale += new Vector3(2f, 0f, 0f);
+                }
+                isSecondChanged = true;
+            }
+        }
         //transform.position = Vector2.MoveTowards(stairstart.position, stairend.position, Time.deltaTime * speed);
         transform.position = Vector2.MoveTowards(transform.position, stairend.position, Time.deltaTime * stairspeed);
         if (Math.Abs(transform.position.y - stairend.position.y) < 0.1f)
         {
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
             isSecond = true;
             isSecond_ing = false;
             isNormalMoving = true;
@@ -199,14 +253,74 @@ public class ClickMovement : MonoBehaviour
             AttackRange.SetActive(true);
         }
         destination = new Vector2(MousePosition.x, transform.position.y);
+        if (this.transform.localScale.x > 0)
+        {
+            FinalDirection = 1;
+        }
+        else FinalDirection = -1;
+
+        if (transform.position.x > destination.x)
+        {
+            LeftRight = -1;
+
+            if (isNormalChanged == false)
+            {
+                if (FinalDirection != LeftRight)
+                {
+                    this.transform.localScale += new Vector3(-2f, 0f, 0f);
+                }
+                isNormalChanged = true;
+            }
+        }
+        else
+        {
+            LeftRight = 1;
+            if (isNormalChanged == false)
+            {
+                if (FinalDirection != LeftRight)
+                {
+                    this.transform.localScale += new Vector3(2f, 0f, 0f);
+                }
+                isNormalChanged = true;
+            }
+        }
+        anim.SetBool("isWalking", true);
         transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
         if (Math.Abs(transform.position.x - destination.x) < 0.01f)
         {
             isNormalMoving = false;
-            isClick = false;
+            anim.SetBool("isWalking", false);
+            //isClick = false;
         }
     }
-    
+    void LeftOrRight(bool isChanged)//isChanged¥¬ ∏≈∞≥∫Øºˆ∑Œ ∫“∑Øø‘¡ˆ∏∏ ∆˜¡ˆº«¿ª ∏≈∞≥∫Øºˆ∑Œ ∫“∑Øø¿¡ˆ ∏¯«ÿº≠ «‘ºˆ»≠∏¶∏¯«ﬂ¥Ÿ ±◊∑°º≠ firstmove∏∏ ¿Ã «‘ºˆ∏¶ ªÁøÎ«‘
+    {
+        if (transform.position.x > stairstart.position.x)
+        {
+            LeftRight = -1;
+
+            if (isChanged == false)
+            {
+                if (FinalDirection != LeftRight)
+                {
+                    this.transform.localScale += new Vector3(-2f, 0f, 0f);
+                }
+                isChanged = true;
+            }
+        }
+        else
+        {
+            LeftRight = 1;
+            if (isChanged == false)
+            {
+                if (FinalDirection != LeftRight)
+                {
+                    this.transform.localScale += new Vector3(2f, 0f, 0f);
+                }
+                isChanged = true;
+            }
+        }
+    }
     void EnemyClick()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -220,6 +334,7 @@ public class ClickMovement : MonoBehaviour
             {
                 //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 isClickEnemy = true;
+                rb.isKinematic = false;
             }
             else
             {
@@ -235,11 +350,11 @@ public class ClickMovement : MonoBehaviour
     }
     void WhereToGo()
     {
-        if (MousePosition.y > -390 && MousePosition.y < -25)
+        if (MousePosition.y > -390 && MousePosition.y < -125)
         {
             Wheretogo = 1;//1Ï∏µÏóê Í∞àÍ≤É
         }
-        else if (MousePosition.y > 25 && MousePosition.y < 390)
+        else if (MousePosition.y > -75 && MousePosition.y < 390)
         {
             Wheretogo = 2;//2Ï∏µÏóê Í∞àÍ≤É
         }
@@ -248,11 +363,11 @@ public class ClickMovement : MonoBehaviour
     }
     private void WhereCharacter()
     {
-        if (transform.position.y > -290 && transform.position.y < -125)
+        if (transform.position.y > -290 && transform.position.y < -25)
         {
             Wherecharacteris = 1;//Ï∫êÎ¶≠ÌÑ∞Í∞Ä 1Ï∏µÏóê ÏûàÏùå
         }
-        if (transform.position.y > 124 && transform.position.y < 290)
+        if (transform.position.y > 24 && transform.position.y < 290)
         {
             Wherecharacteris = 2;//Ï∫êÎ¶≠ÌÑ∞Í∞Ä 2Ï∏µÏóê ÏûàÏùå
         }
@@ -264,11 +379,16 @@ public class ClickMovement : MonoBehaviour
         {
             MovingCase = 1;
             isNormalMoving = true;
+            isNormalChanged = false;
         }
         if(Wheretogo > Wherecharacteris)//Ïò¨ÎùºÍ∞ÄÍ∏∞
         {
             isFirst = false;
             isSecond = false;
+            isNormalMove = false;
+            isFirstChanged = false;
+            isSecondChanged = false;
+            isNormalChanged = false;
             MovingCase = 2; 
             stairstart = floor[Wherecharacteris - 1].down;
             stairend = floor[Wherecharacteris - 1].up;
@@ -277,6 +397,9 @@ public class ClickMovement : MonoBehaviour
         {
             isFirst = false;
             isSecond = false;
+            isFirstChanged = false;
+            isSecondChanged = false;
+            isNormalChanged = false;
             MovingCase = 3;
             stairstart = floor[Wherecharacteris - 2].up;
             stairend = floor[Wherecharacteris - 2].down;

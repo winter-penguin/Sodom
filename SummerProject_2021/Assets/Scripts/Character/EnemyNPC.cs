@@ -22,17 +22,31 @@ public class EnemyNPC : MonoBehaviour
             this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
         */
+        if(EnemyHP == 0)
+        {
+            clickmovement.anim.SetBool("isPunching", false);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         clickmovement = collision.gameObject.GetComponent<ClickMovement>();
-        clickmovement.isNormalMoving = false;
-        iscollide = true;
+        if (clickmovement.isClickEnemy)
+        {
+            clickmovement.isNormalMoving = false;
+            clickmovement.anim.SetBool("isWalking", false);
+            clickmovement.anim.SetBool("isPunching", true);
+        }
+        
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-
+        clickmovement = collision.gameObject.GetComponent<ClickMovement>();
+        if(clickmovement.isClickEnemy == true)
+        {
+            clickmovement.anim.SetBool("isPunching", true);
+        }
+        
     }
     public void OnCollisionExit2D(Collision2D collision)
     {
