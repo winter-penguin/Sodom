@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,13 +20,14 @@ public class UIManager : MonoBehaviour
 	private void Awake()
 	{	
 		if(clock == null) clock = GameObject.Find("Clock").GetComponent<ClockSystem>();
-		if(calendarObject == null) calendarObject = GameObject.Find("Calendar");
-		if(timeObject == null) timeObject = GameObject.Find("Time");
+		calendarObject = GameObject.Find("Calendar");
+		timeObject = GameObject.Find("Time");
 	}
 
 	private void Update()
 	{
-		calendarObject.GetComponent<Text>().text = "Day " + clock.Day;
-		timeObject.GetComponent<Text>().text = clock.Hour + ":" + clock.Min;
+		calendarObject.GetComponent<TextMeshProUGUI>().text = "Day " + clock.Day;
+		timeObject.GetComponent<TextMeshProUGUI>().text = clock.Hour + ":" + clock.Min;
+		
 	}
 }
