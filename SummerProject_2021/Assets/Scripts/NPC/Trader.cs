@@ -1,13 +1,14 @@
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+///  AUTHOR : Kim Jihun
+///  Last edit date : 2021-08-12
+///  Contact : kjhcorgi99@gmail.com
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trader : NPC_Moving
+public class Trader : MonoBehaviour
 {
-    private Vector3 doorPos;    // 거래 상인이 도달하는 문 위치
-
-    public override void Operate(Vector3 pos)
-    {
-        base.Operate(pos);
-    }
+    
 }
