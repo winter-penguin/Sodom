@@ -25,7 +25,7 @@ public class ClockSystem : MonoBehaviour
 	/// <summary>
 	/// 시간 계산을 위한 시계 타입 구조체
 	/// </summary>
-	private struct Clock
+	public struct Clock
 	{
 		public int hour;
 		public int min;
@@ -100,7 +100,7 @@ public class ClockSystem : MonoBehaviour
 		if (GM == null) { GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>(); }
 	}
 
-	private Clock DayTime = new Clock(0, 0);
+	public Clock DayTime = new Clock(0, 0);
 
 	private void Awake()
 	{
