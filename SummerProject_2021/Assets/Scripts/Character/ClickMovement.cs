@@ -100,14 +100,15 @@ public class ClickMovement : MonoBehaviour
                 WhereCharacter();
                 CaseSetting();
                 isSecond_ing_click = false;
+                EnemyClick();
             }
         }
-        if (isSecond_ing == true)
+        if (isSecond_ing)
         {
             if (Input.GetMouseButtonUp(0))
             {
                 rb.isKinematic = true;
-                EnemyClick();
+                
                 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 WhereToGo();
                 //Debug.Log("Wheretogo: " + Wheretogo);
@@ -130,32 +131,32 @@ public class ClickMovement : MonoBehaviour
             case 2:
                 if (isFirst == false)
                 {
-                    firstmove();
+                    Firstmove();
                     
                 }
                 else if (isFirst == true && isSecond == false)
                 {
                     //rb.isKinematic = true;
-                    secondmove();
-                    if (isSecond_ing_click == true)
+                    Secondmove();
+                    if (isSecond_ing_click)
                     {
                         break;
                     }
                 }
-                else if(isSecond == true)
+                else if(isSecond)
                 {
-                    if (isNormalMoving == true) NormalMove();
+                    if (isNormalMoving) NormalMove();
                 }
                 break;
             case 3:
                 if (isFirst == false && isSecond_ing == false)
                 {
-                    firstmove();
+                    Firstmove();
                 }
                 else if (isFirst == true && isSecond == false)
                 {
                     //rb.isKinematic = true;
-                    secondmove();
+                    Secondmove();
                 }
                 else if (isSecond == true)
                 {
@@ -182,7 +183,7 @@ public class ClickMovement : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         attack = true;
     }
-    void firstmove()
+    void Firstmove()
     {
         isFirst_ing = true;
         if (this.transform.localScale.x > 0)
@@ -191,7 +192,7 @@ public class ClickMovement : MonoBehaviour
         }
         else FinalDirection = -1;
 
-        LeftOrRight(isFirstChanged);
+        LeftOrRight(isFirstChanged, stairstart.position);
 
         anim.SetBool("isWalking", true);
         transform.position = Vector2.MoveTowards(transform.position, stairstart.position, Time.deltaTime * speed);
@@ -203,44 +204,17 @@ public class ClickMovement : MonoBehaviour
             
         }
     }
-    public void secondmove()
+
+    private void Secondmove()
     {
         isSecond_ing = true;
-        if (this.transform.localScale.x > 0)//∏∂¡ˆ∏∑ πŸ∂Û∫∏∞Ì ¿÷¥¯ πÊ«‚¿Ã ø¿∏•¬ ¿Ã∏È 1, øﬁ¬ ¿Ã∏È -1
-        {
-            FinalDirection = 1;
-        }
-        else FinalDirection = -1;
-        if (transform.position.x > stairend.position.x)//∏∂¡ˆ∏∑ πŸ∂Û∫∏∞Ì ¿÷¥¯ πÊ«‚∞˙ æ’¿∏∑Œ ∞• ∏Ò¿˚¡ˆ¿« πÊ«‚¿Ã ¥Ÿ∏¶∂ß Ω∫ƒ…¿œ¿ª ª©∞≈≥™ ¥ı«ÿ¡‹
-        {
-            LeftRight = -1;
-
-            if (isSecondChanged == false)
-            {
-                if (FinalDirection != LeftRight)
-                {
-                    this.transform.localScale += new Vector3(-2f, 0f, 0f);
-                }
-                isSecondChanged = true;
-            }
-        }
-        else
-        {
-            LeftRight = 1;
-            if (isSecondChanged == false)
-            {
-                if (FinalDirection != LeftRight)
-                {
-                    this.transform.localScale += new Vector3(2f, 0f, 0f);
-                }
-                isSecondChanged = true;
-            }
-        }
+        LeftOrRight(isSecondChanged, stairend.position);
+        rb.isKinematic = true;
         //transform.position = Vector2.MoveTowards(stairstart.position, stairend.position, Time.deltaTime * speed);
         transform.position = Vector2.MoveTowards(transform.position, stairend.position, Time.deltaTime * stairspeed);
         if (Math.Abs(transform.position.y - stairend.position.y) < 0.1f)
         {
-            //rb.isKinematic = false;
+            rb.isKinematic = false;
             isSecond = true;
             isSecond_ing = false;
             isNormalMoving = true;
@@ -248,77 +222,52 @@ public class ClickMovement : MonoBehaviour
     }
     public void NormalMove()
     {
-        if (isClickEnemy == true)
+        if (isClickEnemy)
         {
             AttackRange.SetActive(true);
         }
+        else rb.isKinematic = true;
         destination = new Vector2(MousePosition.x, transform.position.y);
-        if (this.transform.localScale.x > 0)
-        {
-            FinalDirection = 1;
-        }
-        else FinalDirection = -1;
-
-        if (transform.position.x > destination.x)
-        {
-            LeftRight = -1;
-
-            if (isNormalChanged == false)
-            {
-                if (FinalDirection != LeftRight)
-                {
-                    this.transform.localScale += new Vector3(-2f, 0f, 0f);
-                }
-                isNormalChanged = true;
-            }
-        }
-        else
-        {
-            LeftRight = 1;
-            if (isNormalChanged == false)
-            {
-                if (FinalDirection != LeftRight)
-                {
-                    this.transform.localScale += new Vector3(2f, 0f, 0f);
-                }
-                isNormalChanged = true;
-            }
-        }
+        LeftOrRight(isNormalChanged, destination);
         anim.SetBool("isWalking", true);
         transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
         if (Math.Abs(transform.position.x - destination.x) < 0.01f)
         {
             isNormalMoving = false;
             anim.SetBool("isWalking", false);
+            rb.isKinematic = false;
             //isClick = false;
         }
     }
-    void LeftOrRight(bool isChanged)//isChanged¥¬ ∏≈∞≥∫Øºˆ∑Œ ∫“∑Øø‘¡ˆ∏∏ ∆˜¡ˆº«¿ª ∏≈∞≥∫Øºˆ∑Œ ∫“∑Øø¿¡ˆ ∏¯«ÿº≠ «‘ºˆ»≠∏¶∏¯«ﬂ¥Ÿ ±◊∑°º≠ firstmove∏∏ ¿Ã «‘ºˆ∏¶ ªÁøÎ«‘
+    void LeftOrRight(bool isChanged, Vector3 vector3)//isChanged 
     {
-        if (transform.position.x > stairstart.position.x)
+        if (!isChanged)//Î∞©Ìñ•ÏùÑ Î∞îÍæ∏Î†§ÎäîÍ±∏ ÏãúÎèÑÌïòÏßÄ ÏïäÏïòÏùÑÎïåÎßå
         {
-            LeftRight = -1;
+            if (transform.localScale.x > 0) // ÌòÑÏû¨ Î∞©Ìñ•Ïù¥ Ïò§Î•∏Ï™ΩÏù¥Î©¥
+            {
+                FinalDirection = 1;
+            }
+            else FinalDirection = -1;
+            
+            if (transform.position.x > vector3.x) // Í∞ÄÏïºÌï† Î∞©Ìñ•Ïù¥ ÏôºÏ™ΩÏù¥Î©¥
+            {
+                LeftRight = -1;
+                if (FinalDirection != LeftRight) // ÌòÑÏû¨ Î∞©Ìñ•Í≥º Í∞ÄÏïºÌï† Î∞©Ìñ•Ïù¥ Îã§Î•ºÎïåÎßå Î≥ÄÌôîÏ£ºÍ∏∞
+                {
+                    transform.localScale += new Vector3(-2f, 0f, 0f);
+                }
+            }
+            else // Í∞ÄÏïºÌï† Î∞©Ìñ•Ïù¥ Ïò§Î•∏Ï™ΩÏù¥Î©¥
+            {
+                LeftRight = 1; 
+                if (FinalDirection != LeftRight)
+                {
+                    transform.localScale += new Vector3(2f, 0f, 0f);
+                }
+                
+            }
 
-            if (isChanged == false)
-            {
-                if (FinalDirection != LeftRight)
-                {
-                    this.transform.localScale += new Vector3(-2f, 0f, 0f);
-                }
-                isChanged = true;
-            }
-        }
-        else
-        {
-            LeftRight = 1;
-            if (isChanged == false)
-            {
-                if (FinalDirection != LeftRight)
-                {
-                    this.transform.localScale += new Vector3(2f, 0f, 0f);
-                }
-                isChanged = true;
-            }
+            isChanged = true;
         }
     }
     void EnemyClick()
@@ -330,7 +279,7 @@ public class ClickMovement : MonoBehaviour
         {
             //Debug.DrawRay(ray.origin, ray.direction * 10f, Color.red, 1f);
             Debug.Log(hit.collider.tag);
-            if (hit.collider.tag == "EnemyNPC")
+            if (hit.collider.CompareTag("EnemyNPC"))
             {
                 //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 isClickEnemy = true;
@@ -350,11 +299,11 @@ public class ClickMovement : MonoBehaviour
     }
     void WhereToGo()
     {
-        if (MousePosition.y > -390 && MousePosition.y < -125)
+        if (MousePosition.y > -385 && MousePosition.y < -81)
         {
             Wheretogo = 1;//1Ï∏µÏóê Í∞àÍ≤É
         }
-        else if (MousePosition.y > -75 && MousePosition.y < 390)
+        else if (MousePosition.y > -55 && MousePosition.y < 250)
         {
             Wheretogo = 2;//2Ï∏µÏóê Í∞àÍ≤É
         }
@@ -363,7 +312,7 @@ public class ClickMovement : MonoBehaviour
     }
     private void WhereCharacter()
     {
-        if (transform.position.y > -290 && transform.position.y < -25)
+        if (transform.position.y > -291 && transform.position.y < -25)
         {
             Wherecharacteris = 1;//Ï∫êÎ¶≠ÌÑ∞Í∞Ä 1Ï∏µÏóê ÏûàÏùå
         }
