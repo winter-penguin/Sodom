@@ -4,8 +4,6 @@
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class QuitGameProccess : MonoBehaviour

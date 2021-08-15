@@ -1,15 +1,13 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-08-07
+///  Last edit date : 2021-08-15
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingWindow : MonoBehaviour
+public class SettingWindow : MonoBehaviour, IManageWindow
 {
 	[SerializeField] private GameObject settingWindow;
 	[SerializeField] private GameObject closeSetting;
@@ -48,13 +46,13 @@ public class SettingWindow : MonoBehaviour
 	{
 		Init();
 	}
-
-	public void OpenSettings()
+	
+	public void OpenSpecificWindow()
 	{
 		settingWindow.SetActive(true);
 	}
 
-	public void CloseSettings()
+	public void CloseSpecificWindow()
 	{
 		settingWindow.SetActive(false);
 	}
