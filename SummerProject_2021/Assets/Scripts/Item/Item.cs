@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
     public enum ItemTypeEnum { Food, Tool, Weapon, Material, Medicine, Product };
     public enum ItemName
     {
-        Brown_Water, Water, Raw_Meat, Vegetable, Vegetable_Soup, Fried_Meat, Bandage, Pill,
+        Brown_Water, Water, Raw_Meat, Fried_Meat, Vegetable, Vegetable_Soup, Bandage, Pill,
         Crowbar, Shovel, Dagger, Sword,
         Cloth, Wood, Stone, Iron, Bonfire, Bed, Bag, Water_Purifier, Box
     };
@@ -19,7 +19,6 @@ public class Item : MonoBehaviour
     public ItemTypeEnum CurrentItemType = ItemTypeEnum.Food;
     public float ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
     public Sprite itemImage;
-    public GameObject itemPrefab;
     private DBManagerItem itemData;
     // Start is called before the first frame update
     public bool useItem = false;

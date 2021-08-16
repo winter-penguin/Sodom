@@ -1198,6 +1198,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -360.70364
       objectReference: {fileID: 0}
+    - target: {fileID: 1951250721054003186, guid: b49435a55f201ac44be2068e0cdadc31, type: 3}
+      propertyPath: ProduceGridSetting
+      value: 
+      objectReference: {fileID: 4235756315844892990}
     - target: {fileID: 3583824150001315249, guid: b49435a55f201ac44be2068e0cdadc31, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1222,6 +1226,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -360.70364
       objectReference: {fileID: 0}
+    - target: {fileID: 6242102581928498869, guid: b49435a55f201ac44be2068e0cdadc31, type: 3}
+      propertyPath: ProduceGridSetting
+      value: 
+      objectReference: {fileID: 4235756315844892990}
     - target: {fileID: 7279837708052400966, guid: b49435a55f201ac44be2068e0cdadc31, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1660,5 +1668,10 @@ PrefabInstance:
 --- !u!224 &4235756314724542351 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5039207650179182034, guid: 70d646d28f4f7904c92b75b127b79d6d, type: 3}
+  m_PrefabInstance: {fileID: 9162205404730116701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4235756315844892990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5039207650627621731, guid: 70d646d28f4f7904c92b75b127b79d6d, type: 3}
   m_PrefabInstance: {fileID: 9162205404730116701}
   m_PrefabAsset: {fileID: 0}
