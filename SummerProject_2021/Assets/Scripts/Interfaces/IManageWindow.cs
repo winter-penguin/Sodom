@@ -1,14 +1,10 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-08-12
+///  Last edit date : 2021-08-15
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Trader : MonoBehaviour
+public interface IManageWindow
 {
-    
+	public void OpenSpecificWindow();
+	public void CloseSpecificWindow();
 }

@@ -1442,7 +1442,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8420884959450933455}
         m_TargetAssemblyTypeName: SettingWindow, Assembly-CSharp
-        m_MethodName: CloseSettings
+        m_MethodName: CloseSpecificWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2994,7 +2994,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8420884959450933455}
         m_TargetAssemblyTypeName: SettingWindow, Assembly-CSharp
-        m_MethodName: OpenSettings
+        m_MethodName: OpenSpecificWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3126,7 +3126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812715931606000197}
         m_TargetAssemblyTypeName: SaveWindow, Assembly-CSharp
-        m_MethodName: CloseWindow
+        m_MethodName: CloseSpecificWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
