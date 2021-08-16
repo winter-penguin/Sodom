@@ -251,3 +251,4 @@ MonoBehaviour:
   itemImage: {fileID: 6338355326479276750}
   text_Count: {fileID: 959197753264705314}
   go_CountImage: {fileID: 2233300157733593331}
+  ProduceUI: {fileID: 5039207650179182035, guid: 70d646d28f4f7904c92b75b127b79d6d, type: 3}

@@ -462,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 5039207650179182035, guid: 70d646d28f4f7904c92b75b127b79d6d, type: 3}
+  ProduceGridSetting: {fileID: 4174863630035511549, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
   CraftItem: 0
 --- !u!114 &3522592753242569828
 MonoBehaviour:
@@ -1148,6 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 5039207650179182035, guid: 70d646d28f4f7904c92b75b127b79d6d, type: 3}
+  ProduceGridSetting: {fileID: 4174863630035511549, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
   CraftItem: 0
 --- !u!114 &8589129337741650838
 MonoBehaviour:
