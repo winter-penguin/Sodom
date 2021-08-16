@@ -221,7 +221,7 @@ public class ClickMovement : MonoBehaviour
     }
     void Firstmove()
     {
-        if (this.transform.localScale.x > 0)
+        if (transform.localScale.x > 0)
         {
             FinalDirection = 1;
         }
