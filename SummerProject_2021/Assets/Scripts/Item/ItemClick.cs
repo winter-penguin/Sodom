@@ -15,7 +15,7 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
     {
         item = this.gameObject.GetComponent<Item>();
         itemData = GameObject.Find("DBManager").GetComponent<DBManagerItem>();
-        produceUI = GameObject.Find("Canvas").transform.Find("ProduceUI").gameObject;
+        produceUI = GameObject.Find("MainUI").transform.Find("ProduceUI").gameObject;
         ParentObject = this.gameObject.transform.parent.parent.GetComponent<Item>();
 
     }
