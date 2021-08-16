@@ -10,7 +10,9 @@ using UnityEngine;
 
 public class ClickMovement : MonoBehaviour
 {
+    #region Variables
     EnemyNPC enemynpc;
+    private WallCollision _wallCollision;
     [System.Serializable] // class를 인스펙터에서 보여줌
     //[SerializeField] // private 변수를 인스펙터에서 보여줌
     public class Floor
@@ -34,7 +36,7 @@ public class ClickMovement : MonoBehaviour
     private RaycastHit2D hit;
     public Animator anim;
 
-
+    [HideInInspector]
     public bool isNormalMoving = false;
     public bool isFirst_ing = false;
     public bool isSecond_ing = false;
@@ -58,18 +60,15 @@ public class ClickMovement : MonoBehaviour
     public int MovingCase;
     public int Wherecharacteris;
     public int Wheretogo;
-    public int HP;
+    
     public float speed = 5;
     public float stairspeed;
-
-
-    
-
-
+    #endregion
 
     void Start()
     {
         enemynpc = GameObject.Find("EnemyNPC_CHG").GetComponent<EnemyNPC>();
+        _wallCollision = GameObject.FindGameObjectWithTag("Wall").GetComponent<WallCollision>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         AttackRange.SetActive(false);
@@ -78,29 +77,65 @@ public class ClickMovement : MonoBehaviour
 
     void Update()
     {
+        
+        #region MouseClick
+        
         if (isSecond_ing == false)
         {
             if (Input.GetMouseButtonUp(0))
             {
-                anim.SetBool("isPunching", false);
-                rb.isKinematic = true;
-                EnemyClick();
                 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);//항상 제일 먼저
-                WhereToGo();
-                Debug.Log("Wheretogo: " + Wheretogo);
-
-                if (Wheretogo != 0)
+                if (transform.position.x > MousePosition.x) // 가야할 방향이 왼쪽이면
                 {
-                    WhereCharacter();
-                    CaseSetting();
+                    LeftRight = -1;
                 }
+                else LeftRight = 1;
+
+                if (_wallCollision.iscollide)
+                {
+                    if (_wallCollision.LeftOrRight == LeftRight)
+                    {
+                        WhereToGo();
+                        EnemyClick();
+                        Debug.Log("Wheretogo: " + Wheretogo);
+
+                        if (Wheretogo != 0)//집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                        {
+                            WhereCharacter();
+                            CaseSetting();
+                            if (!enemynpc.iscollide)//이걸 왜 해놓은거지
+                            {
+                        
+                            }
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    WhereToGo();
+                    EnemyClick();
+                    Debug.Log("Wheretogo: " + Wheretogo);
+
+                    if (Wheretogo != 0)//집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                    {
+                        WhereCharacter();
+                        CaseSetting();
+                        if (!enemynpc.iscollide)//이걸 왜 해놓은거지
+                        {
+                        
+                        }
+                    }
+                }
+
             }
-            else if (isSecond_ing_click == true)
+            else if (isSecond_ing_click == true)//isSecond_ing일때 클릭했다면 isSecond_ing이 false일때 다시 움직임 시작
             {
                 WhereCharacter();
                 CaseSetting();
-                isSecond_ing_click = false;
                 EnemyClick();
+                isSecond_ing_click = false;
+                
             }
         }
         if (isSecond_ing)
@@ -118,6 +153,7 @@ public class ClickMovement : MonoBehaviour
                 }
             }
         }
+        #endregion
     }
     //계단 올라가는중 => 클릭 => 일단 위치 저장 => 계단 이동이 끝나면 바로 이 저장한 위치로 이동해야함
     
@@ -129,7 +165,7 @@ public class ClickMovement : MonoBehaviour
                 if(isNormalMoving == true) NormalMove();
                 break;
             case 2:
-                if (isFirst == false)
+                if (isFirst == false && isFirst_ing)
                 {
                     Firstmove();
                     
@@ -165,9 +201,9 @@ public class ClickMovement : MonoBehaviour
                 break;
         }
         
-        if (isClickEnemy)
+        if (isClickEnemy == true)
         {
-            if (enemynpc.iscollide)
+            if (enemynpc.iscollide == true)
             {
                 if (attack == true)
                 {
@@ -185,7 +221,6 @@ public class ClickMovement : MonoBehaviour
     }
     void Firstmove()
     {
-        isFirst_ing = true;
         if (this.transform.localScale.x > 0)
         {
             FinalDirection = 1;
@@ -222,11 +257,10 @@ public class ClickMovement : MonoBehaviour
     }
     public void NormalMove()
     {
-        if (isClickEnemy)
+        if (isClickEnemy)//계단을 움직이는중에 적을 클릭해도 노말무빙중에 콜라이더 키기때문에 계단에서 버벅임 없음
         {
             AttackRange.SetActive(true);
         }
-        else rb.isKinematic = true;
         destination = new Vector2(MousePosition.x, transform.position.y);
         LeftOrRight(isNormalChanged, destination);
         anim.SetBool("isWalking", true);
@@ -272,6 +306,7 @@ public class ClickMovement : MonoBehaviour
     }
     void EnemyClick()
     {
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         hit = Physics2D.Raycast(ray.origin, ray.direction, 10f);
@@ -287,12 +322,14 @@ public class ClickMovement : MonoBehaviour
             }
             else
             {
+                anim.SetBool("isPunching", false);
                 isClickEnemy = false;
                 AttackRange.SetActive(false);
             }
         }
         else
         {
+            anim.SetBool("isPunching", false);
             isClickEnemy = false;
             AttackRange.SetActive(false);
         }
@@ -341,6 +378,7 @@ public class ClickMovement : MonoBehaviour
             MovingCase = 2; 
             stairstart = floor[Wherecharacteris - 1].down;
             stairend = floor[Wherecharacteris - 1].up;
+            isFirst_ing = true;
         }
         if (Wheretogo < Wherecharacteris)//내려가기(3층이상 되면 달라져야함)
         {

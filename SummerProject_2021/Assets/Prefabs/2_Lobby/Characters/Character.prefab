@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 7331241994351679182}
   - component: {fileID: 7894263817045056966}
   - component: {fileID: 390660922}
+  - component: {fileID: 4680899894715329413}
   - component: {fileID: 1117821339}
   m_Layer: 0
   m_Name: Character
@@ -132,7 +133,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1616731973
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f99bd2d8662ca9e40ac6454e3bcc634c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -184,8 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor:
-  - up: {fileID: 3023829757318134221, guid: a351f6fdfd16fe949877e53a836401fd, type: 3}
-    down: {fileID: 292536849546406141, guid: ba8d99f7362f8344ca6788048071e95e, type: 3}
+  - up: {fileID: 0}
+    down: {fileID: 0}
   - up: {fileID: 0}
     down: {fileID: 0}
   pos: {fileID: 4062484019068199931}
@@ -210,7 +211,6 @@ MonoBehaviour:
   MovingCase: 0
   Wherecharacteris: 0
   Wheretogo: 0
-  HP: 100
   speed: 300
   stairspeed: 200
 --- !u!114 &7894263817045056966
@@ -255,6 +255,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4680899894715329413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399560747422472408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9687c9cd11e972c42b26ab938518dd00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hunger: 0
+  Thirst: 0
+  Fatigue: 0
+  isHunger: 0
+  isThirst: 0
+  isFatigue: 0
+  Minute: 0
 --- !u!95 &1117821339
 Animator:
   serializedVersion: 3
