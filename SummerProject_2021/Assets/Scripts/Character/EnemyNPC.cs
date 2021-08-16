@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,10 +23,7 @@ public class EnemyNPC : MonoBehaviour
             this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
         */
-        if(EnemyHP == 0)
-        {
-            clickmovement.anim.SetBool("isPunching", false);
-        }
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -44,12 +42,47 @@ public class EnemyNPC : MonoBehaviour
         clickmovement = collision.gameObject.GetComponent<ClickMovement>();
         if(clickmovement.isClickEnemy == true)
         {
+            iscollide = true;
             clickmovement.anim.SetBool("isPunching", true);
+            if(EnemyHP == 80)
+            {
+                clickmovement.anim.SetBool("isPunching", false);
+            }
         }
         
     }
     public void OnCollisionExit2D(Collision2D collision)
     {
         iscollide = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            iscollide = true;
+            clickmovement = other.GetComponent<ClickMovement>();
+            if (clickmovement.isClickEnemy)
+            {
+                clickmovement.isNormalMoving = false;
+                clickmovement.anim.SetBool("isWalking", false);
+                clickmovement.anim.SetBool("isPunching", true);
+            }
+        }
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if (clickmovement.isClickEnemy)
+            {
+                clickmovement.isNormalMoving = false;
+                clickmovement.anim.SetBool("isWalking", false);
+                clickmovement.anim.SetBool("isPunching", true);
+            }
+        }
+        
     }
 }

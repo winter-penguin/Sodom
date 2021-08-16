@@ -9,6 +9,7 @@ TagManager:
   - EnemyNPC
   - GameProfile
   - Canvas
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,9 @@ TagManager:
     locked: 0
   - name: Flatform
     uniqueID: 794487721
+    locked: 0
+  - name: Object
+    uniqueID: 1083126173
     locked: 0
   - name: NPC
     uniqueID: 3761208765
