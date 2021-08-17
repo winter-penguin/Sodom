@@ -9,6 +9,7 @@ TagManager:
   - EnemyNPC
   - GameProfile
   - Canvas
+  - Manager
   layers:
   - Default
   - TransparentFX

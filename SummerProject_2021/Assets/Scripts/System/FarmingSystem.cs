@@ -7,201 +7,158 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FarmingSystem : MonoBehaviour
 {
-	#region Variables
-	
-	private DB_Character dbInstance; // 캐릭터 DB 가져오기
-	private float charBagAmount; // 캐릭터 하루 파밍 양
-	private float farmingAmount; // 최종 파밍 양
-	private float foodAmount; // 음식 파밍 양
-	private float medAmount; // 의약품 파밍 양
-	private float matAmount; // 재료 파밍 양
-
-	private bool dataLoaded;
-
-	#endregion
-
 	/// <summary>
-	/// [cloth, wood, rock, steel]
+	/// 파밍 정보
+	/// itemID : 아이템 아이디
+	/// amount : 파밍양
 	/// </summary>
-	private enum Materials
+	public struct FarmingInfo
 	{
-		cloth,
-		wood,
-		rock,
-		steel
-	};
-
-	struct MaterialPack
-	{
-		public Materials mat;
+		public int itemID;
 		public float amount;
 
-		public MaterialPack(Materials _mat, float _amount)
+		public FarmingInfo(int _itemID, float _farmAmount)
 		{
-			mat = _mat;
-			amount = _amount;
+			itemID = _itemID;
+			amount = _farmAmount;
 		}
-	}
-
-	private MaterialPack[] matPack; // 재료는 총 4개 수집
-	[SerializeField] private GameObject farmingPoint;
-
-	private void Start()
-	{
-		StartCoroutine(InitDB());
 	}
 	
-	private IEnumerator InitDB()
+	private DBManagerItem itemDB;
+	private CharacterValue charValue;
+	private ItemDB[] itemList;
+	private int[] foodIDArr;
+	private int[] medIDArr;
+	private int[] matIDArr;
+	private List<FarmingInfo> farmingInfos = new List<FarmingInfo>();
+
+	private float foodAmount = 0;
+	private float medAmount = 0;
+	private float matAmount = 0;
+	private float farmingBagAmount { get; set; }
+	private bool isSet;
+
+
+	private IEnumerator Init()
 	{
-		dataLoaded = false;
-		dbInstance = GameObject.Find("DBManager").GetComponent<DB_Character>();
-		yield return new WaitUntil(() => dbInstance.isCharacterDB);
-		charBagAmount = dbInstance.characterDB[0/*캐릭터 번호*/].farming_amount;
-		dataLoaded = true;
-		//TODO: dbInstance로부터 캐릭터 정보를 받아와 저장 
+		isSet = false;
+		GameObject[] tempObject = GameObject.FindGameObjectsWithTag("Manager");
+		foreach (var t in tempObject)
+		{
+			if (t.TryGetComponent(out DBManagerItem itemComp))
+			{
+				yield return new WaitUntil(() => itemComp.DataLoading);
+				itemDB = itemComp;
+			}
+		}
+
+		charValue = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterValue>();
+		farmingBagAmount = charValue.farming_amount;
+		itemList = itemDB.itemDB;
+		isSet = true;
 	}
 
-	private void InitProp()
-    {
-		if(farmingPoint == null)
-        {
-			farmingPoint = GameObject.Find("FarmingPoing");
-        }
-    }
-
-	public void Farming()
+	private void Awake()
 	{
-		if (!dataLoaded)
+		StartCoroutine(Init());
+	}
+
+	private IEnumerator Start()
+	{
+		yield return new WaitUntil(() => isSet);
+		SetFarmingAmount();
+		SetItemIDLists();
+	}
+
+	/// <summary>
+	/// 모험을 수행하고 결과를 반환합니다.
+	/// </summary>
+	private void SetFarmingAmount()
+	{
+		float totalFarmingAmount = Random.Range(farmingBagAmount * 0.7f, farmingBagAmount);
+		foodAmount = Random.Range(0, totalFarmingAmount * 0.1f);
+		medAmount = Random.Range(0, totalFarmingAmount * 0.02f);
+		matAmount = totalFarmingAmount - (foodAmount + medAmount);
+	}
+
+	private void SetItemIDLists()
+	{
+		List<int> foodIDList = new List<int>();
+		List<int> medIDList = new List<int>();
+		List<int> matIDList = new List<int>();
+
+		for (var i = 0; i < itemList.Length; i++)
 		{
-			Debug.Log("Data loading is failed in FarmingSystem");
-			return;
+			switch (itemList[i].ID)
+			{
+				case 0:
+					foodIDList.Add(itemList[i].ID);
+					break;
+				case 3:
+					matIDList.Add(itemList[i].ID);
+					break;
+				case 4:
+					medIDList.Add(itemList[i].ID);
+					break;
+			}
 		}
+
+		foodIDArr = foodIDList.ToArray();
+		medIDArr = medIDList.ToArray();
+		matIDArr = matIDList.ToArray();
+	}
+
+	/// <summary>
+	/// 음식을 파밍합니다.
+	/// </summary>
+	/// <param name="amount">총 파밍 양</param>
+	private void FoodFarming(float amount)
+	{
 		
-		float totalAmount, foodAmount, medAmount;
-		MaterialPack[] tempPack;
-		totalAmount = CalculateFarmingAmount(charBagAmount); // 나중에 수를 charBagAmount로 변경할것
-		foodAmount = CalculateFoodAmount(totalAmount);
-		medAmount = CalculateMedAmount(totalAmount);
-		tempPack = CalculateMatAmount(totalAmount, foodAmount, medAmount);
-
-#if UNITY_EDITOR
-		Debug.Log("totalAmount : " + totalAmount);
-		Debug.Log("foodAmount : " + foodAmount);
-		Debug.Log("medAmount : " + medAmount);
-		for (var i = 0; i < matPack.Length-1; i++)
-		{
-			Debug.Log("재료"+i+" : " + matPack[i].mat + " 파밍양"+i+" : " + matPack[i].amount);
-		}
-#endif
-	}
-
-
-
-	/// <summary>
-	/// 캐릭터의 최종 파밍 양을 계산합니다.
-	/// </summary>
-	/// <param name="charAmount">캐릭터의 파밍 양</param>
-	/// <returns>최종 파밍 양</returns>
-	private float CalculateFarmingAmount(float charAmount)
-	{
-		return UnityEngine.Random.Range(charAmount * 0.7f, charAmount); // 파밍 양 계산
 	}
 
 	/// <summary>
-	/// 음식 파밍 양을 계산합니다.
+	/// 재료를 파밍합니다.
 	/// </summary>
-	/// <param name="totalAmount">캐릭터의 최종 파밍 양</param>
-	/// <returns>음식 파밍 양</returns>
-	private float CalculateFoodAmount(float totalAmount)
+	/// <param name="amount">총 재료 파밍 양</param>
+	private List<FarmingInfo> MaterialFarming(float amount)
 	{
-		return UnityEngine.Random.Range(0, totalAmount * 0.1f);
+		float capacity = amount;
+		
+		List<int> indexArr = new List<int>{0, 1, 2, 3};
+		
+		int mat1Index = indexArr[Random.Range(0, indexArr.Count-1)];
+		indexArr.RemoveAt(mat1Index);
+		int mat2Index = indexArr[Random.Range(0, indexArr.Count-1)];
+		indexArr.RemoveAt(mat2Index);
+		int mat3Index = indexArr[Random.Range(0, indexArr.Count-1)];
+
+		float mat1Amount = Random.Range(capacity * 0.3f, capacity * 0.5f) / 5;
+		capacity -= mat1Amount;
+		float mat2Amount = Random.Range(capacity * 0.2f, capacity* 0.8f) / 5;
+		capacity -= mat2Amount;
+		float mat3Amount = Random.Range(0, capacity) / 5;
+		
+		farmingInfos.Add(new FarmingInfo(matIDArr[mat1Index], mat1Amount));
+		farmingInfos.Add(new FarmingInfo(matIDArr[mat2Index], mat2Amount));
+		farmingInfos.Add(new FarmingInfo(matIDArr[mat3Index], mat3Amount));
+
+		return farmingInfos;
 	}
 
+	
 	/// <summary>
-	/// 의약품 파밍 양을 계산합니다.
+	/// 파밍 정보를 가져옵니다.
 	/// </summary>
-	/// <param name="totalAmount">캐릭터의 최종 파밍 양</param>
-	/// <returns>의약품 파밍 양</returns>
-	private float CalculateMedAmount(float totalAmount)
+	/// <returns>파밍 결과</returns>
+	public List<FarmingInfo> GetFarmingInfo()
 	{
-		return UnityEngine.Random.Range(0, totalAmount * 0.02f);
+		return farmingInfos;
 	}
-
-	/// <summary>
-	/// 재료 파밍 양을 계산합니다.
-	/// </summary>
-	/// <param name="totalAmount">캐릭터의 최종 파밍 양</param>
-	/// <param name="foodAmount">음식 파밍 양</param>
-	/// <param name="medAmount">의약품 최종 파밍 양</param>
-	private MaterialPack[] CalculateMatAmount(float totalAmount, float foodAmount, float medAmount)
-	{
-		Materials mat1, mat2, mat3;
-		matPack = new MaterialPack[4]; // 재료는 총 4개 수집하므로 크기는 4
-
-		float matAmount = totalAmount - (foodAmount + medAmount);
-		mat1 = (Materials) UnityEngine.Random.Range(0, 3);
-		mat2 = MatValueController(mat1);
-		mat3 = MatValueController(mat1, mat2);
-
-		float mat1Amount = UnityEngine.Random.Range(matAmount * 0.3f, matAmount * 0.6f) / 5;
-		float mat2Amount = UnityEngine.Random.Range((matAmount - mat1Amount) * 0.2f,
-			(matAmount - mat1Amount) * 0.8f) / 5;
-		float mat3Amount = UnityEngine.Random.Range(0, matAmount - (mat1Amount + mat2Amount)) / 5;
-
-		// TODO : 파밍 양 정해지면 마저 확률 및 획득하는 아이템 종류 지정해주기
-
-		MaterialPack mat1Pack, mat2Pack, mat3Pack/*, mat4Pack*/;
-		mat1Pack = new MaterialPack(mat1, mat1Amount);
-		mat2Pack = new MaterialPack(mat2, mat2Amount);
-		mat3Pack = new MaterialPack(mat3, mat3Amount);
-		// mat4Pack = new MaterialPack(mat4, mat4Amount);
-
-		matPack.SetValue(mat1Pack, 0);
-		matPack.SetValue(mat2Pack, 1);
-		matPack.SetValue(mat3Pack, 2);
-		//matPack.SetValue(mat1Pack, 0);
-
-		return matPack;
-	}
-
-	#region ValueController
-
-	/// <summary>
-	/// 머테리얼 종류를 이전 머테리얼과 다른 종류 중에서 랜덤하게 생성합니다.
-	/// </summary>
-	/// <param name="_mat">첫번째 재료</param>
-	/// <returns>두번째 재료</returns>
-	private Materials MatValueController(Materials _mat)
-	{
-		Materials mat = (Materials) UnityEngine.Random.Range(0, 3);
-		if (_mat == mat) // 만약 같은 재료가 2번 나올 경우 반복
-		{
-			mat = MatValueController(_mat);
-		}
-
-		return mat;
-	}
-
-	/// <summary>
-	/// 머테리얼 종류를 이전 머테리얼과 다른 종류 중에서 랜덤하게 생성합니다.
-	/// </summary>
-	/// <param name="_mat1">첫번째 재료</param>
-	/// <param name="_mat2">두번째 재료</param>
-	/// <returns>세번째 재료</returns>
-	private Materials MatValueController(Materials _mat1, Materials _mat2)
-	{
-		Materials mat = (Materials) UnityEngine.Random.Range(0, 3);
-		if (_mat1 == mat || _mat2 == mat)
-		{
-			mat = MatValueController(_mat1, _mat2);
-		}
-
-		return mat;
-	}
-
-    #endregion
 }
