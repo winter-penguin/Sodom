@@ -65,16 +65,28 @@ public class CharacterValue : MonoBehaviour
     public float HungerChanged(float damage)
     {
         hunger += damage;
+        if (hunger >= 100)
+        {
+            hunger = 100;
+        }
         return hunger;
     }
     public float ThirstChanged(float damage)
     {
         thirst += damage;
+        if (thirst >= 100)
+        {
+            thirst = 100;
+        }
         return thirst;
     }
     public float FatigueChanged(float damage)
     {
         fatigue += damage;
+        if (fatigue >= 100)
+        {
+            fatigue = 100;
+        }
         return fatigue;
     }
     // Update is called once per frame

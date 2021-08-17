@@ -14,7 +14,11 @@ public class Slot : MonoBehaviour
     [SerializeField]
     private GameObject go_CountImage;
 
-    private void SetColor(float _alpha)
+    private void OnDisable()
+    {
+        ClearSlot();
+    }
+    private void SetColor(float _alpha) //이미지 알파 조정
     {
         Color color = itemImage.color;
         color.a = _alpha;
@@ -26,20 +30,9 @@ public class Slot : MonoBehaviour
         item = _item;
         itemCount = _count;
         itemImage.sprite = item.itemImage;
-
         go_CountImage.SetActive(true);
         text_Count.text = itemCount.ToString();
-
         SetColor(1);
-    }
-
-    public void SetSlotCount(int _count)
-    {
-        itemCount += _count;
-        text_Count.text = itemCount.ToString();
-
-        if (itemCount <= 0)
-            ClearSlot();
     }
 
     private void ClearSlot()
@@ -47,7 +40,7 @@ public class Slot : MonoBehaviour
         item = null;
         itemCount = 0;
         itemImage.sprite = null;
-        SetColor(0);
+        itemImage.color = new Color(1, 1, 1, 0);
 
         text_Count.text = "0";
         go_CountImage.SetActive(false);

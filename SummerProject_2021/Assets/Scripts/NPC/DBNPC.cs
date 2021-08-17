@@ -24,6 +24,7 @@ public class DBNPC : MonoBehaviour
         {
             StartCoroutine(DataSet());
         }
+        
     }
     protected IEnumerator DataSet()
     {

@@ -10,7 +10,9 @@ TagManager:
   - GameProfile
   - Canvas
   - Manager
-  layers:
+  - Wall
+
+ layers:
   - Default
   - TransparentFX
   - Ignore Raycast
@@ -43,7 +45,7 @@ TagManager:
   - 
   - 
   - 
-  m_SortingLayers:
+ m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
@@ -52,6 +54,9 @@ TagManager:
     locked: 0
   - name: Flatform
     uniqueID: 794487721
+    locked: 0
+  - name: Object
+    uniqueID: 1083126173
     locked: 0
   - name: NPC
     uniqueID: 3761208765
