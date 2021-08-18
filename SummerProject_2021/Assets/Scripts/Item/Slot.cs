@@ -8,7 +8,6 @@ public class Slot : MonoBehaviour
     public Item item;
     public int itemCount;
     public Image itemImage;
-
     [SerializeField]
     private Text text_Count;
     [SerializeField]

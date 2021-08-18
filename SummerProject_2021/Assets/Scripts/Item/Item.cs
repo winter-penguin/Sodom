@@ -24,7 +24,6 @@ public class Item : MonoBehaviour
     public bool useItem = false;
     public bool ItemEquip = false;
     #endregion
-
     private CharacterValue playerValue;
     void Start()
     {

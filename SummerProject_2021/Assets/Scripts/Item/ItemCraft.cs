@@ -18,10 +18,12 @@ public class ItemCraft : MonoBehaviour
     public bool CraftItem = false;
     private Slot produceItem;
     private Slot[] slots;
-
+    private ProduceButton produce;
     void Start()
     {
         itemInformation = GameObject.Find("ItemInformation");
+        ProduceUI = GameObject.Find("MainUI").transform.Find("ProduceUI").gameObject;
+        ProduceGridSetting = ProduceUI.transform.Find("ProduceGridSetting").gameObject;
     }
     void Update()
     {
@@ -34,6 +36,8 @@ public class ItemCraft : MonoBehaviour
 
     void ItemInformation()
     {
+        produce = GameObject.Find("ProduceButton").GetComponent<ProduceButton>();
+        produce.product = this.gameObject.GetComponent<ProductItem>();
         item = itemInformation.GetComponentsInChildren<Item>();
         Item mItem = this.gameObject.GetComponent<Item>();
         Debug.Log(mItem.CurrentItem);
