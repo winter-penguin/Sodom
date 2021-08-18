@@ -13,7 +13,6 @@ public class Slot : MonoBehaviour
     private Text text_Count;
     [SerializeField]
     private GameObject go_CountImage;
-
     private void OnDisable()
     {
         ClearSlot();

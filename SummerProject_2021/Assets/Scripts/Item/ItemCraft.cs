@@ -8,7 +8,8 @@ public class ItemCraft : MonoBehaviour
 {
     [SerializeField]
     private GameObject ProduceUI;
-    private GameObject BoxGridSetting;
+    [SerializeField]
+    public GameObject itemInformation;
     private Item[] item;
 
     [SerializeField]
@@ -20,19 +21,20 @@ public class ItemCraft : MonoBehaviour
 
     void Start()
     {
-        BoxGridSetting = GameObject.Find("BoxGridSetting");
+        itemInformation = GameObject.Find("ItemInformation");
     }
     void Update()
     {
         if(CraftItem)
         {
-            ProduceItem();
+            ProduceUI.SetActive(true);
+            ItemInformation();
         }
     }
 
-    void ProduceItem()
+    void ItemInformation()
     {
-        item = BoxGridSetting.GetComponentsInChildren<Item>();
+        item = itemInformation.GetComponentsInChildren<Item>();
         Item mItem = this.gameObject.GetComponent<Item>();
         Debug.Log(mItem.CurrentItem);
         CraftItem = false;
