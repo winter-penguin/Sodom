@@ -30,7 +30,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4063668256274640001}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -82,6 +82,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 6ee4cff99a8027348b6c70f816c82f60, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &1695007820016594450
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,8 +150,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 13
-  CurrentItemType: 3
+  CurrentItem: 0
+  CurrentItemType: 0
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -164,6 +165,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 9a93d9aab52b09648bad92e2a653a6c9, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &1781080064404816573
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +233,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 0
-  CurrentItemType: 0
+  CurrentItem: 4
+  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -246,6 +248,90 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
+--- !u!1 &2700111736902274308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4990651821778502330}
+  - component: {fileID: 725392360918541481}
+  - component: {fileID: 2061021231510630552}
+  m_Layer: 5
+  m_Name: Vegetable_Soup
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4990651821778502330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700111736902274308}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1041.7009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4063668256274640001}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 612.4519, y: 746.23334}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &725392360918541481
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700111736902274308}
+  m_CullTransparentMesh: 1
+--- !u!114 &2061021231510630552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700111736902274308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 9
+  CurrentItemType: 1
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  itemImage: {fileID: 21300000, guid: 7c16a94327dd2dd429564d6bea7b9012, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &4981919523877795991
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +362,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4063668256274640001}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -313,8 +399,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 9
-  CurrentItemType: 1
+  CurrentItem: 13
+  CurrentItemType: 3
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -328,6 +414,90 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 2727783c706e28749ab090d3ba037166, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
+--- !u!1 &5787217117602816904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3419654735501060317}
+  - component: {fileID: 8546993372458791560}
+  - component: {fileID: 3466305309156478862}
+  m_Layer: 5
+  m_Name: Vegetable
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3419654735501060317
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787217117602816904}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1041.7009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4063668256274640001}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 612.4519, y: 746.23334}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8546993372458791560
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787217117602816904}
+  m_CullTransparentMesh: 1
+--- !u!114 &3466305309156478862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787217117602816904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 8
+  CurrentItemType: 1
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  itemImage: {fileID: 21300000, guid: 83d65e466a52e5848a50ecc624f727b8, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &6044701819408629685
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,8 +565,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 2
-  CurrentItemType: 0
+  CurrentItem: 6
+  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -410,6 +580,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 1627d9262c4caa9459e389da37f28ae1, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &6190755562557581383
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,8 +648,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 12
-  CurrentItemType: 3
+  CurrentItem: 2
+  CurrentItemType: 0
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -492,6 +663,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: ffb59fb0c0d456b429274a4e354aaaeb, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &6665296469455635519
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,12 +698,98 @@ Transform:
   - {fileID: 7943551425132792670}
   - {fileID: 3863184693864675014}
   - {fileID: 3112961756903993292}
+  - {fileID: 8524099410822058503}
+  - {fileID: 3419654735501060317}
+  - {fileID: 4990651821778502330}
   - {fileID: 5780968665622150002}
   - {fileID: 7967195724496907886}
   - {fileID: 5836812470557684018}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6844450854284982779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8524099410822058503}
+  - component: {fileID: 6382809431338547220}
+  - component: {fileID: 2047132345586426853}
+  m_Layer: 5
+  m_Name: Fried_Meat
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8524099410822058503
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844450854284982779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1041.7009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4063668256274640001}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 612.4519, y: 746.23334}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6382809431338547220
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844450854284982779}
+  m_CullTransparentMesh: 1
+--- !u!114 &2047132345586426853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844450854284982779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 7
+  CurrentItemType: 1
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  itemImage: {fileID: 21300000, guid: f3b97d89a7cb8a74bad18d1f94275b67, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &6960179927757992943
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +820,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4063668256274640001}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -614,6 +872,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: d6b4c0e8c4b799b44a31ed05ddd4fa38, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &7488082145622780217
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,8 +940,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 14
-  CurrentItemType: 3
+  CurrentItem: 1
+  CurrentItemType: 0
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -696,6 +955,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 7703b2feaaef0ea41a7b4d0a61b7f537, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &8200434865778685140
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,8 +1024,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 1
-  CurrentItemType: 0
+  CurrentItem: 5
+  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -779,6 +1039,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0
 --- !u!114 &8369166732041189232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,8 +1123,8 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 15
-  CurrentItemType: 3
+  CurrentItem: 3
+  CurrentItemType: 0
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -877,3 +1138,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 07ee3dfdb4f5ae24aaff988c21de9b70, type: 3}
   useItem: 0
   ItemEquip: 0
+  ItemCount: 0

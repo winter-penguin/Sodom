@@ -8,10 +8,14 @@ public class ProductItem : MonoBehaviour
     public bool UseItem = false;
     private Item item;
     private ItemCraft Water;
+    private GameObject box;
+    private GameObject bonfire;
     private void Start()
     {
         item = this.gameObject.GetComponent<Item>();
         Water = GameObject.Find("Water").GetComponent<ItemCraft>();
+        box = GameObject.Find("MainUI").transform.Find("Box").gameObject;
+        bonfire = GameObject.Find("MainUI").transform.Find("Bonfire").gameObject;
     }
     private void Update()
     {
@@ -27,10 +31,14 @@ public class ProductItem : MonoBehaviour
             switch(item.ID)
             {
                 case 19:
-                    WaterPurifier();
+                    Water.CraftItem = true;
                     break;
                 case 20:
+                    bonfire.SetActive(true);
+                    break;
                 case 21:
+                    box.SetActive(true);
+                    break;
                 case 22:
                     break;
             }
@@ -38,9 +46,4 @@ public class ProductItem : MonoBehaviour
             yield return null;
         }
     }
-    private void WaterPurifier()
-    {
-        Water.CraftItem = true;
-    }
-
 }

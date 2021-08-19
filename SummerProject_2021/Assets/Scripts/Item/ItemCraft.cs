@@ -38,6 +38,8 @@ public class ItemCraft : MonoBehaviour
     {
         produce = GameObject.Find("ProduceButton").GetComponent<ProduceButton>();
         produce.product = this.gameObject.GetComponent<ProductItem>();
+        produce.item = this.gameObject.GetComponent<Item>();
+
         item = itemInformation.GetComponentsInChildren<Item>();
         Item mItem = this.gameObject.GetComponent<Item>();
         Debug.Log(mItem.CurrentItem);
@@ -47,6 +49,7 @@ public class ItemCraft : MonoBehaviour
         {
             if(item[i].ID == mItem.itemCraft[0].Necessary_Material_ID1)
             {
+                produce.MaterialItem.Add(item[i]);
                 AcquireItem(item[i], mItem.itemCraft[0].Amount_Of_Material1);
                 if(mItem.itemCraft[0].Necessary_Material_ID2 == 0)
                 {
@@ -55,6 +58,7 @@ public class ItemCraft : MonoBehaviour
             }
             else if(item[i].ID == mItem.itemCraft[0].Necessary_Material_ID2)
             {
+                produce.MaterialItem.Add(item[i]);
                 AcquireItem(item[i], mItem.itemCraft[0].Amount_Of_Material2);
                 if (mItem.itemCraft[0].Necessary_Material_ID3 == 0)
                 {
@@ -63,6 +67,7 @@ public class ItemCraft : MonoBehaviour
             }
             else if (item[i].ID == mItem.itemCraft[0].Necessary_Material_ID3)
             {
+                produce.MaterialItem.Add(item[i]);
                 AcquireItem(item[i], mItem.itemCraft[0].Amount_Of_Material3);
             }
         }

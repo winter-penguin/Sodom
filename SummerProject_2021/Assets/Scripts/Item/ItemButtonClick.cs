@@ -1,40 +1,67 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemButtonClick : MonoBehaviour
 {
     Button button;
-    private ItemCraft item;
+    private ItemCraft itemCraft;
+    private GameObject CurrentItem;
     private ProductItem product;
     private Image Button;
     public Sprite ProduceButtonImage;
     public Sprite UseButtonImage;
+    private GameObject Player;
+    private ClickMovement player;
+    private float distance;
+    private bool isProduct = false;
+    private int floor;
     // Start is called before the first frame update
     void Start()
     {
         button = this.gameObject.GetComponent<Button>();
         button.onClick.AddListener(OnClickButton);
-        item = this.gameObject.transform.parent.parent.GetComponent<ItemCraft>();
-        product = this.gameObject.transform.parent.parent.GetComponent<ProductItem>();
+        CurrentItem = this.gameObject.transform.parent.parent.gameObject;
+        itemCraft = CurrentItem.GetComponent<ItemCraft>();
+        product = CurrentItem.GetComponent<ProductItem>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        player = Player.GetComponent<ClickMovement>();
+        if (CurrentItem.transform.position.y < -70)
+        {
+            floor = 1;
+        }
+        if (CurrentItem.transform.position.y > -70)
+        {
+            floor = 2;
+        }
     }
-    
-    private void ButtonImage()
-    {
-
-    }
-
     public void OnClickButton()
     {
-        if (product.Product == false)
+        isProduct = false;
+        StartCoroutine(CheckDistance());
+
+    }
+    IEnumerator CheckDistance()
+    {
+        while(!isProduct)
         {
-            item.CraftItem = true;
-        }
-        else
-        {
-            product.UseItem = true;
+            distance = Player.transform.position.x - CurrentItem.transform.position.x;
+            if (distance < 100 && distance > -100 && floor == player.Wherecharacteris)
+            {
+                if (product.Product == false)
+                {
+                    itemCraft.CraftItem = true;
+                    isProduct = true;
+                    break;
+                }
+                else
+                {
+                    product.UseItem = true;
+                    isProduct = true;
+                    break;
+                }
+            }
+            yield return null;
         }
     }
-
 }
