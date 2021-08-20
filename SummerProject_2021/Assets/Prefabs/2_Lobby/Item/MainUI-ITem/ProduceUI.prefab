@@ -226,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   product: {fileID: 0}
   item: {fileID: 0}
+  MaterialItem: []
 --- !u!1 &2378988948123193745
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   product: {fileID: 0}
   item: {fileID: 0}
+  MaterialItem: []
 --- !u!1 &4492550306568008395
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,14 +592,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.99126774, b: 0.7783019, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 752e89f13df95c54689c443216e1cb83, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -778,7 +780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  itemCount: 0
+  ProduceItemCount: 0
+  ItemCount: 0
   itemImage: {fileID: 8597552613795727606}
   text_Count: {fileID: 3308238472819776794}
   go_CountImage: {fileID: 4492550306568008395}
@@ -930,6 +933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   product: {fileID: 0}
   item: {fileID: 0}
+  MaterialItem: []
 --- !u!1 &9195621260764672981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   product: {fileID: 0}
   item: {fileID: 0}
+  MaterialItem: []
 --- !u!1001 &8943802457572637598
 PrefabInstance:
   m_ObjectHideFlags: 0
