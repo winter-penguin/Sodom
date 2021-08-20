@@ -40,7 +40,6 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
             {
                 if (itemData.itemDBCraft[i].ID == item.ID && itemData.itemDBCraft[i].Necessary_Object_ID == ParentObject.ID)
                 {
-                    Debug.Log("InputButton.Right");
                     itemCraft.CraftItem = true;
                     break;
                 }
@@ -51,7 +50,6 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
 
     void OnDoubleClick()
     {
-        Debug.Log("Double Clicked");
         Debug.Log(item.CurrentItemType);
         Debug.Log(item.CurrentItem);
         item.useItem = true;

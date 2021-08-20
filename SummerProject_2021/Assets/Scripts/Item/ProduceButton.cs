@@ -29,7 +29,6 @@ public class ProduceButton : MonoBehaviour
         {
             product.Product = true;
         }
-
     }
 
     private GameObject ProduceUI;

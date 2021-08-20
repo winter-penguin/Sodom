@@ -42,7 +42,6 @@ public class ItemCraft : MonoBehaviour
 
         item = itemInformation.GetComponentsInChildren<Item>();
         Item mItem = this.gameObject.GetComponent<Item>();
-        Debug.Log(mItem.CurrentItem);
         CraftItem = false;
         ProduceItem(mItem);
         for(int i = 0; i < item.Length; i++)
