@@ -8,14 +8,12 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
 {
     private Item item;
     private Item ParentObject;
-    private GameObject produceUI;
     private DBManagerItem itemData;
     private ItemCraft itemCraft;
     void Start()
     {
         item = this.gameObject.GetComponent<Item>();
         itemData = GameObject.Find("DBManager").GetComponent<DBManagerItem>();
-        produceUI = GameObject.Find("MainUI").transform.Find("ProduceUI").gameObject;
         ParentObject = this.gameObject.transform.parent.parent.GetComponent<Item>();
 
     }
@@ -42,8 +40,6 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
             {
                 if (itemData.itemDBCraft[i].ID == item.ID && itemData.itemDBCraft[i].Necessary_Object_ID == ParentObject.ID)
                 {
-                    Debug.Log("InputButton.Right");
-                    produceUI.SetActive(true);
                     itemCraft.CraftItem = true;
                     break;
                 }
@@ -54,7 +50,6 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
 
     void OnDoubleClick()
     {
-        Debug.Log("Double Clicked");
         Debug.Log(item.CurrentItemType);
         Debug.Log(item.CurrentItem);
         item.useItem = true;

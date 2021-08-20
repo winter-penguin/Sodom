@@ -49,20 +49,20 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 3963446539
+    uniqueID: 1998221577
     locked: 0
   - name: Stage
-    uniqueID: 2729337461
+    uniqueID: 1399126771
     locked: 0
   - name: Object
-    uniqueID: 1197522649
+    uniqueID: 670212711
     locked: 0
   - name: NPC
-    uniqueID: 2097166877
+    uniqueID: 3498678491
     locked: 0
   - name: Player
-    uniqueID: 3341610975
+    uniqueID: 4285223847
     locked: 0
-  - name: Interact
-    uniqueID: 2204065779
+  - name: Interactive
+    uniqueID: 328457919
     locked: 0

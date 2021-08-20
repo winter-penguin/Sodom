@@ -7,24 +7,26 @@ public class Item : MonoBehaviour
     [SerializeField]
     public Craft[] itemCraft;
 
-    public enum ItemTypeEnum { Food, Tool, Weapon, Material, Medicine, Product };
+    public enum ItemTypeEnum { Material, Food, Medicine, Tool, Weapon, Product };
     public enum ItemName
     {
+        Wood, Stone, Cloth, Iron,
         Brown_Water, Water, Raw_Meat, Fried_Meat, Vegetable, Vegetable_Soup, Bandage, Pill,
         Crowbar, Shovel, Dagger, Sword,
-        Cloth, Wood, Stone, Iron, Bonfire, Bed, Bag, Water_Purifier, Box
+        Bonfire, Bed, Bag, Water_Purifier, Box
     };
 
-    public ItemName CurrentItem = ItemName.Cloth;
-    public ItemTypeEnum CurrentItemType = ItemTypeEnum.Food;
+    public ItemName CurrentItem = ItemName.Wood;
+    public ItemTypeEnum CurrentItemType = ItemTypeEnum.Material;
     public float ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
     public Sprite itemImage;
     private DBManagerItem itemData;
     // Start is called before the first frame update
     public bool useItem = false;
     public bool ItemEquip = false;
+    private bool dataLoading;
     #endregion
-
+    public int ItemCount;
     private CharacterValue playerValue;
     void Start()
     {
@@ -35,49 +37,43 @@ public class Item : MonoBehaviour
     {
         if (useItem)
         {
-            StartCoroutine(CheckUseItem());
+            CheckUseItem();
         }
         if (itemData.DataLoading)
         {
-            StartCoroutine(DataSet());
+            DataSet();
         }
     }
-    protected IEnumerator DataSet()
+    private void DataSet()
     {
-        while (itemData.DataLoading)
+        for (int i = 0; i < itemData.itemDB.Length; i++)
         {
-            for (int i = 0; i < itemData.itemDB.Length; i++)
+            if (CurrentItem.ToString() == itemData.itemDB[i].name)
             {
-                if (CurrentItem.ToString() == itemData.itemDB[i].name)
-                {
-                    ID = itemData.itemDB[i].ID;
-                    ItemType = itemData.itemDB[i].Item_Type;
-                    Hunger = itemData.itemDB[i].Hunger;
-                    Thirst = itemData.itemDB[i].Thirst;
-                    Heal = itemData.itemDB[i].Heal;
-                    Fatigue = itemData.itemDB[i].Fatigue;
-                    AD = itemData.itemDB[i].AD;
-                    Attack_Range = itemData.itemDB[i].Attack_Range;
-                    Capacity = itemData.itemDB[i].Capacity;
-                    Charge_Space = itemData.itemDB[i].Charge_Space;
-                    break;
-                }
+                ID = itemData.itemDB[i].ID;
+                ItemType = itemData.itemDB[i].Item_Type;
+                Hunger = itemData.itemDB[i].Hunger;
+                Thirst = itemData.itemDB[i].Thirst;
+                Heal = itemData.itemDB[i].Heal;
+                Fatigue = itemData.itemDB[i].Fatigue;
+                AD = itemData.itemDB[i].AD;
+                Attack_Range = itemData.itemDB[i].Attack_Range;
+                Capacity = itemData.itemDB[i].Capacity;
+                Charge_Space = itemData.itemDB[i].Charge_Space;
+                break;
             }
-
-            for (int i = 0; i < itemData.itemDBCraft.Length; i++)
-            {
-                if (itemData.itemDBCraft[i].ID == ID)
-                {
-                    itemCraft[0] = itemData.itemDBCraft[i];
-                    break;
-                }
-            }
-            yield return null;
-
         }
-        yield return null;
+
+        for (int i = 0; i < itemData.itemDBCraft.Length; i++)
+        {
+            if (itemData.itemDBCraft[i].ID == ID)
+            {
+                itemCraft[0] = itemData.itemDBCraft[i];
+                break;
+            }
+        }
     }
-    IEnumerator CheckUseItem()
+    private void CheckUseItem()
     {
         if (ItemType == 0 || ItemType == 4)
         {
@@ -104,6 +100,5 @@ public class Item : MonoBehaviour
             }
         }
         useItem = false;
-        yield return null;
     }
 }
