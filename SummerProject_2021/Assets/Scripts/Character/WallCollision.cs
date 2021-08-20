@@ -31,6 +31,17 @@ public class WallCollision : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
+        iscollide = true;
+        clickmovement = collision.gameObject.GetComponent<ClickMovement>(); //물어볼거
+        if (LeftOrRight == -1)
+        {
+            
+        }
+        clickmovement.anim.SetBool("isWalking", false);
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        iscollide = false;
         clickmovement = collision.gameObject.GetComponent<ClickMovement>(); //물어볼거
         if (LeftOrRight == -1)
         {

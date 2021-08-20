@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class ObjectRemove : MonoBehaviour
@@ -16,8 +17,8 @@ public class ObjectRemove : MonoBehaviour
 
     public void ButtonRemove()
     {
-        //StartCoroutine(ButtonFade());
-        _image.CrossFadeAlpha(0,1,true);
+        StartCoroutine(ButtonFade());
+        //image.CrossFadeAlpha(0,1,true);
     }
 
     IEnumerator ButtonFade()
