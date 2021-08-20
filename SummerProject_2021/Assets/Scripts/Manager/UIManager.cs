@@ -13,21 +13,20 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-	[SerializeField] private ClockSystem clock;
-	[SerializeField] private GameObject calendarObject;
-	[SerializeField] private GameObject timeObject;
+	private ClockSystem clock;
+	private GameObject calendarObject;
+	private GameObject timeObject;
 
 	private void Awake()
-	{	
-		if(clock == null) clock = GameObject.Find("Clock").GetComponent<ClockSystem>();
-		calendarObject = GameObject.Find("Calendar");
-		timeObject = GameObject.Find("Time");
+	{
+		clock = FindObjectOfType<ClockSystem>();
+		calendarObject = clock.transform.GetChild(0).gameObject;
+		timeObject = clock.transform.GetChild(1).gameObject;
 	}
 
 	private void Update()
 	{
-		calendarObject.GetComponent<TextMeshProUGUI>().text = "Day " + clock.Day;
-		timeObject.GetComponent<TextMeshProUGUI>().text = clock.Hour + ":" + clock.Min;
-		
+		calendarObject.GetComponent<TextMeshProUGUI>().text = String.Format("Day {0:00}", clock.Day);
+		timeObject.GetComponent<TextMeshProUGUI>().text = String.Format("{0:00}:{1:00}",clock.Hour ,clock.Min);
 	}
 }

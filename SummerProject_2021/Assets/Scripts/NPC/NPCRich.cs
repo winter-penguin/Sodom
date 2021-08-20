@@ -38,7 +38,7 @@ public class NPCRich : MonoBehaviour
     {
         DBdata = GameObject.Find("DBManager").GetComponent<DB_Character>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        WoodenStair = GameObject.Find("WoodenStair_sample");
+        WoodenStair = GameObject.Find("HouseAndPoints");
         UpDown = WoodenStair.transform.GetComponentsInChildren<Transform>();
         playerValue = Player.GetComponent<CharacterValue>();
         rigidbody = GetComponent<Rigidbody2D>();
@@ -223,25 +223,25 @@ public class NPCRich : MonoBehaviour
     {
         if (playerPosition.y < 25 && playerPosition.y > -290) 
         {
-            StairDirectionUP = UpDown[0].position.x - npcPosition.x;
+            StairDirectionUP = UpDown[2].position.x - npcPosition.x;
             StairDirectionUP = (StairDirectionUP < 0) ? -1 : 1; //2F direction
             transform.localScale = new Vector3(StairDirectionUP, 1, 1);
-            transform.position = Vector2.MoveTowards(transform.position, UpDown[0].position, 0.005f);
-            if(npcPosition.x == UpDown[0].position.x)
+            transform.position = Vector2.MoveTowards(transform.position, UpDown[2].position, move_speed * Time.deltaTime);
+            if(npcPosition.x == UpDown[2].position.x)
             {
-                transform.position = Vector2.MoveTowards(transform.position, UpDown[1].position, 0.005f);
+                transform.position = Vector2.MoveTowards(transform.position, UpDown[3].position, move_speed * Time.deltaTime);
                 GoStair = false;
             }
         }
         else if (playerPosition.y >= 25)
         {
-            StairDirectionDown = UpDown[1].position.x - npcPosition.x;
+            StairDirectionDown = UpDown[3].position.x - npcPosition.x;
             StairDirectionDown = (StairDirectionDown < 0) ? -1 : 1; //1F direction
             transform.localScale = new Vector3(StairDirectionDown, 1, 1);
-            transform.position = Vector2.MoveTowards(transform.position, UpDown[1].position, 0.005f);
-            if (npcPosition.x == UpDown[1].position.x)
+            transform.position = Vector2.MoveTowards(transform.position, UpDown[3].position, move_speed * Time.deltaTime);
+            if (npcPosition.x == UpDown[3].position.x)
             {
-                transform.position = Vector2.MoveTowards(transform.position, UpDown[0].position, 0.005f);
+                transform.position = Vector2.MoveTowards(transform.position, UpDown[2].position, move_speed * Time.deltaTime);
                 GoStair = false;
             }
         }

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 	/// 싱글톤 패턴
 	/// </summary>
 	/// 게임 매니저 단일 인스턴스 유지를 위한 싱글톤 패턴 생성
-	private static GameManager _instance = null;
+	public static GameManager _instance { get; private set; }
 
 	public static GameManager Instance
 	{
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	// 게임이 끝났는가?
-	public bool isEnd = false;
+	public bool isEnd;
 
 	private void Awake()
 	{
@@ -36,5 +36,10 @@ public class GameManager : MonoBehaviour
 
 		_instance = this;
 		DontDestroyOnLoad(gameObject);
+	}
+
+	private void Start()
+	{
+		isEnd = false;
 	}
 }

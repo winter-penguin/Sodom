@@ -9,6 +9,7 @@ TagManager:
   - EnemyNPC
   - GameProfile
   - Canvas
+  - Manager
   - Wall
   layers:
   - Default
@@ -18,7 +19,7 @@ TagManager:
   - Water
   - UI
   - 
-  - EnemyNPC
+  - 
   - 
   - 
   - 
@@ -48,23 +49,20 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 2753165585
+    uniqueID: 1998221577
     locked: 0
-  - name: Flatform
-    uniqueID: 794487721
+  - name: Stage
+    uniqueID: 1399126771
     locked: 0
   - name: Object
-    uniqueID: 1083126173
+    uniqueID: 670212711
     locked: 0
   - name: NPC
-    uniqueID: 3761208765
+    uniqueID: 3498678491
     locked: 0
   - name: Player
-    uniqueID: 1616731973
+    uniqueID: 4285223847
     locked: 0
-  - name: Stairs
-    uniqueID: 3660687605
-    locked: 0
-  - name: UI
-    uniqueID: 4275305427
+  - name: Interactive
+    uniqueID: 328457919
     locked: 0
