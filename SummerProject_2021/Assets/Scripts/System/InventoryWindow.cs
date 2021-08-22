@@ -4,6 +4,7 @@
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,6 @@ using UnityEngine;
 public class InventoryWindow : MonoBehaviour, IManageWindow
 {
 	[SerializeField] private GameObject inventoryWindow;
-
 	private void Init()
 	{
 #if UNITY_EDITOR
@@ -41,5 +41,10 @@ public class InventoryWindow : MonoBehaviour, IManageWindow
 	public void CloseSpecificWindow()
 	{
 		inventoryWindow.SetActive(false);
+	}
+
+	public IEnumerator WaitUntillReady(Action func)
+	{
+		yield return null;
 	}
 }
