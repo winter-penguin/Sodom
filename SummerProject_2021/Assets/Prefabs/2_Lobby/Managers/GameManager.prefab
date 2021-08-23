@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5075001577539739149}
   - component: {fileID: 5075001577539739148}
   - component: {fileID: 2063131910172076970}
+  - component: {fileID: 3204603999185214945}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -57,4 +58,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d319f9f889af047997b71f4d83b7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farmingPoint: {fileID: 4498644094028971647, guid: 5a27aa01a327f1740abf3b22391ad76b, type: 3}
+--- !u!114 &3204603999185214945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075001577539739146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9d9c89813f2b34d8d2fc1cfa19a55d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstSoundIndex: 0
+  soundClips:
+  - {fileID: 8300000, guid: af7aba9f863a46f47b667edf1387c5de, type: 3}

@@ -4,6 +4,8 @@
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
+using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,5 +57,10 @@ public class SettingWindow : MonoBehaviour, IManageWindow
 	public void CloseSpecificWindow()
 	{
 		settingWindow.SetActive(false);
+	}
+
+	public IEnumerator WaitUntillReady()
+	{
+		yield return null;
 	}
 }
