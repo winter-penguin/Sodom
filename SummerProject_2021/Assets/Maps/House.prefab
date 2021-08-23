@@ -887,7 +887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alpha: 0
   ButtonParent: {fileID: 4394646571371631322}
-  mainCharacter: {fileID: 0}
+  mainCharacter: {fileID: 2521604308346854472, guid: f13bdcd7f3eb6854ab67a7ec3e256468, type: 3}
   GaugeBarObject: {fileID: 1916568362}
   Button_ing: 0
   isCollide: 0
