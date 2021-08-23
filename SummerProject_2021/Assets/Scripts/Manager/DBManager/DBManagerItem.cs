@@ -13,7 +13,7 @@ public struct ItemDB
     [SerializeField]
     public string name;
     [SerializeField]
-    public float Item_Type, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
+    public float Item_Type, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
 }
 [System.Serializable]
 public struct Craft
@@ -89,6 +89,7 @@ public class DBManagerItem: DBManager
                 itemDB[i].Capacity = (Capacity == "") ? 0 : Convert.ToSingle(Capacity);
             }
             itemDB[i].Charge_Space = Convert.ToSingle(GetDataValue(item[i], "Charge_Space:", "|"));
+            itemDB[i].Value = Convert.ToSingle(GetDataValue(item[i], "Value:", "|"));
         }
 
         #region CraftDB
