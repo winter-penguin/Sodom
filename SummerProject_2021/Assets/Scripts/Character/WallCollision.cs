@@ -20,7 +20,7 @@ public class WallCollision : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)//얘는 가만히있는거고 캐릭터는 앞으로 부딪힐 콜라이더가 많으니깐 가만히있는 물체가 캐릭터 움직임을 멈추는게 좋지 않을까?
     {
         iscollide = true;
         clickmovement = collision.gameObject.GetComponent<ClickMovement>();

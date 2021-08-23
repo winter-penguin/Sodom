@@ -62,6 +62,7 @@ public class CharacterValue : MonoBehaviour
         attack_range += damage;
         return attack_range;
     }
+    
     public float HungerChanged(float damage)
     {
         hunger += damage;

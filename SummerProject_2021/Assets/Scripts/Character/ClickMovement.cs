@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickMovement : MonoBehaviour
 {
@@ -25,32 +26,47 @@ public class ClickMovement : MonoBehaviour
     public Vector2 boxSize;
     public LayerMask EnemyNPCMask;
     public GameObject AttackRange;
+    public GameObject Stair;
+    public Button button;
+    public LayerMask layerMask;
 
     private Vector2 destination;
     private Vector2 first_destination;
     private Vector2 MousePosition;
     private Camera camera1;
+    [HideInInspector]
     public Rigidbody2D rb;
     private Transform stairstart;
     private Transform stairend;
     private RaycastHit2D hit;
+    [HideInInspector]
     public Animator anim;
 
     [HideInInspector]
     public bool isNormalMoving = false;
+    [HideInInspector]
     public bool isFirst_ing = false;
+    [HideInInspector]
     public bool isSecond_ing = false;
+    //[HideInInspector]
     public bool isClickEnemy;
     public bool isCollideEnemy = false;
     public bool attack =true;
+    [HideInInspector]
     public bool isFirstChanged = false;
+    [HideInInspector]
     public bool isSecondChanged = false;
+    [HideInInspector]
     public bool isNormalChanged = false;
+    
 
+    public bool isWall = false;
+
+    public bool isButtonClick;
+    
     private bool isFirst = false;
     private bool isSecond = false;
     private bool isNormalMove = false;
-    //private bool isClick;
     private bool isSecond_ing_click = false;
     
 
@@ -67,11 +83,12 @@ public class ClickMovement : MonoBehaviour
 
     void Start()
     {
-        enemynpc = GameObject.Find("EnemyNPC_CHG").GetComponent<EnemyNPC>();
-        _wallCollision = GameObject.FindGameObjectWithTag("Wall").GetComponent<WallCollision>();
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        
+        //_wallCollision = GameObject.FindGameObjectWithTag("Wall").GetComponent<WallCollision>();
+        rb = gameObject.GetComponent<Rigidbody2D>();//이 캐릭터가 왜 NPC하고 부딪혔을때 안멈추는지 모르겠음
         anim = GetComponent<Animator>();
         AttackRange.SetActive(false);
+        
 
     }
 
@@ -90,41 +107,37 @@ public class ClickMovement : MonoBehaviour
                     LeftRight = -1;
                 }
                 else LeftRight = 1;
+                //Debug.Log(LeftRight);
 
-                if (_wallCollision.iscollide)
+                if (isWall)
                 {
-                    if (_wallCollision.LeftOrRight == LeftRight)
+                    if (_wallCollision.iscollide)
                     {
-                        WhereToGo();
-                        EnemyClick();
-                        Debug.Log("Wheretogo: " + Wheretogo);
-
-                        if (Wheretogo != 0)//집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                        //Debug.Log(_wallCollision.LeftOrRight);
+                        Debug.Log("벽과 닿은상태입니다");
+                        if (_wallCollision.LeftOrRight == LeftRight)
                         {
-                            WhereCharacter();
-                            CaseSetting();
-                            if (!enemynpc.iscollide)//이걸 왜 해놓은거지
+                            WhereToGo();
+                            EnemyClick();
+                            Debug.Log("Wheretogo: " + Wheretogo);
+
+                            if (Wheretogo != 0)//집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
                             {
-                        
+                                WhereCharacter();
+                                CaseSetting();
                             }
                         }
                     }
-                    
                 }
                 else
                 {
                     WhereToGo();
                     EnemyClick();
-                    Debug.Log("Wheretogo: " + Wheretogo);
 
                     if (Wheretogo != 0)//집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
                     {
                         WhereCharacter();
                         CaseSetting();
-                        if (!enemynpc.iscollide)//이걸 왜 해놓은거지
-                        {
-                        
-                        }
                     }
                 }
 
@@ -156,7 +169,21 @@ public class ClickMovement : MonoBehaviour
         #endregion
     }
     //계단 올라가는중 => 클릭 => 일단 위치 저장 => 계단 이동이 끝나면 바로 이 저장한 위치로 이동해야함
-    
+    private void OnCollisionEnter2D(Collision2D collision)//문이랑 부딪히면
+    {
+        if (collision.collider.CompareTag("Wall"))//태그가 벽인 오브젝트와 부딪혔을때만 그이상 안가지는 판정
+        {
+            isWall = true;
+            _wallCollision = collision.gameObject.GetComponent<WallCollision>();
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Wall"))
+        {
+            isWall = false;
+        }
+    }
     private void FixedUpdate()
     {
         switch (MovingCase)
@@ -242,9 +269,10 @@ public class ClickMovement : MonoBehaviour
 
     private void Secondmove()
     {
+        Stair.SetActive(true); //계단 올라가거나 내려가는 중에만 플레이어 보다 SortingLayer높은 계단 오브젝트 활성화
         isSecond_ing = true;
         LeftOrRight(isSecondChanged, stairend.position);
-        rb.isKinematic = true;
+        rb.isKinematic = true;//Why? 1.enemynpc 클릭하면 AttackPos Collision활성화되서 계단이랑 부딪혀서 밀려나서 2. 2층바닥에 머리 부딪혀서 밀려남
         //transform.position = Vector2.MoveTowards(stairstart.position, stairend.position, Time.deltaTime * speed);
         transform.position = Vector2.MoveTowards(transform.position, stairend.position, Time.deltaTime * stairspeed);
         if (Math.Abs(transform.position.y - stairend.position.y) < 0.1f)
@@ -253,6 +281,7 @@ public class ClickMovement : MonoBehaviour
             isSecond = true;
             isSecond_ing = false;
             isNormalMoving = true;
+            Stair.SetActive(false);
         }
     }
     public void NormalMove()
@@ -304,7 +333,17 @@ public class ClickMovement : MonoBehaviour
             isChanged = true;
         }
     }
-    void EnemyClick()
+
+    void ButtonClick()//layermask가 Button인 콜라이더만 인식(레이어마스크 인스펙터에서 설정 가능)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        hit = Physics2D.Raycast(ray.origin, ray.direction, 10f, layerMask);
+        if (hit)
+        {
+            Debug.Log(hit.collider.tag);
+        }
+    }
+    void EnemyClick()//이함수를 적대적 엔피시가 스폰됐을때만 실행시켜야 Good! 이라고 생각했지만 이함수로 버튼을 구분할거임
     {
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -313,17 +352,24 @@ public class ClickMovement : MonoBehaviour
         if (hit)
         {
             //Debug.DrawRay(ray.origin, ray.direction * 10f, Color.red, 1f);
-            Debug.Log(hit.collider.tag);
+            //Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("EnemyNPC"))
             {
+                enemynpc = GameObject.Find("EnemyNPC_CHG").GetComponent<EnemyNPC>();
                 //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 isClickEnemy = true;
                 rb.isKinematic = false;
             }
+            else if (hit.collider.CompareTag("Button"))
+            {
+                isButtonClick = true;
+            }
             else
             {
+                
                 anim.SetBool("isPunching", false);
                 isClickEnemy = false;
+                isButtonClick = false;
                 AttackRange.SetActive(false);
             }
         }
@@ -331,6 +377,7 @@ public class ClickMovement : MonoBehaviour
         {
             anim.SetBool("isPunching", false);
             isClickEnemy = false;
+            isButtonClick = false;
             AttackRange.SetActive(false);
         }
     }

@@ -11,7 +11,7 @@ public class EnemyNPC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        clickmovement = GameObject.Find("CHG_Character").GetComponent<ClickMovement>();
+        clickmovement = GameObject.Find("MainCharacter").GetComponent<ClickMovement>();
     }
 
     // Update is called once per frame

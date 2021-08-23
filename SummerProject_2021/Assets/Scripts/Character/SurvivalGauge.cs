@@ -21,8 +21,8 @@ public class SurvivalGauge : MonoBehaviour
         Hunger = 75;
         Thirst = 75;
         Fatigue = 0;
-        StartCoroutine(ThirstMinus());
-        StartCoroutine(HungerMinus());
+        StartCoroutine(ThirstCoroutine());
+        StartCoroutine(HungerCoroutine());
     }
 
     void Update()
@@ -30,44 +30,56 @@ public class SurvivalGauge : MonoBehaviour
         Minute = _clockSystem.DayTime.min;
     }
 
-    IEnumerator ThirstMinus()
+    public void ThirstMinus(int value)
     {
-        while (!GM.isEnd)
-        {
-            if (isThirst == false)
-            {
-                if (_clockSystem.DayTime.min >= 10)
-                {
-                    Thirst--;
-                    isThirst = true;
-                    yield return new WaitForSeconds(10f);
-                    Debug.Log("woooow");
-                }
-            }
-            yield return new WaitForSeconds(1f);
-            isThirst = false;
-        }
-        
+        Thirst += value;
     }
-    IEnumerator HungerMinus()
+    
+    public void HungerMinus(int value)
+    {
+        Hunger += value;
+    }
+    public void FatiguePlus(int value)
+    {
+        Fatigue += value;
+    }
+
+    IEnumerator ThirstCoroutine()
     {
         while (!GM.isEnd)
         {
-            if (isHunger == false)
+            Thirst--;
+            if (Thirst == 0)
             {
-                if (_clockSystem.DayTime.min >= 15)
-                {
-                    Hunger--;
-                    isHunger = true;
-                    yield return new WaitForSeconds(10f);
-                    Debug.Log("woooow");
-                }
+                //게임 종료
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(18.765f);
             
-            isHunger = false;
         }
-        
+    }
+    IEnumerator HungerCoroutine()
+    {
+        while (!GM.isEnd)
+        {
+            Hunger--;
+            if (Hunger == 0)
+            {
+                //게임 종료
+            }
+            yield return new WaitForSeconds(25f);
+        }
+    }
+    IEnumerator FatigueCoroutine()
+    {
+        while (!GM.isEnd)//아무행동도 하지 않을 시, 어떤 행동을 하면 이 코루틴 일시정지
+        {
+            Fatigue--;
+            if (Hunger == 0)
+            {
+                //게임 종료
+            }
+            yield return new WaitForSeconds(12.51f);
+        }
     }
     
 }
