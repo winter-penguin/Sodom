@@ -43,7 +43,7 @@ public class InventoryWindow : MonoBehaviour, IManageWindow
 		inventoryWindow.SetActive(false);
 	}
 
-	public IEnumerator WaitUntillReady(Action func)
+	public IEnumerator WaitUntillReady()
 	{
 		yield return null;
 	}

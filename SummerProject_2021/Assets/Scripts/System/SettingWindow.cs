@@ -59,7 +59,7 @@ public class SettingWindow : MonoBehaviour, IManageWindow
 		settingWindow.SetActive(false);
 	}
 
-	public IEnumerator WaitUntillReady(Action func)
+	public IEnumerator WaitUntillReady()
 	{
 		yield return null;
 	}

@@ -31,8 +31,8 @@ public class SaveWindow : MonoBehaviour, IManageWindow
 	{
 		if (WaitingCoroutine == null)
 		{
-			WaitingCoroutine = StartCoroutine(WaitUntillReady(DoLast(false)));
-			
+			gameObject.SetActive(true);
+			WaitingCoroutine = StartCoroutine(temp(mainWindow));
 		}
 	}
 
@@ -41,21 +41,19 @@ public class SaveWindow : MonoBehaviour, IManageWindow
 		if (WaitingCoroutine == null)
 		{
 			mainWindow.SetActive(true);
-			WaitingCoroutine = StartCoroutine(WaitUntillReady());
-			
-			gameObject.SetActive(false);
+			WaitingCoroutine = StartCoroutine(temp(gameObject));
 		}
 	}
 
-	private Action DoLast(bool _targetActive)
-	{
-		gameObject.SetActive(!_targetActive);
-		mainWindow.SetActive(_targetActive);
-	}
-	
-	public IEnumerator WaitUntillReady(Action func)
+	public IEnumerator WaitUntillReady()
 	{
 		yield return new WaitUntil(() => !gameStartButton.isPlaying);
+	}
+
+	private IEnumerator temp(GameObject tempObject)
+	{
+		yield return new WaitUntil(() => !gameStartButton.isPlaying);
+		tempObject.SetActive(false);
 		WaitingCoroutine = null;
 	}
 }

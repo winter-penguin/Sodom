@@ -135,18 +135,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5960739588169229271, guid: 5738d898a976c604ab1ee34ff21e8bdb, type: 3}
-        m_TargetAssemblyTypeName: QuitGameProccess, Assembly-CSharp
-        m_MethodName: QuitGaming
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!82 &8581253712818132924
 AudioSource:
   m_ObjectHideFlags: 0

@@ -16,5 +16,5 @@ public interface IManageWindow
 	/// <summary>
 	/// 창을 열 준비가 될 때까지 기다립니다.
 	/// </summary>
-	public IEnumerator WaitUntillReady(Action func);
+	public IEnumerator WaitUntillReady();
 }
