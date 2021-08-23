@@ -4,11 +4,15 @@
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class SaveWindow : MonoBehaviour, IManageWindow
 {
 	[SerializeField] private GameObject mainWindow;
+	public AudioSource gameStartButton;
+	private Coroutine WaitingCoroutine;
 
 	private void Init()
 	{
@@ -25,13 +29,31 @@ public class SaveWindow : MonoBehaviour, IManageWindow
 
 	public void OpenSpecificWindow()
 	{
-		mainWindow.SetActive(false);
-		gameObject.SetActive(true);
+		if (WaitingCoroutine == null)
+		{
+			gameObject.SetActive(true);
+			WaitingCoroutine = StartCoroutine(temp(mainWindow));
+		}
 	}
 
 	public void CloseSpecificWindow()
 	{
-		mainWindow.SetActive(true);
-		gameObject.SetActive(false);
+		if (WaitingCoroutine == null)
+		{
+			mainWindow.SetActive(true);
+			WaitingCoroutine = StartCoroutine(temp(gameObject));
+		}
+	}
+
+	public IEnumerator WaitUntillReady()
+	{
+		yield return new WaitUntil(() => !gameStartButton.isPlaying);
+	}
+
+	private IEnumerator temp(GameObject tempObject)
+	{
+		yield return new WaitUntil(() => !gameStartButton.isPlaying);
+		tempObject.SetActive(false);
+		WaitingCoroutine = null;
 	}
 }

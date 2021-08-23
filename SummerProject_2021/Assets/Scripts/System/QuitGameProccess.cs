@@ -1,9 +1,10 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-08-12
+///  Last edit date : 2021-08-23
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
+using System.Collections;
 using UnityEngine;
 
 public class QuitGameProccess : MonoBehaviour
@@ -16,4 +17,5 @@ public class QuitGameProccess : MonoBehaviour
         Application.Quit();
 #endif
     }
+
 }
