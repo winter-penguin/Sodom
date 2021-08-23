@@ -44,7 +44,7 @@ public class ItemCraft : MonoBehaviour
         Item mItem = this.gameObject.GetComponent<Item>();
         CraftItem = false;
         ProduceItem(mItem);
-        for(int i = 0; i < item.Length; i++)
+        for (int i = 0; i < item.Length; i++)
         {
             if(item[i].ID == mItem.itemCraft[0].Necessary_Material_ID1)
             {
@@ -74,8 +74,17 @@ public class ItemCraft : MonoBehaviour
 
     public void ProduceItem(Item _item, int _count = 1)
     {
+        GameObject UpDownButton = GameObject.Find("CraftSlot").transform.Find("UpDownButton").gameObject;
         produceItem = ProduceGridSetting.transform.parent.GetChild(0).GetComponent<Slot>();
         produceItem.AddItem(_item, _count);
+        if (_item.ID == 19 || _item.ID == 20 || _item.ID == 22)
+        {
+            UpDownButton.SetActive(false);
+        }
+        else
+        {
+            UpDownButton.SetActive(true);
+        }
     }
 
     public void AcquireItem(Item _item, int _count)

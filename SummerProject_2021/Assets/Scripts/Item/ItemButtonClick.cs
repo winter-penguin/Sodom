@@ -16,6 +16,7 @@ public class ItemButtonClick : MonoBehaviour
     private float distance;
     private bool isProduct = false;
     private int floor;
+    private int Playerfloor;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class ItemButtonClick : MonoBehaviour
         {
             floor = 1;
         }
-        if (CurrentItem.transform.position.y > -70)
+        else if (CurrentItem.transform.position.y >= -70)
         {
             floor = 2;
         }
@@ -39,13 +40,20 @@ public class ItemButtonClick : MonoBehaviour
     {
         isProduct = false;
         StartCoroutine(CheckDistance());
-
     }
     IEnumerator CheckDistance()
     {
         while(!isProduct)
         {
             distance = Player.transform.position.x - CurrentItem.transform.position.x;
+            if (Player.transform.position.y < -70)
+            {
+                Playerfloor = 1;
+            }
+            else if (Player.transform.position.y >= - 30)
+            {
+                Playerfloor = 2;
+            }
             if (distance < 100 && distance > -100 && floor == player.Wherecharacteris)
             {
                 if (product.Product == false)

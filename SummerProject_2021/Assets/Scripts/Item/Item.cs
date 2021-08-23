@@ -18,13 +18,12 @@ public class Item : MonoBehaviour
 
     public ItemName CurrentItem = ItemName.Wood;
     public ItemTypeEnum CurrentItemType = ItemTypeEnum.Material;
-    public float ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space;
+    public float ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
     public Sprite itemImage;
     private DBManagerItem itemData;
     // Start is called before the first frame update
     public bool useItem = false;
     public bool ItemEquip = false;
-    private bool dataLoading;
     #endregion
     public int ItemCount;
     private CharacterValue playerValue;
@@ -60,6 +59,7 @@ public class Item : MonoBehaviour
                 Attack_Range = itemData.itemDB[i].Attack_Range;
                 Capacity = itemData.itemDB[i].Capacity;
                 Charge_Space = itemData.itemDB[i].Charge_Space;
+                Value = itemData.itemDB[i].Value;
                 break;
             }
         }

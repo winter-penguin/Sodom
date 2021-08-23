@@ -14,6 +14,7 @@ public class ProduceButton : MonoBehaviour
     {
         CraftSlot = GameObject.Find("CraftSlot").GetComponent<Slot>();
         slots = GameObject.Find("ProduceGridSetting").GetComponentsInChildren<Slot>();
+
     }
     public void OnClickProduceButton()
     {
