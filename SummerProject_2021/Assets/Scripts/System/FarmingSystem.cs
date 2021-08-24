@@ -231,8 +231,8 @@ public class FarmingSystem : MonoBehaviour
 		MaterialFarming(matAmount);
 		
 		// 플레이어 수치 변경
-		survivalGauge.HungerMinus(20);
-		survivalGauge.ThirstMinus(25);
+		survivalGauge.HungerMinus(-20);
+		survivalGauge.ThirstMinus(-25);
 		survivalGauge.FatiguePlus(20);
 	}
 	
