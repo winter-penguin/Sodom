@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
 
     public ItemName CurrentItem = ItemName.Wood;
     public ItemTypeEnum CurrentItemType = ItemTypeEnum.Material;
-    public float ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
+    public int ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
     public Sprite itemImage;
     private DBManagerItem itemData;
     // Start is called before the first frame update
@@ -26,9 +26,11 @@ public class Item : MonoBehaviour
     public bool ItemEquip = false;
     #endregion
     public int ItemCount;
+    private SurvivalGauge survivalGauge;
     private CharacterValue playerValue;
     void Start()
     {
+        survivalGauge = GameObject.FindGameObjectWithTag("Player").GetComponent<SurvivalGauge>();
         playerValue = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterValue>();
         itemData = GameObject.Find("DBManager").GetComponent<DBManagerItem>();
     }
@@ -78,9 +80,9 @@ public class Item : MonoBehaviour
         if (ItemType == 0 || ItemType == 4)
         {
             playerValue.HpChanged(Heal);
-            playerValue.HungerChanged(Hunger);
-            playerValue.ThirstChanged(Thirst);
-            playerValue.FatigueChanged(Fatigue);
+            survivalGauge.HungerMinus(Hunger);
+            survivalGauge.ThirstMinus(Thirst);
+            survivalGauge.FatiguePlus(Fatigue);
         }
         else if (ItemType == 1 || ItemType == 2)
         {
