@@ -15,6 +15,7 @@ public class StatusIcon : MonoBehaviour
     
     [SerializeField] private FieldType fieldType;
     private GameManager GM;
+    private SurvivalGauge survivalValue;
     private CharacterValue charValue;
     private float fieldValue;
     private Image imgComp;
@@ -27,6 +28,7 @@ public class StatusIcon : MonoBehaviour
     {
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         imgComp = gameObject.GetComponent<Image>();
+        survivalValue = FindObjectOfType<SurvivalGauge>();
         charValue = FindObjectOfType<CharacterValue>();
     }
     private void Awake()
@@ -73,7 +75,7 @@ public class StatusIcon : MonoBehaviour
             case FieldType.hungry:
                 while (!GM.isEnd)
                 {
-                    IconSpriteChange(charValue.hunger);
+                    IconSpriteChange(survivalValue.Hunger);
                     yield return null;
                 }
 
@@ -82,7 +84,7 @@ public class StatusIcon : MonoBehaviour
             case FieldType.thirst:
                 while (!GM.isEnd)
                 {
-                    IconSpriteChange(charValue.thirst);
+                    IconSpriteChange(survivalValue.Thirst);
                     yield return null;
                 }
 
@@ -91,7 +93,7 @@ public class StatusIcon : MonoBehaviour
             case FieldType.fatigue :
                 while (!GM.isEnd)
                 {
-                    IconSpriteChange(charValue.fatigue);
+                    IconSpriteChange(survivalValue.Fatigue);
                     yield return null;
                 }
 
