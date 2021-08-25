@@ -392,7 +392,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 421243677395197644}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SaveWindow, Assembly-CSharp
         m_MethodName: CloseSpecificWindow
         m_Mode: 1
@@ -540,7 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3601801600580207897}
-  - component: {fileID: 421243677395197644}
+  - component: {fileID: 6724593138266011104}
   m_Layer: 0
   m_Name: SaveWindow
   m_TagString: Untagged
@@ -565,7 +565,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &421243677395197644
+--- !u!114 &6724593138266011104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,11 +574,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5304202922496716825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3142682caa3282e4f96826093615c093, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fb4f37aa511e994aac687a58a30ae75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainWindow: {fileID: 446930070336253230, guid: 22459c91de58652409c39b4984a71715, type: 3}
-  gameStartButton: {fileID: 8567267988297008183, guid: 6e0394c8e4943194981567e10b451a67, type: 3}
+  targetWindow: {fileID: 0}
+  buttonSpeaker: {fileID: 7678316765236321422}
 --- !u!1 &5832923007888663340
 GameObject:
   m_ObjectHideFlags: 0

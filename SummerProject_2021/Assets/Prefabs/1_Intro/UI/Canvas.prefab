@@ -256,11 +256,23 @@ PrefabInstance:
     - target: {fileID: 905125493278750161, guid: 22459c91de58652409c39b4984a71715, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 7812715931606000197}
+      objectReference: {fileID: 4559074547295590387}
+    - target: {fileID: 905125493278750161, guid: 22459c91de58652409c39b4984a71715, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OpenSaveWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3786884107641990008, guid: 22459c91de58652409c39b4984a71715, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 8420884959450933455}
+    - target: {fileID: 4280506965811395500, guid: 22459c91de58652409c39b4984a71715, type: 3}
+      propertyPath: targetWindow
+      value: 
+      objectReference: {fileID: 2317252843329637520}
+    - target: {fileID: 4280506965811395500, guid: 22459c91de58652409c39b4984a71715, type: 3}
+      propertyPath: buttonSpeaker
+      value: 
+      objectReference: {fileID: 7001724357769652715}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22459c91de58652409c39b4984a71715, type: 3}
 --- !u!1 &149090248981528945 stripped
@@ -273,6 +285,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 264992800731609758, guid: 22459c91de58652409c39b4984a71715, type: 3}
   m_PrefabInstance: {fileID: 297937196920466527}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4559074547295590387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4280506965811395500, guid: 22459c91de58652409c39b4984a71715, type: 3}
+  m_PrefabInstance: {fileID: 297937196920466527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149090248981528945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c6e4186b9934a4591bc8f86d10ad3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &7001724357769652715 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 7280459647115232692, guid: 22459c91de58652409c39b4984a71715, type: 3}
@@ -293,6 +316,14 @@ PrefabInstance:
       propertyPath: gameStartButton
       value: 
       objectReference: {fileID: 7001724357769652715}
+    - target: {fileID: 715723881044390790, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3811827108581460329}
+    - target: {fileID: 715723881044390790, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CloseSaveWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3601801600580207897, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -341,22 +372,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: SaveWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 6724593138266011104, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
+      propertyPath: targetWindow
+      value: 
+      objectReference: {fileID: 149090248981528945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
+--- !u!1 &2317252843329637520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5304202922496716825, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
+  m_PrefabInstance: {fileID: 7616951856826956937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6361600707869047184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3601801600580207897, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
   m_PrefabInstance: {fileID: 7616951856826956937}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7812715931606000197 stripped
+--- !u!114 &3811827108581460329 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 421243677395197644, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6724593138266011104, guid: 090e26f42b5aa1a4a8d606db0cffc77b, type: 3}
   m_PrefabInstance: {fileID: 7616951856826956937}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2317252843329637520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3142682caa3282e4f96826093615c093, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fb4f37aa511e994aac687a58a30ae75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6017487652646430487 stripped
@@ -371,6 +411,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8578193923968291994}
     m_Modifications:
+    - target: {fileID: 356585434247185501, guid: b54ad190331f8054d8618ee93ace909a, type: 3}
+      propertyPath: buttonSpeaker
+      value: 
+      objectReference: {fileID: 4780434371242805458}
     - target: {fileID: 5238548800014094587, guid: b54ad190331f8054d8618ee93ace909a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -437,3 +481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e52c10436be5b4f89fcc3c00d0301f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &4780434371242805458 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3637120051097609280, guid: b54ad190331f8054d8618ee93ace909a, type: 3}
+  m_PrefabInstance: {fileID: 8083441060583402642}
+  m_PrefabAsset: {fileID: 0}

@@ -24,6 +24,7 @@ public class EventHandler : MonoBehaviour
             isFarming = value;
             if (isFarming)
             {
+                fadeWindow.gameObject.SetActive(true);
                 clockSystem.timeScale = 0;
                 if(coFarmingEvent == null) coFarmingEvent = StartCoroutine(FarmingEvent());
             }
@@ -42,7 +43,9 @@ public class EventHandler : MonoBehaviour
         clockSystem = FindObjectOfType<ClockSystem>();
         trader = FindObjectOfType<Trader>();
         farmingSystem = FindObjectOfType<FarmingSystem>();
+        fadeWindow = GameObject.FindGameObjectWithTag("Fade").GetComponent<Image>();
         isEventing = false;
+        fadeWindow.gameObject.SetActive(false);
     }
     
     private void Awake()
@@ -113,5 +116,7 @@ public class EventHandler : MonoBehaviour
 
             yield return null;
         }
+        
+        fadeWindow.gameObject.SetActive(false);
     }
 }

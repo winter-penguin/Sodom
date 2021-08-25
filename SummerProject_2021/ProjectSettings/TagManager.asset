@@ -12,6 +12,7 @@ TagManager:
   - Manager
   - Wall
   - Button
+  - Fade
   layers:
   - Default
   - TransparentFX

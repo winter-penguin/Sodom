@@ -9,7 +9,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingWindow : MonoBehaviour, IManageWindow
+public class SettingWindow : AWindowClass, IManageWindow
 {
 	[SerializeField] private GameObject settingWindow;
 	[SerializeField] private GameObject closeSetting;
@@ -17,7 +17,7 @@ public class SettingWindow : MonoBehaviour, IManageWindow
 	[SerializeField] private Slider sfxScaler;
 	private GameObject settingGroup;
 
-	private void Init()
+	protected override void Init()
 	{
 		settingGroup = transform.Find("Setting").gameObject;
 
@@ -49,18 +49,23 @@ public class SettingWindow : MonoBehaviour, IManageWindow
 		Init();
 	}
 	
-	public void OpenSpecificWindow()
+	public override void OpenSpecificWindow()
 	{
-		settingWindow.SetActive(true);
+		if (!isWindowed)
+		{
+			settingWindow.SetActive(true);			
+		}
 	}
 
-	public void CloseSpecificWindow()
+	public override void CloseSpecificWindow()
 	{
+		StartCoroutine(CoCloseSpecificWindow());
+	}
+
+	private IEnumerator CoCloseSpecificWindow()
+	{
+		yield return new WaitUntil(() => !buttonSpeaker.isPlaying);
+		isWindowed = false;
 		settingWindow.SetActive(false);
-	}
-
-	public IEnumerator WaitUntillReady()
-	{
-		yield return null;
 	}
 }
