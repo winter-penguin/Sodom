@@ -29,16 +29,26 @@ public class SurvivalGauge : MonoBehaviour
     {
         Minute = _clockSystem.DayTime.min;
     }
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="value">변동시킬 수분 값</param>
     public void ThirstMinus(int value)
     {
         Thirst += value;
     }
-    
+/// <summary>
+/// 
+/// </summary>
+/// <param name="value">변동시킬 허기 값</param>
     public void HungerMinus(int value)
     {
         Hunger += value;
     }
+/// <summary>
+/// 
+/// </summary>
+/// <param name="value">변동시킬 피로 값</param>
     public void FatiguePlus(int value)
     {
         Fatigue += value;

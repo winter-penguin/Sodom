@@ -46,7 +46,7 @@ public class ClickMovement : MonoBehaviour
     public bool isNormalMoving = false;
     [HideInInspector]
     public bool isFirst_ing = false;
-    [HideInInspector]
+    
     public bool isSecond_ing = false;
     //[HideInInspector]
     public bool isClickEnemy;

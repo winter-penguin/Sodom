@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 996179244854314922}
   - component: {fileID: 5559348603073998613}
   - component: {fileID: 996179244008676619}
+  - component: {fileID: 6644778740826621234}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -196,7 +197,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   AttackRange: {fileID: 667777522861574546}
-  Stair: {fileID: 0}
+  Stair: {fileID: 7010642892077253552, guid: e85123ff1bee1c045a23d895b1c4354c, type: 3}
   button: {fileID: 0}
   layerMask:
     serializedVersion: 2
@@ -301,6 +302,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!81 &6644778740826621234
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521604308346854472}
+  m_Enabled: 1
 --- !u!1001 &7892539095345844747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356,7 +365,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6573935918001275908, guid: e3c425da3e91aa9479a213f319505446, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e3c425da3e91aa9479a213f319505446, type: 3}
 --- !u!4 &3944205075816977933 stripped
 Transform:
