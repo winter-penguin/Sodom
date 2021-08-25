@@ -1217,11 +1217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e52c10436be5b4f89fcc3c00d0301f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetWindow: {fileID: 0}
+  buttonSpeaker: {fileID: 0}
   settingWindow: {fileID: 8043213930905562298}
   closeSetting: {fileID: 8057678311868293774}
   bgmScaler: {fileID: 1448867628200035391}
   sfxScaler: {fileID: 6822915582703579621}
-  SettingButton: {fileID: 8930231651137117510, guid: 86b7f3e3ec5de454abcbabef2b05a928, type: 3}
 --- !u!1 &8057678311868293774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,9 +1315,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 356585434247185501}
-        m_TargetAssemblyTypeName: SettingWindow, Assembly-CSharp
-        m_MethodName: CloseSpecificWindow
+      - m_Target: {fileID: 3637120051097609280}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1326,9 +1327,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3637120051097609280}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 356585434247185501}
+        m_TargetAssemblyTypeName: SettingWindow, Assembly-CSharp
+        m_MethodName: CloseSpecificWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
