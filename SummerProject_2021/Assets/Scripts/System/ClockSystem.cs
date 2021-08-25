@@ -92,6 +92,7 @@ public class ClockSystem : MonoBehaviour
 	#region Variables
 
 	private GameManager GM;
+	public float timeScale = 1;
 
 	#endregion
 
@@ -111,12 +112,17 @@ public class ClockSystem : MonoBehaviour
 	{
 		StartCoroutine(TimeControl());
 	}
-	
+
 	private IEnumerator TimeControl()
 	{
 		while (!GM.isEnd)
 		{
-			yield return new WaitForSeconds(0.417f); // 60초당 144분 추가 => 1초를 기다리고 
+			if (timeScale == 0) { yield return new WaitUntil(() => timeScale > 0); }
+			else
+			{
+				yield return new WaitForSeconds(0.417f * timeScale); // 60초당 144분 추가 => 1초를 기다리고
+			}
+
 			Min = Min + 1; // Default : 1, Day Test : 720
 			// DayTime.Sec = DayTime.Sec + 24;
 		}

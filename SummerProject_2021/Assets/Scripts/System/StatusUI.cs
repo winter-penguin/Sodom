@@ -12,6 +12,7 @@ using UnityEngine.UI;
 public class StatusUI : MonoBehaviour
 {
 	[SerializeField] private CharacterValue player;
+	[SerializeField] private SurvivalGauge playerSurvivalGauge;
 
 	[SerializeField] private GameObject healthProgress;
 	private Image healthMat;
@@ -35,6 +36,7 @@ public class StatusUI : MonoBehaviour
 		if (player == null)
 		{
 			player = FindObjectOfType<CharacterValue>();
+			playerSurvivalGauge = FindObjectOfType<SurvivalGauge>();
 #if UNITY_EDITOR
 			if (player == null)
 			{
@@ -72,9 +74,9 @@ public class StatusUI : MonoBehaviour
 		while (!GM.isEnd)
 		{
 			newHealthMat.SetFloat(Progress, player.health/150);
-			newHungryMat.SetFloat(Progress, player.hunger/100);
-			newFatigueMat.SetFloat(Progress, player.fatigue/100);
-			newThirstMat.SetFloat(Progress, player.thirst/100);
+			newHungryMat.SetFloat(Progress, (float)playerSurvivalGauge.Hunger/100);
+			newFatigueMat.SetFloat(Progress, (float)playerSurvivalGauge.Fatigue/100);
+			newThirstMat.SetFloat(Progress, (float)playerSurvivalGauge.Thirst/100);
 
 			healthMat.material = newHealthMat;
 			hungryMat.material = newHungryMat;

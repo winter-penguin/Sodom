@@ -13,7 +13,7 @@ public struct ItemDB
     [SerializeField]
     public string name;
     [SerializeField]
-    public float Item_Type, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
+    public int Item_Type, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
 }
 [System.Serializable]
 public struct Craft
@@ -68,28 +68,28 @@ public class DBManagerItem: DBManager
         {
             itemDB[i].ID = Convert.ToInt32(GetDataValue(item[i], "ID:", "|"));
             itemDB[i].name = GetDataValue(item[i], "Name:", "|");
-            itemDB[i].Item_Type = Convert.ToSingle(GetDataValue(item[i], "Item_Type:", "|"));
+            itemDB[i].Item_Type = Convert.ToInt32(GetDataValue(item[i], "Item_Type:", "|"));
             if(itemDB[i].Item_Type == 0 || itemDB[i].Item_Type == 4)
             {
-                itemDB[i].Hunger = Convert.ToSingle(GetDataValue(item[i], "Hunger:", "|"));
-                itemDB[i].Thirst = Convert.ToSingle(GetDataValue(item[i], "Thirst:", "|"));
-                itemDB[i].Heal = Convert.ToSingle(GetDataValue(item[i], "Heal:", "|"));
-                itemDB[i].Fatigue = Convert.ToSingle(GetDataValue(item[i], "Fatigue:", "|"));
+                itemDB[i].Hunger = Convert.ToInt32(GetDataValue(item[i], "Hunger:", "|"));
+                itemDB[i].Thirst = Convert.ToInt32(GetDataValue(item[i], "Thirst:", "|"));
+                itemDB[i].Heal = Convert.ToInt32(GetDataValue(item[i], "Heal:", "|"));
+                itemDB[i].Fatigue = Convert.ToInt32(GetDataValue(item[i], "Fatigue:", "|"));
             }
             if(itemDB[i].Item_Type == 1 || itemDB[i].Item_Type == 2)
             {
-                itemDB[i].AD = Convert.ToSingle(GetDataValue(item[i], "AD:", "|"));
-                itemDB[i].Attack_Range = Convert.ToSingle(GetDataValue(item[i], "Attack_Range:", "|"));
+                itemDB[i].AD = Convert.ToInt32(GetDataValue(item[i], "AD:", "|"));
+                itemDB[i].Attack_Range = Convert.ToInt32(GetDataValue(item[i], "Attack_Range:", "|"));
             }
             if(itemDB[i].Item_Type == 5)
             {
                 string Fatigue = GetDataValue(item[i], "Fatigue:", "|");
                 string Capacity = GetDataValue(item[i], "Capacity:", "|");
-                itemDB[i].Fatigue = (Fatigue == "") ? 0 : Convert.ToSingle(Fatigue);
-                itemDB[i].Capacity = (Capacity == "") ? 0 : Convert.ToSingle(Capacity);
+                itemDB[i].Fatigue = (Fatigue == "") ? 0 : Convert.ToInt32(Fatigue);
+                itemDB[i].Capacity = (Capacity == "") ? 0 : Convert.ToInt32(Capacity);
             }
-            itemDB[i].Charge_Space = Convert.ToSingle(GetDataValue(item[i], "Charge_Space:", "|"));
-            itemDB[i].Value = Convert.ToSingle(GetDataValue(item[i], "Value:", "|"));
+            itemDB[i].Charge_Space = Convert.ToInt32(GetDataValue(item[i], "Charge_Space:", "|"));
+            itemDB[i].Value = Convert.ToInt32(GetDataValue(item[i], "Value:", "|"));
         }
 
         #region CraftDB

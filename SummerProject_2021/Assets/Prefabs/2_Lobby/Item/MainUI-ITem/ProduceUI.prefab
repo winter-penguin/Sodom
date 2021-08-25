@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 5039207650179182034}
   - component: {fileID: 5039207650179182032}
   - component: {fileID: 5039207650179182033}
+  - component: {fileID: 7887848894947432232}
   m_Layer: 5
   m_Name: ProduceUI
   m_TagString: Untagged
@@ -646,6 +647,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7887848894947432232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039207650179182035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcafb5900a0452c4e868e15d5414d388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5495056891631494818
 GameObject:
   m_ObjectHideFlags: 0

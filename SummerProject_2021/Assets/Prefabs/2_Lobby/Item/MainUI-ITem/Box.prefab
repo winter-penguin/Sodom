@@ -270,6 +270,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -474,6 +475,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -839,6 +841,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: f3b97d89a7cb8a74bad18d1f94275b67, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -1044,6 +1047,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 6ee4cff99a8027348b6c70f816c82f60, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -1346,6 +1350,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 83d65e466a52e5848a50ecc624f727b8, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -1550,6 +1555,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 7c16a94327dd2dd429564d6bea7b9012, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -1657,6 +1663,7 @@ GameObject:
   - component: {fileID: 7279837708052400964}
   - component: {fileID: 7279837708052400967}
   - component: {fileID: 3018775847525589773}
+  - component: {fileID: 4548796747756433452}
   m_Layer: 5
   m_Name: Box
   m_TagString: Item
@@ -1757,10 +1764,23 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 0}
   useItem: 0
   ItemEquip: 0
   ItemCount: 0
+--- !u!114 &4548796747756433452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279837708052400985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcafb5900a0452c4e868e15d5414d388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7279837708297995491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,6 +2279,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 1627d9262c4caa9459e389da37f28ae1, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -2388,6 +2409,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 2727783c706e28749ab090d3ba037166, type: 3}
   useItem: 0
   ItemEquip: 0

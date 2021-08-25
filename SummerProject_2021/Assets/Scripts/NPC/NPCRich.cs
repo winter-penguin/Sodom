@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCRich : MonoBehaviour
@@ -21,65 +20,67 @@ public class NPCRich : MonoBehaviour
     protected float AttackCoolTimeCacl;
     private GameObject Player;
     private CharacterValue playerValue;
-    private float distance;
-    private float direction;
-    private float StairDirectionUP;
-    private float StairDirectionDown;
 
     private Rigidbody2D rigidbody;
+    private Collider2D collider;
 
+    private Collider2D PlayerCollider;
     private Vector2 npcPosition;
     private Vector2 playerPosition;
 
-    private GameObject WoodenStair;
+    private float distance;
+    private float direction;
+    private float StairDirection;
     private Transform[] UpDown;
-    private bool GoStair = false; 
+    private GameObject UPFlatform;
+
+    public bool GoDownStair = false;
+    public bool GoUpStair = false;
+    private Animator animator;
     void Start()
     {
         DBdata = GameObject.Find("DBManager").GetComponent<DB_Character>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        WoodenStair = GameObject.Find("HouseAndPoints");
-        UpDown = WoodenStair.transform.GetComponentsInChildren<Transform>();
+        UpDown = GameObject.Find("Points").transform.GetComponentsInChildren<Transform>();
+        UPFlatform = GameObject.Find("2ndFlatform");
         playerValue = Player.GetComponent<CharacterValue>();
         rigidbody = GetComponent<Rigidbody2D>();
+        collider = this.gameObject.GetComponent<Collider2D>();
+        PlayerCollider = Player.GetComponent<Collider2D>();
         AttackCoolTimeCacl = attack_speed;
+        animator = GetComponent<Animator>();
         StartCoroutine(CheckStateForActon());
         StartCoroutine(CalcCoolTime());
         StartCoroutine(FSM());
+        Physics2D.IgnoreCollision(collider, PlayerCollider, true);
     }
     void Update()
     {
         npcPosition = transform.position;
         playerPosition = Player.transform.position;
         direction = playerPosition.x - npcPosition.x;
-        direction = (direction < 0) ? -1 : 1;
+        direction = (direction < 0) ? 180 : 0;
         if (DBdata.isCharacterDB == true)
         {
-            StartCoroutine(DataSet());
+            DataSet();
         }
 
     }
 
-    protected IEnumerator DataSet()
+    private void DataSet()
     {
-        bool DataLoding = true;
-        while (DataLoding)
+        for (int i = 0; i < DBdata.characterDB.Length; i++)
         {
-            for (int i = 0; i < DBdata.characterDB.Length; i++)
+            if (DBdata.characterDB[i].guilty == CurrentGuilty.ToString())
             {
-                if (DBdata.characterDB[i].guilty == CurrentGuilty.ToString())
-                {
-                    id = DBdata.characterDB[i].id;
-                    health = DBdata.characterDB[i].health;
-                    attack_power = DBdata.characterDB[i].attack_power;
-                    attack_speed = DBdata.characterDB[i].attack_speed;
-                    attack_range = DBdata.characterDB[i].attack_range;
-                    move_speed = DBdata.characterDB[i].move_speed;
-                    DataLoding = false;
-                    break;
-                }
+                id = DBdata.characterDB[i].id;
+                health = DBdata.characterDB[i].health;
+                attack_power = DBdata.characterDB[i].attack_power;
+                attack_speed = DBdata.characterDB[i].attack_speed;
+                attack_range = DBdata.characterDB[i].attack_range;
+                move_speed = DBdata.characterDB[i].move_speed;
+                break;
             }
-            yield return null;
         }
     }
     #region HP
@@ -150,7 +151,7 @@ public class NPCRich : MonoBehaviour
     {
         distance = Vector2.Distance(Player.transform.position, transform.position);
 
-        if (Player.transform.position.y == transform.position.y && distance <= attack_range)
+        if (distance <= attack_range)
         {
             return true;
         }
@@ -181,6 +182,10 @@ public class NPCRich : MonoBehaviour
             else
             {
                 CurrentState = State.Idle;
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                {
+                    animator.SetTrigger("Idle");
+                }
             }
         }
         else
@@ -193,6 +198,10 @@ public class NPCRich : MonoBehaviour
     {
         yield return null;
         //Atk
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        {
+            animator.SetTrigger("punch");
+        }
         playerValue.HpChanged(-attack_power);
         canAtk = false;
         CurrentState = State.Idle;
@@ -207,46 +216,63 @@ public class NPCRich : MonoBehaviour
         }
         else
         {
-            if (playerPosition.y == npcPosition.y && GoStair == false)
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
             {
-                transform.Translate(new Vector2(direction, 0) * move_speed * Time.deltaTime);
-                transform.localScale = new Vector3(direction, 1, 1);
+                animator.SetTrigger("move");
             }
-            else
+
+            if (GoDownStair == false && GoUpStair == false)
             {
-                GoStair = true;
+                Physics2D.IgnoreCollision(collider, UPFlatform.GetComponent<Collider2D>(), false);
+                transform.Translate(Vector2.right * move_speed * Time.deltaTime);
+                transform.rotation = Quaternion.Euler(0, direction, 0);
+            }
+            else if(GoDownStair || GoUpStair)
+            {
                 Stairs();
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Up")
+        {
+            GoDownStair = (playerPosition.y < npcPosition.y) ? true : false;
+            if(GoUpStair)
+            {
+                GoUpStair = false;
+            }
+        }
+        else if (other.gameObject.name == "Down")
+        {
+            GoUpStair = (playerPosition.y > npcPosition.y) ? true : false;
+            if (GoDownStair)
+            {
+                GoDownStair = false;
             }
         }
     }
     private void Stairs()
     {
-        if (playerPosition.y < 25 && playerPosition.y > -290) 
+        Physics2D.IgnoreCollision(collider, UPFlatform.GetComponent<Collider2D>(), true);
+        if (GoDownStair)
         {
-            StairDirectionUP = UpDown[2].position.x - npcPosition.x;
-            StairDirectionUP = (StairDirectionUP < 0) ? -1 : 1; //2F direction
-            transform.localScale = new Vector3(StairDirectionUP, 1, 1);
-            transform.position = Vector2.MoveTowards(transform.position, UpDown[2].position, move_speed * Time.deltaTime);
-            if(npcPosition.x == UpDown[2].position.x)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, UpDown[3].position, move_speed * Time.deltaTime);
-                GoStair = false;
-            }
+            StairDirection = UpDown[2].position.x - npcPosition.x;
+            StairDirection = (StairDirection < 0) ? 180 : 0; //1F direction
+            transform.rotation = Quaternion.Euler(0, StairDirection, 0);
+            transform.position = Vector3.Lerp(transform.position, UpDown[2].position, Time.deltaTime * 0.008f);
         }
-        else if (playerPosition.y >= 25)
+        else if (GoUpStair)
         {
-            StairDirectionDown = UpDown[3].position.x - npcPosition.x;
-            StairDirectionDown = (StairDirectionDown < 0) ? -1 : 1; //1F direction
-            transform.localScale = new Vector3(StairDirectionDown, 1, 1);
-            transform.position = Vector2.MoveTowards(transform.position, UpDown[3].position, move_speed * Time.deltaTime);
-            if (npcPosition.x == UpDown[3].position.x)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, UpDown[2].position, move_speed * Time.deltaTime);
-                GoStair = false;
-            }
+            StairDirection = UpDown[1].position.x - npcPosition.x;
+            StairDirection = (StairDirection < 0) ? 180 : 0; //2F direction
+            transform.rotation = Quaternion.Euler(0, StairDirection, 0);
+            transform.position = Vector3.Lerp(transform.position, UpDown[1].position, Time.deltaTime * 0.008f);
         }
+
         StartCoroutine(Move());
     }
+
     protected virtual IEnumerator Dead()
     {
         yield return null;
