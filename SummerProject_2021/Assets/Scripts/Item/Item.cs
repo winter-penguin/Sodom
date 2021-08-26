@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -28,6 +27,9 @@ public class Item : MonoBehaviour
     public int ItemCount;
     private SurvivalGauge survivalGauge;
     private CharacterValue playerValue;
+
+    bool itemDBloading = false;
+    bool craftloading = false;
     void Start()
     {
         survivalGauge = GameObject.FindGameObjectWithTag("Player").GetComponent<SurvivalGauge>();
@@ -40,7 +42,7 @@ public class Item : MonoBehaviour
         {
             CheckUseItem();
         }
-        if (itemData.DataLoading)
+        if(itemData.DataLoading && !itemDBloading && !craftloading)
         {
             DataSet();
         }
@@ -62,15 +64,16 @@ public class Item : MonoBehaviour
                 Capacity = itemData.itemDB[i].Capacity;
                 Charge_Space = itemData.itemDB[i].Charge_Space;
                 Value = itemData.itemDB[i].Value;
+                itemDBloading = true;
                 break;
             }
         }
-
         for (int i = 0; i < itemData.itemDBCraft.Length; i++)
         {
             if (itemData.itemDBCraft[i].ID == ID)
             {
                 itemCraft[0] = itemData.itemDBCraft[i];
+                craftloading = true;
                 break;
             }
         }
