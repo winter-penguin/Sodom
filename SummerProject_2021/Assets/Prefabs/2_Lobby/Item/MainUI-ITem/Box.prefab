@@ -1777,7 +1777,7 @@ GameObject:
   - component: {fileID: 7279837708052400966}
   - component: {fileID: 7279837708052400964}
   - component: {fileID: 7279837708052400967}
-  - component: {fileID: 3018775847525589773}
+  - component: {fileID: 4748124415531519683}
   - component: {fileID: 4548796747756433452}
   m_Layer: 5
   m_Name: Box
@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3018775847525589773
+--- !u!114 &4748124415531519683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
