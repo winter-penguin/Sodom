@@ -1222,7 +1222,7 @@ Canvas:
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
@@ -2236,7 +2236,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8409420218424309499}
   - component: {fileID: 8133074247531069919}
-  - component: {fileID: 2486650372800905919}
   m_Layer: 5
   m_Name: Status
   m_TagString: Untagged
@@ -2285,27 +2284,6 @@ MonoBehaviour:
   hungryProgress: {fileID: 6104931883082869617}
   fatigueProgress: {fileID: 574922127238245376}
   thirstProgress: {fileID: 771093544219530538}
---- !u!223 &2486650372800905919
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8591998018914771650}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 10
-  m_TargetDisplay: 0
 --- !u!1 &8972104763304020658
 GameObject:
   m_ObjectHideFlags: 0

@@ -722,8 +722,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5898953370215077546, guid: 1bab9e3d43714bc4b80dd5e86e8f40e4, type: 3}
+      propertyPath: traderPoint
+      value: 
+      objectReference: {fileID: 911572593}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bab9e3d43714bc4b80dd5e86e8f40e4, type: 3}
+--- !u!1 &911572593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7826716574403113850, guid: 0853e9bd9cbf4cd4d8313c0e7299c6ff, type: 3}
+  m_PrefabInstance: {fileID: 1633582341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1064271437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2910100624871959301, guid: 31253492010711a4c8a68d508e035dd9, type: 3}
