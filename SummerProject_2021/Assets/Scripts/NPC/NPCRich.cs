@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class NPCRich : MonoBehaviour
 {
+
+
     DB_Character DBdata;
     public enum Guilty
     {
@@ -23,26 +26,46 @@ public class NPCRich : MonoBehaviour
 
     private Rigidbody2D rigidbody;
     private Collider2D collider;
-
     private Collider2D PlayerCollider;
+
+
+
+    #region Move
+    [System.Serializable]
+    public class Floor
+    {
+        public Transform up;
+        public Transform down;
+    }
+    public Floor[] floor;
+
     private Vector2 npcPosition;
     private Vector2 playerPosition;
+    private Vector2 destination;
 
+    private Transform stairStart;
+    private Transform stairEnd;
     private float distance;
     private float direction;
     private float StairDirection;
-    private Transform[] UpDown;
-    private GameObject UPFlatform;
 
-    public bool GoDownStair = false;
-    public bool GoUpStair = false;
+    private bool isNormalMoving = false;
+    private bool isFirst_ing = false;
+    private bool isSecond_ing = false;
+
+    private bool isFirst = false;
+    private bool isSecond = false;
+
+    public int MovingCase;
+    public int npcFloor;
+    public int Wheretogo;
+    #endregion
+
     private Animator animator;
     void Start()
     {
         DBdata = GameObject.Find("DBManager").GetComponent<DB_Character>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        UpDown = GameObject.Find("Points").transform.GetComponentsInChildren<Transform>();
-        UPFlatform = GameObject.Find("2ndFlatform");
         playerValue = Player.GetComponent<CharacterValue>();
         rigidbody = GetComponent<Rigidbody2D>();
         collider = this.gameObject.GetComponent<Collider2D>();
@@ -65,8 +88,64 @@ public class NPCRich : MonoBehaviour
             DataSet();
         }
 
-    }
 
+        if (isSecond_ing == false)
+        {
+            WhereToGo();
+            CharacterPosition();
+            CaseSetting();
+            isSecond_ing = true;
+        }
+        if (isSecond_ing)
+        {
+            rigidbody.isKinematic = true;
+            WhereToGo();
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (CurrentState == State.Move)
+        {
+            switch (MovingCase)
+            {
+                case 1:
+                    if (isNormalMoving == true) NormalMove();
+                    break;
+                case 2:
+                    if (isFirst == false && isFirst_ing)
+                    {
+                        Firstmove();
+
+                    }
+                    else if (isFirst == true && isSecond == false)
+                    {
+                        //rb.isKinematic = true;
+                        Secondmove();
+                    }
+                    else if (isSecond)
+                    {
+                        if (isNormalMoving) NormalMove();
+                    }
+                    break;
+                case 3:
+                    if (isFirst == false && isSecond_ing == false)
+                    {
+                        Firstmove();
+                    }
+                    else if (isFirst == true && isSecond == false)
+                    {
+                        //rb.isKinematic = true;
+                        Secondmove();
+                    }
+                    else if (isSecond == true)
+                    {
+                        if (isNormalMoving == true) NormalMove();
+                    }
+                    break;
+            }
+        }
+
+    }
     private void DataSet()
     {
         for (int i = 0; i < DBdata.characterDB.Length; i++)
@@ -133,14 +212,11 @@ public class NPCRich : MonoBehaviour
             switch (CurrentState)
             {
                 case State.Idle:
-                    rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
                     break;
                 case State.Move:
-                    rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                     break;
                 case State.Attack:
                     isAttack = true;
-                    rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
                     break;
 
             }
@@ -202,10 +278,16 @@ public class NPCRich : MonoBehaviour
         {
             animator.SetTrigger("punch");
         }
+        transform.rotation = Quaternion.Euler(0, direction, 0);
         playerValue.HpChanged(-attack_power);
         canAtk = false;
         CurrentState = State.Idle;
     }
+    protected virtual IEnumerator Dead()
+    {
+        yield return null;
+    }
+
 
     protected virtual IEnumerator Move()
     {
@@ -216,67 +298,109 @@ public class NPCRich : MonoBehaviour
         }
         else
         {
+            CaseSetting();
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
             {
                 animator.SetTrigger("move");
             }
 
-            if (GoDownStair == false && GoUpStair == false)
-            {
-                Physics2D.IgnoreCollision(collider, UPFlatform.GetComponent<Collider2D>(), false);
-                transform.Translate(Vector2.right * move_speed * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(0, direction, 0);
-            }
-            else if(GoDownStair || GoUpStair)
-            {
-                Stairs();
-            }
         }
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.name == "Up")
-        {
-            GoDownStair = (playerPosition.y < npcPosition.y) ? true : false;
-            if(GoUpStair)
-            {
-                GoUpStair = false;
-            }
-        }
-        else if (other.gameObject.name == "Down")
-        {
-            GoUpStair = (playerPosition.y > npcPosition.y) ? true : false;
-            if (GoDownStair)
-            {
-                GoDownStair = false;
-            }
-        }
-    }
-    private void Stairs()
-    {
-        Physics2D.IgnoreCollision(collider, UPFlatform.GetComponent<Collider2D>(), true);
-        if (GoDownStair)
-        {
-            StairDirection = UpDown[2].position.x - npcPosition.x;
-            StairDirection = (StairDirection < 0) ? 180 : 0; //1F direction
-            transform.rotation = Quaternion.Euler(0, StairDirection, 0);
-            transform.position = Vector3.Lerp(transform.position, UpDown[2].position, Time.deltaTime * 0.008f);
-        }
-        else if (GoUpStair)
-        {
-            StairDirection = UpDown[1].position.x - npcPosition.x;
-            StairDirection = (StairDirection < 0) ? 180 : 0; //2F direction
-            transform.rotation = Quaternion.Euler(0, StairDirection, 0);
-            transform.position = Vector3.Lerp(transform.position, UpDown[1].position, Time.deltaTime * 0.008f);
-        }
-
-        StartCoroutine(Move());
     }
 
-    protected virtual IEnumerator Dead()
+    void Firstmove()
     {
-        yield return null;
+        StairDirection = stairStart.position.x - npcPosition.x;
+        StairDirection = (StairDirection < 0) ? 180 : 0; //1F direction
+        transform.rotation = Quaternion.Euler(0, StairDirection, 0);
+
+        transform.position = Vector2.MoveTowards(transform.position, stairStart.position, Time.deltaTime * move_speed);
+
+        if (Math.Abs(transform.position.x - stairStart.position.x) < 1f)
+        {
+            isFirst = true;
+            isFirst_ing = false;
+
+        }
     }
 
+    private void Secondmove()
+    {
+        isSecond_ing = true;
+        StairDirection = stairEnd.position.x - npcPosition.x;
+        StairDirection = (StairDirection < 0) ? 180 : 0; //direction
+        transform.rotation = Quaternion.Euler(0, StairDirection, 0);
+        rigidbody.isKinematic = true;
+        //transform.position = Vector2.MoveTowards(stairStart.position, stairEnd.position, Time.deltaTime * move_speed);
+        transform.position = Vector2.MoveTowards(transform.position, stairEnd.position, Time.deltaTime * move_speed);
+        if (Math.Abs(transform.position.y - stairEnd.position.y) < 0.1f)
+        {
+            rigidbody.isKinematic = false;
+            isSecond = true;
+            isSecond_ing = false;
+            isNormalMoving = true;
+        }
+    }
+
+    public void NormalMove()
+    {
+        destination = new Vector2(playerPosition.x, transform.position.y);
+        transform.rotation = Quaternion.Euler(0, direction, 0);
+        transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * move_speed);
+        if (Math.Abs(transform.position.x - destination.x) < 0.01f)
+        {
+            isNormalMoving = false;
+            rigidbody.isKinematic = false;
+        }
+    }
+
+    private void WhereToGo()
+    {
+        if (playerPosition.y > -291 && playerPosition.y < -25)
+        {
+            Wheretogo = 1;//1층에 갈것
+        }
+        if (playerPosition.y > 24 && playerPosition.y < 290)
+        {
+            Wheretogo = 2;//2층에 갈것
+        }
+    }
+    private void CharacterPosition()
+    {
+        if (transform.position.y > -291 && transform.position.y < -25)
+        {
+            npcFloor = 1;//캐릭터가 1층에 있음
+        }
+        if (transform.position.y > 24 && transform.position.y < 290)
+        {
+            npcFloor = 2;//캐릭터가 2층에 있음
+        }
+
+    }
+
+    private void CaseSetting()
+    {
+        if (Wheretogo == npcFloor)//같은 층내에서 움직이기
+        {
+            MovingCase = 1;
+            isNormalMoving = true;
+        }
+        if (Wheretogo > npcFloor)//올라가기
+        {
+            isFirst = false;
+            isSecond = false;
+            MovingCase = 2;
+            isFirst_ing = true;
+            stairStart = floor[0].down;
+            stairEnd = floor[0].up;
+        }
+        if (Wheretogo < npcFloor)//내려가기(3층이상 되면 달라져야함)
+        {
+            isFirst = false;
+            isSecond = false;
+            MovingCase = 3;
+            stairStart = floor[0].up;
+            stairEnd = floor[0].down;
+        }
+    }
 
 }
