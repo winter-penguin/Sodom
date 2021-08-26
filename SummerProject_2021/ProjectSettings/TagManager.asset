@@ -12,6 +12,7 @@ TagManager:
   - Manager
   - Wall
   - Button
+  - Fade
   layers:
   - Default
   - TransparentFX
@@ -69,4 +70,7 @@ TagManager:
     locked: 0
   - name: Interactive
     uniqueID: 328457919
+    locked: 0
+  - name: UI
+    uniqueID: 1183180327
     locked: 0

@@ -17,9 +17,9 @@ public class SoundVolumeEqualizer : MonoBehaviour
     
     private void Init()
     {
+
         SM = FindObjectOfType<SoundManager>();
         volume = GetComponent<Slider>();
-        
         if (soundSort == SoundManager.SoundClipKinds.BGM)
         {
             volume.value = PlayerPrefs.GetFloat("BGMVolume", SM.defaultVolume);
