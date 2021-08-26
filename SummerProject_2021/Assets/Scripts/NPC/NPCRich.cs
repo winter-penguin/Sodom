@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class NPCRich : MonoBehaviour
 {
-
-
     DB_Character DBdata;
     public enum Guilty
     {
@@ -56,9 +54,9 @@ public class NPCRich : MonoBehaviour
     private bool isFirst = false;
     private bool isSecond = false;
 
-    public int MovingCase;
-    public int npcFloor;
-    public int Wheretogo;
+    private int MovingCase;
+    private int npcFloor;
+    private int Wheretogo;
     #endregion
 
     private Animator animator;
@@ -94,7 +92,6 @@ public class NPCRich : MonoBehaviour
             WhereToGo();
             CharacterPosition();
             CaseSetting();
-            isSecond_ing = true;
         }
         if (isSecond_ing)
         {
@@ -119,7 +116,6 @@ public class NPCRich : MonoBehaviour
                     }
                     else if (isFirst == true && isSecond == false)
                     {
-                        //rb.isKinematic = true;
                         Secondmove();
                     }
                     else if (isSecond)
@@ -189,22 +185,6 @@ public class NPCRich : MonoBehaviour
         return HP;
     }
     #endregion
-    protected virtual IEnumerator CalcCoolTime()
-    {
-        while (true)
-        {
-            yield return null;
-            if (!canAtk)
-            {
-                AttackCoolTimeCacl -= Time.deltaTime;
-                if (AttackCoolTimeCacl <= 0 && !dead)
-                {
-                    AttackCoolTimeCacl = attack_speed;
-                    canAtk = true;
-                }
-            }
-        }
-    }
     IEnumerator CheckStateForActon()
     {
         while (!dead)
@@ -221,19 +201,6 @@ public class NPCRich : MonoBehaviour
 
             }
             yield return null;
-        }
-    }
-    protected bool CanAtkStateFun()
-    {
-        distance = Vector2.Distance(Player.transform.position, transform.position);
-
-        if (distance <= attack_range)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
     protected virtual IEnumerator FSM()
@@ -269,7 +236,6 @@ public class NPCRich : MonoBehaviour
             CurrentState = State.Move;
         }
     }
-
     protected virtual IEnumerator Attack()
     {
         yield return null;
@@ -283,12 +249,41 @@ public class NPCRich : MonoBehaviour
         canAtk = false;
         CurrentState = State.Idle;
     }
+    protected bool CanAtkStateFun()
+    {
+        distance = Vector2.Distance(Player.transform.position, transform.position);
+
+        if (distance <= attack_range)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    protected virtual IEnumerator CalcCoolTime()
+    {
+        while (true)
+        {
+            yield return null;
+            if (!canAtk)
+            {
+                AttackCoolTimeCacl -= Time.deltaTime;
+                if (AttackCoolTimeCacl <= 0 && !dead)
+                {
+                    AttackCoolTimeCacl = attack_speed;
+                    canAtk = true;
+                }
+            }
+        }
+    }
     protected virtual IEnumerator Dead()
     {
         yield return null;
     }
 
-
+    #region Move
     protected virtual IEnumerator Move()
     {
         yield return null;
@@ -298,7 +293,7 @@ public class NPCRich : MonoBehaviour
         }
         else
         {
-            CaseSetting();
+            //CaseSetting();
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
             {
                 animator.SetTrigger("move");
@@ -314,7 +309,6 @@ public class NPCRich : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, StairDirection, 0);
 
         transform.position = Vector2.MoveTowards(transform.position, stairStart.position, Time.deltaTime * move_speed);
-
         if (Math.Abs(transform.position.x - stairStart.position.x) < 1f)
         {
             isFirst = true;
@@ -329,8 +323,8 @@ public class NPCRich : MonoBehaviour
         StairDirection = stairEnd.position.x - npcPosition.x;
         StairDirection = (StairDirection < 0) ? 180 : 0; //direction
         transform.rotation = Quaternion.Euler(0, StairDirection, 0);
+
         rigidbody.isKinematic = true;
-        //transform.position = Vector2.MoveTowards(stairStart.position, stairEnd.position, Time.deltaTime * move_speed);
         transform.position = Vector2.MoveTowards(transform.position, stairEnd.position, Time.deltaTime * move_speed);
         if (Math.Abs(transform.position.y - stairEnd.position.y) < 0.1f)
         {
@@ -402,5 +396,5 @@ public class NPCRich : MonoBehaviour
             stairEnd = floor[0].down;
         }
     }
-
+#endregion
 }
