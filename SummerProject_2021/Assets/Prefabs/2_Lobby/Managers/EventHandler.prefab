@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770203916122fe748a100a608be77acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCGroup: {fileID: 0}
   fadeWindow: {fileID: 0}
 --- !u!114 &4644790600143074788
 MonoBehaviour:

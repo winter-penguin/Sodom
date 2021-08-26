@@ -10,12 +10,13 @@ using UnityEngine;
 
 public class Trader : MonoBehaviour
 {
-    private GameObject trader;
     private GameManager GM;
+    [SerializeField] private GameObject traderPoint;
+
+    private Vector3 targetPos;
 
     private void Init()
     {
-        trader = FindObjectOfType<Trader>().gameObject;
         GM = FindObjectOfType<GameManager>();
     }
     
@@ -24,27 +25,29 @@ public class Trader : MonoBehaviour
         Init();
     }
 
-    private void TraderAppear()
+    public void TraderAppear()
     {
-        if (!trader.activeSelf)
+        if (!gameObject.activeSelf)
         {
-            trader.transform.position = new Vector3(-600, 0, 0);
-            trader.SetActive(true);
-            StartCoroutine(TraderMoving());
+            Vector3 playerPos = new Vector3(-1300, -290, 0);
+            targetPos = new Vector3(traderPoint.transform.position.x, playerPos.y, playerPos.z);
+            gameObject.SetActive(true);
         }
     }
 
-    private IEnumerator TraderMoving()
+    public IEnumerator TraderMoving()
     {
-        float TotalTime = 3f;
+        float TotalTime = 5f;
         float elapsedTime = 0;
+        Vector3 playerPos = gameObject.transform.position;
+        
         while (elapsedTime < TotalTime)
         {
-            
-            
+            gameObject.transform.position =
+                Vector3.Lerp(playerPos, targetPos, elapsedTime / TotalTime);
             elapsedTime += Time.deltaTime;   
             
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
     }
     

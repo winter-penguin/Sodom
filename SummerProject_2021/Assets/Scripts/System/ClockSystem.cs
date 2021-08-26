@@ -7,10 +7,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using UnityEngine;
 
 public class ClockSystem : MonoBehaviour
 {
+	
+	
 	#region Clock
 
 // 현재 플레이 하고 있는 날짜
@@ -19,7 +22,14 @@ public class ClockSystem : MonoBehaviour
 	public int Day
 	{
 		get { return _day; }
-		set { _day = value; }
+		set
+		{
+			_day = value;
+			if (TRADER_VISIT_DAYS.Contains(_day))
+			{
+				eventHandler.IsTrading = true;
+			}
+		}
 	}
 
 	/// <summary>
@@ -93,12 +103,16 @@ public class ClockSystem : MonoBehaviour
 
 	private GameManager GM;
 	public float timeScale = 1;
+	private static readonly int[] TRADER_VISIT_DAYS = new int[4] { 2/*4*/, 10, 17, 24 };
+	private EventHandler eventHandler;
 
 	#endregion
 
 	private void Init()
 	{
 		if (GM == null) { GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>(); }
+
+		eventHandler = FindObjectOfType<EventHandler>();
 	}
 
 	public Clock DayTime = new Clock(0, 0);

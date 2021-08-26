@@ -9,6 +9,8 @@ public class EventHandler : MonoBehaviour
 {
     private GameManager GM;
     private ClockSystem clockSystem;
+    [SerializeField] private GameObject NPCGroup;
+    
     private Trader trader;
 
     [SerializeField] private Image fadeWindow;
@@ -31,20 +33,32 @@ public class EventHandler : MonoBehaviour
             else { clockSystem.timeScale = 1; }
         }
     }
+
+    private bool isTrading;
+
+    public bool IsTrading
+    {
+        get { return isTrading; }
+        set
+        {
+            isTrading = value;
+            if (isTrading)
+            {
+                StartCoroutine(TradingEvent());
+            }
+        }
+    }
+    
     private FarmingSystem farmingSystem;
     
-    private static bool isEventing;
-
-    private static readonly int[] TRADER_VISIT_DAYS = new int[4] { 4, 10, 17, 24 };
-
     private void Init()
     {
         GM = FindObjectOfType<GameManager>();
         clockSystem = FindObjectOfType<ClockSystem>();
-        trader = FindObjectOfType<Trader>();
+        if(NPCGroup == null) {NPCGroup = GameObject.Find("NPC_Gruop"/*이름 수정할것*/);}
+        trader = NPCGroup.transform.Find("Trader").gameObject.GetComponent<Trader>();
         farmingSystem = FindObjectOfType<FarmingSystem>();
         fadeWindow = GameObject.FindGameObjectWithTag("Fade").GetComponent<Image>();
-        isEventing = false;
         fadeWindow.gameObject.SetActive(false);
     }
     
@@ -53,19 +67,10 @@ public class EventHandler : MonoBehaviour
         Init();
     }
 
-    private IEnumerator TimeChecking()
+    private IEnumerator TradingEvent()
     {
-        while (!GM.isEnd)
-        {
-            if (TRADER_VISIT_DAYS.Contains(clockSystem.Day) && !isEventing)
-            {
-                isEventing = true;
-                
-                
-            }
-            
-            yield return null;
-        }
+        trader.TraderAppear();
+        yield return StartCoroutine(trader.TraderMoving());
     }
 
     private IEnumerator FarmingEvent()
