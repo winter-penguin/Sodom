@@ -45,7 +45,14 @@ public class Trader : MonoBehaviour
         {
             gameObject.transform.position =
                 Vector3.Lerp(playerPos, targetPos, elapsedTime / TotalTime);
-            elapsedTime += Time.deltaTime;   
+            elapsedTime += Time.deltaTime;
+
+            if (targetPos.x - gameObject.transform.position.x < Mathf.Epsilon)
+            {
+                var o = gameObject;
+                Vector3 currentPos = o.transform.position;
+                o.transform.position = new Vector3(targetPos.x, currentPos.y,
+                    currentPos.z);}
             
             yield return new WaitForEndOfFrame();
         }
