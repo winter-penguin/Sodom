@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ProduceButton : MonoBehaviour
 {
+    private GameObject ProduceUI;
     public ProductItem product;
     public Item item;
     public List<Item> MaterialItem = new List<Item>();
@@ -14,12 +15,15 @@ public class ProduceButton : MonoBehaviour
     {
         CraftSlot = GameObject.Find("CraftSlot").GetComponent<Slot>();
         slots = GameObject.Find("ProduceGridSetting").GetComponentsInChildren<Slot>();
-
+        ProduceUI = GameObject.Find("ProduceUI");
     }
+    
     public void OnClickProduceButton()
     {
+        MaterialItem.RemoveAll(x => true);
+        ProduceUI.SetActive(false);
         item.ItemCount += CraftSlot.ProduceItemCount;
-        for(int i = 0; i < MaterialItem.Count; i++)
+        for (int i = 0; i < MaterialItem.Count; i++)
         {
             if(MaterialItem[i] != null)
             {
@@ -32,10 +36,9 @@ public class ProduceButton : MonoBehaviour
         }
     }
 
-    private GameObject ProduceUI;
     public void OnClickCancelButton()
     {
-        ProduceUI = GameObject.Find("ProduceUI");
+
         ProduceUI.SetActive(false);
     }
     public void DownButton()

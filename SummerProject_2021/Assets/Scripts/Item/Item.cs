@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -11,8 +10,8 @@ public class Item : MonoBehaviour
     public enum ItemName
     {
         Wood, Stone, Cloth, Iron,
-        Brown_Water, Water, Raw_Meat, Fried_Meat, Vegetable, Vegetable_Soup, Bandage, Pill,
-        Crowbar, Shovel, Dagger, Sword,
+        Brown_Water, Water, Raw_Meat, Fried_Meat, Vegetable, Vegetable_Soup, Rotten_Food, Bandage, Pill,
+        Shovel, Crowbar, Dagger, Sword,
         Bonfire, Bed, Bag, Water_Purifier, Box
     };
 
@@ -28,6 +27,9 @@ public class Item : MonoBehaviour
     public int ItemCount;
     private SurvivalGauge survivalGauge;
     private CharacterValue playerValue;
+
+    bool itemDBloading = false;
+    bool craftloading = false;
     void Start()
     {
         survivalGauge = GameObject.FindGameObjectWithTag("Player").GetComponent<SurvivalGauge>();
@@ -40,7 +42,7 @@ public class Item : MonoBehaviour
         {
             CheckUseItem();
         }
-        if (itemData.DataLoading)
+        if(itemData.DataLoading && !itemDBloading && !craftloading)
         {
             DataSet();
         }
@@ -62,15 +64,16 @@ public class Item : MonoBehaviour
                 Capacity = itemData.itemDB[i].Capacity;
                 Charge_Space = itemData.itemDB[i].Charge_Space;
                 Value = itemData.itemDB[i].Value;
+                itemDBloading = true;
                 break;
             }
         }
-
         for (int i = 0; i < itemData.itemDBCraft.Length; i++)
         {
             if (itemData.itemDBCraft[i].ID == ID)
             {
                 itemCraft[0] = itemData.itemDBCraft[i];
+                craftloading = true;
                 break;
             }
         }

@@ -294,10 +294,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -579,6 +579,8 @@ GameObject:
   - component: {fileID: 5039207650179182032}
   - component: {fileID: 5039207650179182033}
   - component: {fileID: 7887848894947432232}
+  - component: {fileID: 3387802430833856219}
+  - component: {fileID: 5816800937736750338}
   m_Layer: 5
   m_Name: ProduceUI
   m_TagString: Untagged
@@ -659,6 +661,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcafb5900a0452c4e868e15d5414d388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &3387802430833856219
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039207650179182035}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 1183180327
+  m_SortingOrder: 10
+  m_TargetDisplay: 0
+--- !u!114 &5816800937736750338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039207650179182035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &5495056891631494818
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,6 +874,8 @@ MonoBehaviour:
   itemImage: {fileID: 8597552613795727606}
   text_Count: {fileID: 3308238472819776794}
   go_CountImage: {fileID: 4492550306568008395}
+  ProduceButton: {fileID: 9195621260764672981}
+  isProduce: 0
 --- !u!1 &8366194403025221665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1181,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5039207650179182034}
     m_Modifications:
+    - target: {fileID: 89987535623412818, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 914626676514024164, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712088718955219854, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
+      propertyPath: ProduceButton
+      value: 
+      objectReference: {fileID: 9195621260764672981}
     - target: {fileID: 2026351852253683533, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1259,6 +1313,14 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7227784663296959442, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264953498758067214, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
+      propertyPath: ProduceButton
+      value: 
+      objectReference: {fileID: 9195621260764672981}
     - target: {fileID: 8421831910995203707, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1307,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9168722293128790712, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
+      propertyPath: ProduceButton
+      value: 
+      objectReference: {fileID: 9195621260764672981}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
 --- !u!224 &5039207650627621730 stripped

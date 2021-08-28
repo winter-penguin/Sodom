@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4219514973934977318}
   - component: {fileID: 3318199428404349191}
   - component: {fileID: 3981176983137120476}
-  - component: {fileID: 5891417953681322719}
   - component: {fileID: 7888449738591709595}
   - component: {fileID: 1929385190075454853}
   m_Layer: 0
@@ -102,27 +101,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 113, y: 200}
   m_Direction: 0
---- !u!50 &5891417953681322719
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7888449738591709594}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &7888449738591709595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentGuilty: 2
   CurrentState: 0
-  CurrentMove: 0
   id: 0
   health: 0
   attack_power: 0
@@ -149,18 +126,6 @@ MonoBehaviour:
   floor:
   - up: {fileID: 0}
     down: {fileID: 0}
-  isNormalMoving: 0
-  isFirst_ing: 0
-  isSecond_ing: 0
-  attack: 1
-  isFirstChanged: 0
-  isSecondChanged: 0
-  isNormalChanged: 0
-  MovingCase: 0
-  npcFloor: 0
-  Wheretogo: 0
-  GoDownStair: 0
-  GoUpStair: 0
 --- !u!95 &1929385190075454853
 Animator:
   serializedVersion: 3

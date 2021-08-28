@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class NPCRich : MonoBehaviour
 {
-
-
     DB_Character DBdata;
     public enum Guilty
     {
@@ -15,20 +13,17 @@ public class NPCRich : MonoBehaviour
     public Guilty CurrentGuilty = Guilty.Prisoner;
     public State CurrentState = State.Idle;
     public float id, health, attack_power, attack_speed, attack_range, move_speed;
+    private bool dataloading;
     //DB
 
     public bool dead = false;
     public bool isAttack = false;
     protected bool canAtk = true;
+    private bool canAtk2 = true;
     protected float AttackCoolTimeCacl;
     private GameObject Player;
+    private ClickMovement playermove;
     private CharacterValue playerValue;
-
-    private Rigidbody2D rigidbody;
-    private Collider2D collider;
-    private Collider2D PlayerCollider;
-
-
 
     #region Move
     [System.Serializable]
@@ -55,10 +50,11 @@ public class NPCRich : MonoBehaviour
 
     private bool isFirst = false;
     private bool isSecond = false;
+    private bool StairTrigger = false;
 
     public int MovingCase;
-    public int npcFloor;
-    public int Wheretogo;
+    private int npcFloor;
+    private int Wheretogo;
     #endregion
 
     private Animator animator;
@@ -66,16 +62,13 @@ public class NPCRich : MonoBehaviour
     {
         DBdata = GameObject.Find("DBManager").GetComponent<DB_Character>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        playermove = Player.GetComponent<ClickMovement>();
         playerValue = Player.GetComponent<CharacterValue>();
-        rigidbody = GetComponent<Rigidbody2D>();
-        collider = this.gameObject.GetComponent<Collider2D>();
-        PlayerCollider = Player.GetComponent<Collider2D>();
         AttackCoolTimeCacl = attack_speed;
         animator = GetComponent<Animator>();
         StartCoroutine(CheckStateForActon());
         StartCoroutine(CalcCoolTime());
         StartCoroutine(FSM());
-        Physics2D.IgnoreCollision(collider, PlayerCollider, true);
     }
     void Update()
     {
@@ -83,23 +76,44 @@ public class NPCRich : MonoBehaviour
         playerPosition = Player.transform.position;
         direction = playerPosition.x - npcPosition.x;
         direction = (direction < 0) ? 180 : 0;
-        if (DBdata.isCharacterDB == true)
+        if (DBdata.isCharacterDB == true && !dataloading)
         {
             DataSet();
         }
-
 
         if (isSecond_ing == false)
         {
             WhereToGo();
             CharacterPosition();
             CaseSetting();
-            isSecond_ing = true;
+            if (playermove.isSecond_ing) //플레이어쫓아가 계단오르기
+            {
+                canAtk2 = false;
+                if (playermove.Wheretogo == 2)
+                {
+                    UP();
+                }
+                else if (playermove.Wheretogo == 1)
+                {
+                    Down();
+                }
+            }
+            else
+            {
+                canAtk2 = true;
+            }
         }
         if (isSecond_ing)
         {
-            rigidbody.isKinematic = true;
             WhereToGo();
+            if (!playermove.isSecond_ing)
+            {
+                canAtk2 = false;
+            }
+            else
+            {
+                canAtk2 = true;
+            }
         }
     }
     private void FixedUpdate()
@@ -119,7 +133,6 @@ public class NPCRich : MonoBehaviour
                     }
                     else if (isFirst == true && isSecond == false)
                     {
-                        //rb.isKinematic = true;
                         Secondmove();
                     }
                     else if (isSecond)
@@ -142,6 +155,12 @@ public class NPCRich : MonoBehaviour
                         if (isNormalMoving == true) NormalMove();
                     }
                     break;
+                case 4:
+                    if(StairTrigger)//계단에서 마주쳤을때
+                    {
+                        Secondmove();
+                    }
+                    break;
             }
         }
 
@@ -158,6 +177,7 @@ public class NPCRich : MonoBehaviour
                 attack_speed = DBdata.characterDB[i].attack_speed;
                 attack_range = DBdata.characterDB[i].attack_range;
                 move_speed = DBdata.characterDB[i].move_speed;
+                dataloading = true;
                 break;
             }
         }
@@ -189,22 +209,6 @@ public class NPCRich : MonoBehaviour
         return HP;
     }
     #endregion
-    protected virtual IEnumerator CalcCoolTime()
-    {
-        while (true)
-        {
-            yield return null;
-            if (!canAtk)
-            {
-                AttackCoolTimeCacl -= Time.deltaTime;
-                if (AttackCoolTimeCacl <= 0 && !dead)
-                {
-                    AttackCoolTimeCacl = attack_speed;
-                    canAtk = true;
-                }
-            }
-        }
-    }
     IEnumerator CheckStateForActon()
     {
         while (!dead)
@@ -221,19 +225,6 @@ public class NPCRich : MonoBehaviour
 
             }
             yield return null;
-        }
-    }
-    protected bool CanAtkStateFun()
-    {
-        distance = Vector2.Distance(Player.transform.position, transform.position);
-
-        if (distance <= attack_range)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
     protected virtual IEnumerator FSM()
@@ -269,7 +260,12 @@ public class NPCRich : MonoBehaviour
             CurrentState = State.Move;
         }
     }
+    protected virtual IEnumerator Dead()
+    {
+        yield return null;
+    }
 
+    #region Attack
     protected virtual IEnumerator Attack()
     {
         yield return null;
@@ -283,22 +279,47 @@ public class NPCRich : MonoBehaviour
         canAtk = false;
         CurrentState = State.Idle;
     }
-    protected virtual IEnumerator Dead()
+    protected bool CanAtkStateFun()
     {
-        yield return null;
+        distance = Vector2.Distance(playerPosition, npcPosition);
+
+        if (distance <= attack_range)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-
-
+    protected virtual IEnumerator CalcCoolTime()
+    {
+        while (true)
+        {
+            yield return null;
+            if (!canAtk)
+            {
+                AttackCoolTimeCacl -= Time.deltaTime;
+                if (AttackCoolTimeCacl <= 0 && !dead)
+                {
+                    AttackCoolTimeCacl = attack_speed;
+                    canAtk = true;
+                }
+            }
+        }
+    }
+    #endregion
+    #region Move
     protected virtual IEnumerator Move()
     {
         yield return null;
-        if (CanAtkStateFun() && canAtk)
+        if (CanAtkStateFun() && canAtk && canAtk2)
         {
             CurrentState = State.Attack;
         }
         else
         {
-            CaseSetting();
+            //CaseSetting();
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Move"))
             {
                 animator.SetTrigger("move");
@@ -307,49 +328,46 @@ public class NPCRich : MonoBehaviour
         }
     }
 
-    void Firstmove()
+    void Firstmove() //계단앞으로이동
     {
         StairDirection = stairStart.position.x - npcPosition.x;
         StairDirection = (StairDirection < 0) ? 180 : 0; //1F direction
         transform.rotation = Quaternion.Euler(0, StairDirection, 0);
+        transform.position = Vector2.MoveTowards(npcPosition, stairStart.position, Time.deltaTime * move_speed);
 
-        transform.position = Vector2.MoveTowards(transform.position, stairStart.position, Time.deltaTime * move_speed);
-
-        if (Math.Abs(transform.position.x - stairStart.position.x) < 1f)
+        if (Math.Abs(npcPosition.x - stairStart.position.x) < 1f)
         {
             isFirst = true;
             isFirst_ing = false;
-
+            npcPosition.x = stairStart.position.x;
         }
     }
 
-    private void Secondmove()
+    private void Secondmove() //계단이용
     {
         isSecond_ing = true;
         StairDirection = stairEnd.position.x - npcPosition.x;
         StairDirection = (StairDirection < 0) ? 180 : 0; //direction
         transform.rotation = Quaternion.Euler(0, StairDirection, 0);
-        rigidbody.isKinematic = true;
-        //transform.position = Vector2.MoveTowards(stairStart.position, stairEnd.position, Time.deltaTime * move_speed);
-        transform.position = Vector2.MoveTowards(transform.position, stairEnd.position, Time.deltaTime * move_speed);
-        if (Math.Abs(transform.position.y - stairEnd.position.y) < 0.1f)
+        transform.position = Vector2.MoveTowards(npcPosition, stairEnd.position, Time.deltaTime * move_speed);
+
+        if (Math.Abs(npcPosition.y - stairEnd.position.y) < 0.5f)
         {
-            rigidbody.isKinematic = false;
             isSecond = true;
             isSecond_ing = false;
             isNormalMoving = true;
+            npcPosition.y = stairEnd.position.y;
         }
     }
 
     public void NormalMove()
     {
-        destination = new Vector2(playerPosition.x, transform.position.y);
+        destination = new Vector2(playerPosition.x, npcPosition.y);
         transform.rotation = Quaternion.Euler(0, direction, 0);
-        transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * move_speed);
-        if (Math.Abs(transform.position.x - destination.x) < 0.01f)
+        transform.position = Vector2.MoveTowards(npcPosition, destination, Time.deltaTime * move_speed);
+        if (Math.Abs(npcPosition.x - destination.x) < 0.01f)
         {
             isNormalMoving = false;
-            rigidbody.isKinematic = false;
         }
     }
 
@@ -366,11 +384,11 @@ public class NPCRich : MonoBehaviour
     }
     private void CharacterPosition()
     {
-        if (transform.position.y > -291 && transform.position.y < -25)
+        if (npcPosition.y > -291 && npcPosition.y < -25)
         {
             npcFloor = 1;//캐릭터가 1층에 있음
         }
-        if (transform.position.y > 24 && transform.position.y < 290)
+        if (npcPosition.y > 24 && npcPosition.y < 290)
         {
             npcFloor = 2;//캐릭터가 2층에 있음
         }
@@ -386,21 +404,51 @@ public class NPCRich : MonoBehaviour
         }
         if (Wheretogo > npcFloor)//올라가기
         {
-            isFirst = false;
-            isSecond = false;
-            MovingCase = 2;
-            isFirst_ing = true;
-            stairStart = floor[0].down;
-            stairEnd = floor[0].up;
+            UP();
         }
         if (Wheretogo < npcFloor)//내려가기(3층이상 되면 달라져야함)
         {
-            isFirst = false;
-            isSecond = false;
-            MovingCase = 3;
-            stairStart = floor[0].up;
-            stairEnd = floor[0].down;
+            Down();
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (isSecond_ing && playermove.isSecond_ing && Wheretogo != playermove.Wheretogo) //계단에서 마주쳤을때 따라내려가기
+            {
+                StairTrigger = true;
+                switch (playermove.MovingCase)
+                {
+                    case 2:
+                        stairStart = floor[0].down;
+                        stairEnd = floor[0].up;
+                        break;
+                    case 3:
+                        stairStart = floor[0].up;
+                        stairEnd = floor[0].down;
+                        break;
+                }
+            }
+        }
+    }
+    private void UP()
+    {
+        isFirst = false;
+        isSecond = false;
+        MovingCase = 2;
+        isFirst_ing = true;
+        stairStart = floor[0].down;
+        stairEnd = floor[0].up;
+    }
+    private void Down()
+    {
+        isFirst = false;
+        isSecond = false;
+        MovingCase = 3;
+        stairStart = floor[0].up;
+        stairEnd = floor[0].down;
+    }
+    #endregion
 }
