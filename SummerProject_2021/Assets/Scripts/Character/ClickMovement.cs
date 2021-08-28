@@ -184,6 +184,12 @@ public class ClickMovement : MonoBehaviour
             isWall = false;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        throw new NotImplementedException();
+    }
+
     private void FixedUpdate()
     {
         switch (MovingCase)
@@ -355,7 +361,7 @@ public class ClickMovement : MonoBehaviour
             //Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("EnemyNPC"))
             {
-                enemynpc = GameObject.Find("EnemyNPC_CHG").GetComponent<EnemyNPC>();
+                enemynpc = hit.collider.GetComponent<EnemyNPC>();
                 //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 isClickEnemy = true;
                 rb.isKinematic = false;

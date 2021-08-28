@@ -56,12 +56,12 @@ public class EnemyNPC : MonoBehaviour
         iscollide = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)//나은이한테 이거 복붙해달라해야지
     {
         if (other.tag == "Player")
         {
             iscollide = true;
-            clickmovement = other.GetComponent<ClickMovement>();
+            clickmovement = other.GetComponentInParent<ClickMovement>();
             if (clickmovement.isClickEnemy)
             {
                 clickmovement.isNormalMoving = false;
