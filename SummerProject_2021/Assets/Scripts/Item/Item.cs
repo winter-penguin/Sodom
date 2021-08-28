@@ -10,8 +10,8 @@ public class Item : MonoBehaviour
     public enum ItemName
     {
         Wood, Stone, Cloth, Iron,
-        Brown_Water, Water, Raw_Meat, Fried_Meat, Vegetable, Vegetable_Soup, Bandage, Pill,
-        Crowbar, Shovel, Dagger, Sword,
+        Brown_Water, Water, Raw_Meat, Fried_Meat, Vegetable, Vegetable_Soup, Rotten_Food, Bandage, Pill,
+        Shovel, Crowbar, Dagger, Sword,
         Bonfire, Bed, Bag, Water_Purifier, Box
     };
 

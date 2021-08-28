@@ -79,6 +79,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 1627d9262c4caa9459e389da37f28ae1, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 83d65e466a52e5848a50ecc624f727b8, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -245,6 +247,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: ffb59fb0c0d456b429274a4e354aaaeb, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -328,6 +331,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: f3b97d89a7cb8a74bad18d1f94275b67, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -369,12 +373,101 @@ Transform:
   - {fileID: 2712076259162716369}
   - {fileID: 8979500771456729611}
   - {fileID: 1633345269930141804}
+  - {fileID: 2248151156580631720}
+  - {fileID: 8939664434601541889}
+  - {fileID: 2123495389560319379}
   - {fileID: 275482510414172580}
+  - {fileID: 8177853594753027675}
+  - {fileID: 4897931117466151780}
+  - {fileID: 4067122329819423253}
   - {fileID: 4429782753753793720}
-  - {fileID: 209439068015729636}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1349876901337824566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4897931117466151780}
+  - component: {fileID: 7592271801459621290}
+  - component: {fileID: 5825580426063049276}
+  m_Layer: 5
+  m_Name: Dagger
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4897931117466151780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349876901337824566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7750018771389269591}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7592271801459621290
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349876901337824566}
+  m_CullTransparentMesh: 1
+--- !u!114 &5825580426063049276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349876901337824566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 15
+  CurrentItemType: 4
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 21300000, guid: 973158efc1ac55841957a31590ca1ee6, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &1642618506062205505
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +498,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7750018771389269591}
-  m_RootOrder: 10
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -454,6 +547,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 2727783c706e28749ab090d3ba037166, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -538,6 +632,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -637,90 +732,8 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 07ee3dfdb4f5ae24aaff988c21de9b70, type: 3}
-  useItem: 0
-  ItemEquip: 0
-  ItemCount: 0
---- !u!1 &3710706032378517817
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 209439068015729636}
-  - component: {fileID: 7475041796541776429}
-  - component: {fileID: 4151399693185097648}
-  m_Layer: 5
-  m_Name: Water_Purifier
-  m_TagString: Item
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &209439068015729636
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3710706032378517817}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7750018771389269591}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7475041796541776429
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3710706032378517817}
-  m_CullTransparentMesh: 1
---- !u!114 &4151399693185097648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3710706032378517817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemCraft:
-  - ID: 0
-    name: 
-    Necessary_Material_ID1: 0
-    Amount_Of_Material1: 0
-    Necessary_Material_ID2: 0
-    Amount_Of_Material2: 0
-    Necessary_Material_ID3: 0
-    Amount_Of_Material3: 0
-    Necessary_Object_ID: 0
-  CurrentItem: 19
-  CurrentItemType: 5
-  ID: 0
-  ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  itemImage: {fileID: 21300000, guid: d6b4c0e8c4b799b44a31ed05ddd4fa38, type: 3}
   useItem: 0
   ItemEquip: 0
   ItemCount: 0
@@ -803,7 +816,176 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 7703b2feaaef0ea41a7b4d0a61b7f537, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
+--- !u!1 &4385734600724855051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8939664434601541889}
+  - component: {fileID: 938664454934773395}
+  - component: {fileID: 5461514530179052726}
+  m_Layer: 5
+  m_Name: Bandage
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8939664434601541889
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385734600724855051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7750018771389269591}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &938664454934773395
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385734600724855051}
+  m_CullTransparentMesh: 1
+--- !u!114 &5461514530179052726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385734600724855051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 11
+  CurrentItemType: 2
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 21300000, guid: 93795a98a94c5d34b80db7137446785c, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
+--- !u!1 &4719220463980094954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4067122329819423253}
+  - component: {fileID: 8065117709977420593}
+  - component: {fileID: 4375396723826485035}
+  m_Layer: 5
+  m_Name: Sword
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4067122329819423253
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719220463980094954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7750018771389269591}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8065117709977420593
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719220463980094954}
+  m_CullTransparentMesh: 1
+--- !u!114 &4375396723826485035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719220463980094954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 16
+  CurrentItemType: 3
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 21300000, guid: 9606141b042324841af0b7c8d3c5c7c1, type: 3}
   useItem: 0
   ItemEquip: 0
   ItemCount: 0
@@ -886,6 +1068,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 9a93d9aab52b09648bad92e2a653a6c9, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -920,7 +1103,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7750018771389269591}
-  m_RootOrder: 11
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -957,7 +1140,7 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 18
+  CurrentItem: 19
   CurrentItemType: 5
   ID: 0
   ItemType: 0
@@ -969,6 +1152,7 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 6ee4cff99a8027348b6c70f816c82f60, type: 3}
   useItem: 0
   ItemEquip: 0
@@ -1052,7 +1236,176 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
-  itemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
+  Value: 0
+  itemImage: {fileID: 21300000, guid: b9cbe67264d2059438cef838020e43b5, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
+--- !u!1 &6465914208867680181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2123495389560319379}
+  - component: {fileID: 6739630294571908825}
+  - component: {fileID: 2670929665239563749}
+  m_Layer: 5
+  m_Name: Pill
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2123495389560319379
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465914208867680181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7750018771389269591}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6739630294571908825
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465914208867680181}
+  m_CullTransparentMesh: 1
+--- !u!114 &2670929665239563749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465914208867680181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 12
+  CurrentItemType: 2
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 21300000, guid: 05fd5472ca6d3ec41b1b2a7b4d419ecf, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
+--- !u!1 &6560154409734914379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2248151156580631720}
+  - component: {fileID: 6382067001370629727}
+  - component: {fileID: 4758256316803833349}
+  m_Layer: 5
+  m_Name: Rotten_Food
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2248151156580631720
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560154409734914379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7750018771389269591}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6382067001370629727
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560154409734914379}
+  m_CullTransparentMesh: 1
+--- !u!114 &4758256316803833349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560154409734914379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 10
+  CurrentItemType: 1
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 21300000, guid: 1c7a26ed91f99044eac5c87b96918117, type: 3}
   useItem: 0
   ItemEquip: 0
   ItemCount: 0
@@ -1135,7 +1488,92 @@ MonoBehaviour:
   Attack_Range: 0
   Capacity: 0
   Charge_Space: 0
+  Value: 0
   itemImage: {fileID: 21300000, guid: 7c16a94327dd2dd429564d6bea7b9012, type: 3}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
+--- !u!1 &9087643759673540469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8177853594753027675}
+  - component: {fileID: 4338245233170350761}
+  - component: {fileID: 7697433977532303740}
+  m_Layer: 5
+  m_Name: Crowbar
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8177853594753027675
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9087643759673540469}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7750018771389269591}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4338245233170350761
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9087643759673540469}
+  m_CullTransparentMesh: 1
+--- !u!114 &7697433977532303740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9087643759673540469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft:
+  - ID: 0
+    name: 
+    Necessary_Material_ID1: 0
+    Amount_Of_Material1: 0
+    Necessary_Material_ID2: 0
+    Amount_Of_Material2: 0
+    Necessary_Material_ID3: 0
+    Amount_Of_Material3: 0
+    Necessary_Object_ID: 0
+  CurrentItem: 14
+  CurrentItemType: 3
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 21300000, guid: c1039df3467529d40a148d98ce95de33, type: 3}
   useItem: 0
   ItemEquip: 0
   ItemCount: 0

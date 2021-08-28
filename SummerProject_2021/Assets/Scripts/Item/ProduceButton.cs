@@ -17,12 +17,12 @@ public class ProduceButton : MonoBehaviour
         slots = GameObject.Find("ProduceGridSetting").GetComponentsInChildren<Slot>();
         ProduceUI = GameObject.Find("ProduceUI");
     }
-        
+    
     public void OnClickProduceButton()
     {
-
-        item.ItemCount += CraftSlot.ProduceItemCount;
+        MaterialItem.RemoveAll(x => true);
         ProduceUI.SetActive(false);
+        item.ItemCount += CraftSlot.ProduceItemCount;
         for (int i = 0; i < MaterialItem.Count; i++)
         {
             if(MaterialItem[i] != null)
