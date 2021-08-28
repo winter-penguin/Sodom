@@ -1,6 +1,6 @@
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 ///  AUTHOR : Kim Jihun
-///  Last edit date : 2021-08-23
+///  Last edit date : 2021-08-28
 ///  Contact : kjhcorgi99@gmail.com
 /// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -25,10 +25,14 @@ public class SpeakerSetter : MonoBehaviour
         {
             sound.volume = PlayerPrefs.GetFloat("SFXVolume", SM.defaultVolume);
         }
-        SM.speakers.Add(new SoundManager.Speaker(GetComponent<AudioSource>(), soundSort));
+
+        if (!SM.GetSpeakerObjects().Contains(gameObject))
+        {
+            SM.speakers.Add(new SoundManager.Speaker(gameObject, sound, soundSort));
+        }
     }
 
-    private void Awake()
+    private void Start()    // Awake로 바꾸면 SoundManager 초기화와 순서가 섞이므로 Awake로 바꾸지 말 것!!
     {
         Init();
     }
