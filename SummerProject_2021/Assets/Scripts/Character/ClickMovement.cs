@@ -8,12 +8,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ClickMovement : MonoBehaviour
 {
     #region Variables
     EnemyNPC enemynpc;
     private WallCollision _wallCollision;
+    private GameManager _gameManager;
     [System.Serializable] // class를 인스펙터에서 보여줌
     //[SerializeField] // private 변수를 인스펙터에서 보여줌
     public class Floor
@@ -88,14 +90,15 @@ public class ClickMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();//이 캐릭터가 왜 NPC하고 부딪혔을때 안멈추는지 모르겠음
         anim = GetComponent<Animator>();
         AttackRange.SetActive(false);
-        
+        _gameManager = GameManager._instance;
 
     }
 
     void Update()
     {
-        
-        #region MouseClick
+        if(!EventSystem.current.IsPointerOverGameObject())
+        {
+            #region MouseClick
         
         if (isSecond_ing == false)
         {
@@ -167,6 +170,8 @@ public class ClickMovement : MonoBehaviour
             }
         }
         #endregion
+        }
+        
     }
     //계단 올라가는중 => 클릭 => 일단 위치 저장 => 계단 이동이 끝나면 바로 이 저장한 위치로 이동해야함
     private void OnCollisionEnter2D(Collision2D collision)//문이랑 부딪히면

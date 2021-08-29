@@ -76,6 +76,7 @@ public class EnemyNPC : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            iscollide = true;
             if (clickmovement.isClickEnemy)
             {
                 clickmovement.isNormalMoving = false;
@@ -84,5 +85,13 @@ public class EnemyNPC : MonoBehaviour
             }
         }
         
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            iscollide = false;
+        }
     }
 }
