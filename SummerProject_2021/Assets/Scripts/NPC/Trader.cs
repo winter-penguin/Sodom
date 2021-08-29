@@ -10,56 +10,53 @@ using UnityEngine;
 
 public class Trader : MonoBehaviour
 {
-    private GameManager GM;
-    [SerializeField] private GameObject traderPoint;
+	private GameManager GM;
+	[SerializeField] private GameObject traderPoint;
 
-    private Vector3 targetPos;
+	private Vector3 targetPos;
 
-    private void Init()
-    {
-        GM = FindObjectOfType<GameManager>();
-    }
-    
-    private void Awake()
-    {
-        Init();
-    }
+	private void Init()
+	{
+		GM = FindObjectOfType<GameManager>();
+	}
 
-    public void TraderAppear()
-    {
-        if (!gameObject.activeSelf)
-        {
-            Vector3 playerPos = new Vector3(-1300, -290, 0);
-            targetPos = new Vector3(traderPoint.transform.position.x, playerPos.y, playerPos.z);
-            gameObject.SetActive(true);
-        }
-    }
+	private void Awake()
+	{
+		Init();
+	}
 
-    public IEnumerator TraderMoving()
-    {
-        float TotalTime = 5f;
-        float elapsedTime = 0;
-        Vector3 playerPos = gameObject.transform.position;
-        
-        while (elapsedTime < TotalTime)
-        {
-            gameObject.transform.position =
-                Vector3.Lerp(playerPos, targetPos, elapsedTime / TotalTime);
-            elapsedTime += Time.deltaTime;
+	public void TraderAppear()
+	{
+		Vector3 playerPos = new Vector3(-1300, -290, 0);
+		targetPos = new Vector3(traderPoint.transform.position.x, playerPos.y, playerPos.z);
+		gameObject.SetActive(true);
+	}
 
-            if (targetPos.x - gameObject.transform.position.x < Mathf.Epsilon)
-            {
-                var o = gameObject;
-                Vector3 currentPos = o.transform.position;
-                o.transform.position = new Vector3(targetPos.x, currentPos.y,
-                    currentPos.z);}
-            
-            yield return new WaitForEndOfFrame();
-        }
-    }
-    
-    private void Trading()
-    {
-        
-    }
+	public IEnumerator TraderMoving()
+	{
+		float TotalTime = 5f;
+		float elapsedTime = 0;
+		Vector3 playerPos = gameObject.transform.position;
+
+		while (elapsedTime < TotalTime)
+		{
+			gameObject.transform.position =
+				Vector3.Lerp(playerPos, targetPos, elapsedTime / TotalTime);
+			elapsedTime += Time.deltaTime;
+
+			if (targetPos.x - gameObject.transform.position.x < Mathf.Epsilon)
+			{
+				var o = gameObject;
+				Vector3 currentPos = o.transform.position;
+				o.transform.position = new Vector3(targetPos.x, currentPos.y,
+					currentPos.z);
+			}
+
+			yield return new WaitForEndOfFrame();
+		}
+	}
+
+	private void Trading()
+	{
+	}
 }

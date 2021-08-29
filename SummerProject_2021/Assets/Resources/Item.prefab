@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 1364630096012977287}
   - component: {fileID: 7635898196958534240}
   - component: {fileID: 1711825728585987614}
+  - component: {fileID: 325470932257435588}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -387,3 +388,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundSort: 1
+--- !u!114 &325470932257435588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144846815152736311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5bb6396c7fcd14cbe61b1febac3f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonID: 0
