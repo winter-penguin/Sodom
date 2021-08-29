@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -30,11 +31,16 @@ public class Item : MonoBehaviour
 
     bool itemDBloading = false;
     bool craftloading = false;
+    bool itemfarming = false;
+    private FarmingSystem farmingSystem;
+    [SerializeField]
+    //public List<FarmingInfo> farmingInfos = new List<FarmingInfo>();
     void Start()
     {
         survivalGauge = GameObject.FindGameObjectWithTag("Player").GetComponent<SurvivalGauge>();
         playerValue = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterValue>();
         itemData = GameObject.Find("DBManager").GetComponent<DBManagerItem>();
+        farmingSystem = FindObjectOfType<FarmingSystem>();
     }
     void Update()
     {
@@ -42,10 +48,14 @@ public class Item : MonoBehaviour
         {
             CheckUseItem();
         }
-        if(itemData.DataLoading && !itemDBloading && !craftloading)
+        if (itemData.DataLoading && !itemDBloading && !craftloading)
         {
             DataSet();
         }
+/*        if (farmingSystem.isfarming && !itemfarming)
+        {
+            SetCount();
+        }*/
     }
     private void DataSet()
     {
@@ -77,6 +87,21 @@ public class Item : MonoBehaviour
                 break;
             }
         }
+    }
+    private void SetCount()
+    {
+/*        List<FarmingInfo> farmingInfos = farmingSystem.GetFarmingInfo();
+        for (int i = 0; i < farmingInfos.Count; i++)
+        {
+            if (ID == farmingInfos[i].itemID)
+            {
+                Debug.Log(ID);
+                Debug.Log(farmingInfos[i].itemID);
+                Debug.Log(farmingInfos[i].amount);
+                ItemCount += farmingInfos[i].amount;
+                itemfarming = true;
+            }
+        }*/
     }
     private void CheckUseItem()
     {

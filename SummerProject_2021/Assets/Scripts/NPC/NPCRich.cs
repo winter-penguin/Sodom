@@ -20,6 +20,7 @@ public class NPCRich : MonoBehaviour
     public bool isAttack = false;
     protected bool canAtk = true;
     private bool canAtk2 = true;
+    public bool iscollide = false;
     protected float AttackCoolTimeCacl;
     private GameObject Player;
     private ClickMovement playermove;
@@ -308,6 +309,60 @@ public class NPCRich : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            iscollide = true;
+            playermove = other.GetComponentInParent<ClickMovement>();
+            if (playermove.isClickEnemy)
+            {
+                playermove.isNormalMoving = false;
+                playermove.anim.SetBool("isWalking", false);
+                playermove.anim.SetBool("isPunching", true);
+            }
+
+            if (isSecond_ing && playermove.isSecond_ing && Wheretogo != playermove.Wheretogo) //계단에서 마주쳤을때 따라내려가기
+            {
+                StairTrigger = true;
+                switch (playermove.MovingCase)
+                {
+                    case 2:
+                        stairStart = floor[0].down;
+                        stairEnd = floor[0].up;
+                        break;
+                    case 3:
+                        stairStart = floor[0].up;
+                        stairEnd = floor[0].down;
+                        break;
+                }
+            }
+        }
+
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            iscollide = true;
+            if (playermove.isClickEnemy)
+            {
+                playermove.isNormalMoving = false;
+                playermove.anim.SetBool("isWalking", false);
+                playermove.anim.SetBool("isPunching", true);
+            }
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            iscollide = false;
+        }
+    }
     #endregion
     #region Move
     protected virtual IEnumerator Move()
@@ -409,28 +464,6 @@ public class NPCRich : MonoBehaviour
         if (Wheretogo < npcFloor)//내려가기(3층이상 되면 달라져야함)
         {
             Down();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            if (isSecond_ing && playermove.isSecond_ing && Wheretogo != playermove.Wheretogo) //계단에서 마주쳤을때 따라내려가기
-            {
-                StairTrigger = true;
-                switch (playermove.MovingCase)
-                {
-                    case 2:
-                        stairStart = floor[0].down;
-                        stairEnd = floor[0].up;
-                        break;
-                    case 3:
-                        stairStart = floor[0].up;
-                        stairEnd = floor[0].down;
-                        break;
-                }
-            }
         }
     }
     private void UP()

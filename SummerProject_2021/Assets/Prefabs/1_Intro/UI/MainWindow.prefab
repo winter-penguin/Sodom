@@ -119,8 +119,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBC94\uC8C4\uB3C4\uC2DC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33f4eaf972f68c54daed43b77b7a36f5, type: 2}
-  m_sharedMaterial: {fileID: -4873817689371681225, guid: 33f4eaf972f68c54daed43b77b7a36f5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9295552a5b4ffed409d3698ab71b3360, type: 2}
+  m_sharedMaterial: {fileID: 1048346162022946849, guid: 9295552a5b4ffed409d3698ab71b3360, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -243,7 +243,7 @@ Canvas:
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 1183180327
   m_SortingOrder: -10
   m_TargetDisplay: 0
