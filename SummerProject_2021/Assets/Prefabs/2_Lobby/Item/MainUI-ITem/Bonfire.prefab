@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 4010701012598600178}
   - component: {fileID: 4010701012598600176}
   - component: {fileID: 4010701012598600179}
-  - component: {fileID: 8884241018229266873}
+  - component: {fileID: 4534580831674851345}
   - component: {fileID: 5092590375483108044}
   m_Layer: 5
   m_Name: Bonfire
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8884241018229266873
+--- !u!114 &4534580831674851345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -472,7 +472,7 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 16
+  CurrentItem: 17
   CurrentItemType: 5
   ID: 0
   ItemType: 0
