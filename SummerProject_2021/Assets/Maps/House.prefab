@@ -2503,7 +2503,8 @@ GameObject:
   - component: {fileID: 1324109250867198060}
   - component: {fileID: 7149772760541258007}
   - component: {fileID: 525166517}
-  m_Layer: 5
+  - component: {fileID: 35384207}
+  m_Layer: 6
   m_Name: HandButton_Room3
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -2762,6 +2763,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &35384207
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2792695622958644867}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 40, y: 40}
+  m_EdgeRadius: 0
 --- !u!1 &2980248118114171466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,7 +2898,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 19
-  CurrentItemType: 5
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -3027,7 +3053,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 17
-  CurrentItemType: 5
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -3185,7 +3210,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 16
-  CurrentItemType: 5
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -3455,7 +3479,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 20
-  CurrentItemType: 5
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -4335,9 +4358,10 @@ GameObject:
   - component: {fileID: 7485925842228591639}
   - component: {fileID: 1920453923853905333}
   - component: {fileID: 5692688958744326273}
-  m_Layer: 5
+  - component: {fileID: 1706892523}
+  m_Layer: 6
   m_Name: HandButton_Room1
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4594,6 +4618,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &1706892523
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010120322208328462}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 40, y: 40}
+  m_EdgeRadius: 0
 --- !u!1 &9087451611565887121
 GameObject:
   m_ObjectHideFlags: 0
@@ -4644,7 +4694,8 @@ GameObject:
   - component: {fileID: 4192608030127529253}
   - component: {fileID: 712090969064443589}
   - component: {fileID: 1040234428}
-  m_Layer: 5
+  - component: {fileID: 1817879018}
+  m_Layer: 6
   m_Name: HandButton_Room2
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -4903,6 +4954,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &1817879018
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195679192444234312}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 40, y: 40}
+  m_EdgeRadius: 0
 --- !u!1001 &3979357006618418043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5071,14 +5148,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
---- !u!224 &2250117873452470663 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6052219425603028064, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
-  m_PrefabInstance: {fileID: 5532614729789199847}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2250117873452470662 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6052219425603028065, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
+  m_PrefabInstance: {fileID: 5532614729789199847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2250117873452470663 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6052219425603028064, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
   m_PrefabInstance: {fileID: 5532614729789199847}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7259557978031997465
@@ -5483,13 +5560,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
---- !u!1 &2980248118723592159 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6052219425603028065, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
-  m_PrefabInstance: {fileID: 8837815502194752446}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2980248118723592158 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6052219425603028064, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
+  m_PrefabInstance: {fileID: 8837815502194752446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2980248118723592159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6052219425603028065, guid: 1827546c781199e4d8b7861ede654cdb, type: 3}
   m_PrefabInstance: {fileID: 8837815502194752446}
   m_PrefabAsset: {fileID: 0}

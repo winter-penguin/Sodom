@@ -97,7 +97,9 @@ public class ClickMovement : MonoBehaviour
 
     void Update()
     {
-        #region MouseClick
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            #region MouseClick
 
             if (isSecond_ing == false)
             {
@@ -173,14 +175,93 @@ public class ClickMovement : MonoBehaviour
             }
 
             #endregion
-        if (!EventSystem.current.IsPointerOverGameObject())
-        {
-            
         }
-        
         else //UI를 클릭했을때
         {
-            
+            #region MouseClick_Button
+
+            if (isSecond_ing == false)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    ButtonClick();
+                    if (isButtonClick)
+                    {
+                        MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //항상 제일 먼저
+                        if (transform.position.x > MousePosition.x) // 가야할 방향이 왼쪽이면
+                        {
+                            LeftRight = -1;
+                        }
+                        else LeftRight = 1;
+                        //Debug.Log(LeftRight);
+
+                        if (isWall)
+                        {
+                            if (_wallCollision.iscollide)
+                            {
+                                //Debug.Log(_wallCollision.LeftOrRight);
+                                Debug.Log("벽과 닿은상태입니다");
+                                if (_wallCollision.LeftOrRight == LeftRight)
+                                {
+                                    WhereToGo();
+                                    EnemyClick();
+                                    Debug.Log("Wheretogo: " + Wheretogo);
+
+                                    if (Wheretogo != 0) //집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                                    {
+                                        WhereCharacter();
+                                        CaseSetting();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            WhereToGo();
+                            EnemyClick();
+
+                            if (Wheretogo != 0) //집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                            {
+                                WhereCharacter();
+                                CaseSetting();
+                            }
+                        }
+                    }
+
+
+                }
+                else if (isSecond_ing_click == true) //isSecond_ing일때 클릭했다면 isSecond_ing이 false일때 다시 움직임 시작
+                {
+                    WhereCharacter();
+                    CaseSetting();
+                    EnemyClick();
+                    isSecond_ing_click = false;
+
+                }
+            }
+
+            if (isSecond_ing)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    ButtonClick();
+                    if (isButtonClick)
+                    {
+                        rb.isKinematic = true;
+
+                        MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        WhereToGo();
+                        //Debug.Log("Wheretogo: " + Wheretogo);
+                        if (Wheretogo != 0)
+                        {
+                            isSecond_ing_click = true;
+                        }
+                    }
+
+                }
+            }
+
+            #endregion
         }
 
     }
@@ -359,9 +440,10 @@ public class ClickMovement : MonoBehaviour
     void ButtonClick()//layermask가 Button인 콜라이더만 인식(레이어마스크 인스펙터에서 설정 가능)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        hit = Physics2D.Raycast(ray.origin, ray.direction, 10f);
+        hit = Physics2D.Raycast(ray.origin, ray.direction, 50f,layerMask);
         if (hit)
         {
+            Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("Button"))
             {
                 isButtonClick = true;
