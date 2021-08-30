@@ -117,13 +117,13 @@ public class FarmingSystem : MonoBehaviour
 		{
 			switch (itemList[i].Item_Type)
 			{
-				case 0:
+				case 1:
 					foodItemList.Add(new ImpliedItem(itemList[i].ID, itemList[i].Item_Type, itemList[i].Charge_Space));
 					break;
-				case 3:
+				case 0:
 					matItemList.Add(new ImpliedItem(itemList[i].ID, itemList[i].Item_Type, itemList[i].Charge_Space));
 					break;
-				case 4:
+				case 3:
 					medItemList.Add(new ImpliedItem(itemList[i].ID, itemList[i].Item_Type, itemList[i].Charge_Space));
 					break;
 			}
