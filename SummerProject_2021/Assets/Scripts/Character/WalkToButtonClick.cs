@@ -27,7 +27,7 @@ public class WalkToButtonClick : MonoBehaviour
     {
         if (_wallCollision.isCollideButton)
         {
-            Debug.Log("바꾼다앗");
+            //Debug.Log("바꾼다앗");
             _doorOpenClose.BeforAfterChange();
         }
         else
