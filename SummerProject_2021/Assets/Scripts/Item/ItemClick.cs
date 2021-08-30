@@ -29,7 +29,7 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
         int clickCount = eventData.clickCount;
         if(eventData.button == PointerEventData.InputButton.Left)
         {
-            if (clickCount == 2 && item.ItemType != 3 && ParentObject.ID == 21)
+            if (clickCount == 2 && item.ItemType != 0 && ParentObject.ID == 21)
             {
                 OnDoubleClick();
             }
@@ -50,8 +50,6 @@ public class ItemClick : MonoBehaviour, IPointerClickHandler
 
     void OnDoubleClick()
     {
-        Debug.Log(item.CurrentItemType);
-        Debug.Log(item.CurrentItem);
         item.useItem = true;
     }
 }

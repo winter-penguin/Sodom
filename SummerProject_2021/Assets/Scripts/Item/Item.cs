@@ -6,8 +6,6 @@ public class Item : MonoBehaviour
     #region DB
     [SerializeField]
     public Craft[] itemCraft;
-
-    public enum ItemTypeEnum { Material, Food, Medicine, Tool, Weapon, Product };
     public enum ItemName
     {
         Wood, Stone, Cloth, Iron,
@@ -17,7 +15,6 @@ public class Item : MonoBehaviour
     };
 
     public ItemName CurrentItem = ItemName.Wood;
-    public ItemTypeEnum CurrentItemType = ItemTypeEnum.Material;
     public int ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
     public Sprite itemImage;
     private DBManagerItem itemData;
@@ -34,7 +31,7 @@ public class Item : MonoBehaviour
     bool itemfarming = false;
     private FarmingSystem farmingSystem;
     [SerializeField]
-    //public List<FarmingInfo> farmingInfos = new List<FarmingInfo>();
+    public List<FarmingSystem.FarmingInfo> farmingInfos = new List<FarmingSystem.FarmingInfo>();
     void Start()
     {
         survivalGauge = GameObject.FindGameObjectWithTag("Player").GetComponent<SurvivalGauge>();
@@ -90,7 +87,7 @@ public class Item : MonoBehaviour
     }
     private void SetCount()
     {
-/*        List<FarmingInfo> farmingInfos = farmingSystem.GetFarmingInfo();
+        farmingInfos = farmingSystem.GetFarmingInfo();
         for (int i = 0; i < farmingInfos.Count; i++)
         {
             if (ID == farmingInfos[i].itemID)
@@ -101,18 +98,18 @@ public class Item : MonoBehaviour
                 ItemCount += farmingInfos[i].amount;
                 itemfarming = true;
             }
-        }*/
+        }
     }
     private void CheckUseItem()
     {
-        if (ItemType == 0 || ItemType == 4)
+        if (ItemType == 1 || ItemType == 2 || ItemType == 3)
         {
             playerValue.HpChanged(Heal);
             survivalGauge.HungerMinus(Hunger);
             survivalGauge.ThirstMinus(Thirst);
             survivalGauge.FatiguePlus(Fatigue);
         }
-        else if (ItemType == 1 || ItemType == 2)
+        else if (ItemType == 4 || ItemType == 5)
         {
             if (ItemEquip)
             {
