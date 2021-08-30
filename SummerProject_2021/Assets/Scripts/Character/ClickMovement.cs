@@ -182,7 +182,7 @@ public class ClickMovement : MonoBehaviour
 
             if (isSecond_ing == false)
             {
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0))//클릭 고려첫번째
                 {
                     ButtonClick();
                     if (isButtonClick)
@@ -242,7 +242,7 @@ public class ClickMovement : MonoBehaviour
 
             if (isSecond_ing)
             {
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0))//클릭 고려두번째
                 {
                     ButtonClick();
                     if (isButtonClick)
