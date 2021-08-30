@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class ButtonRemover : MonoBehaviour
+public class WalkToWallRemoveButton : MonoBehaviour
 {
     // Start is called before the first frame update
     private Image _image;
     public float alpha;
     public GameObject ButtonParent;
-    public GameObject mainCharacter;
+    
     public GameObject GaugeBarObject;
     public GameObject HandButton;
     private ClickMovement _clickMovement;
@@ -26,7 +26,7 @@ public class ButtonRemover : MonoBehaviour
     {
         _image = this.gameObject.GetComponent<Image>();
         _wallCollision = ButtonParent.GetComponent<WallCollision>();
-        _clickMovement = mainCharacter.GetComponent<ClickMovement>();
+        _clickMovement = GameObject.FindWithTag("Player").GetComponent<ClickMovement>();
         _gaugeBar = GaugeBarObject.GetComponent<GaugeBar>();
 
     }
@@ -73,6 +73,7 @@ public class ButtonRemover : MonoBehaviour
             Debug.Log("Wait for touching button...");
             if (!_clickMovement.isButtonClick)//문과 닿지 않았는데 버튼말고 다른곳을 눌렀을 때 이 코루틴 중지
             {
+                Debug.Log("끝!");
                 StopCoroutine(co_my_coroutine);
                 Button_ing = false;
             }
@@ -82,6 +83,7 @@ public class ButtonRemover : MonoBehaviour
         if (_clickMovement.isButtonClick)
         {
             //StartCoroutine(ButtonFade());
+            Debug.Log("시작!");
             _gaugeBar.StartPercentGauge(); ////게이지바 오브젝트 시작1
             
         }
@@ -109,6 +111,5 @@ public class ButtonRemover : MonoBehaviour
     {
         alpha = _image.color.a;
         isCollide = _clickMovement.isButtonClick;
-        
     }
 }

@@ -13,7 +13,7 @@ using UnityEngine.EventSystems;
 public class ClickMovement : MonoBehaviour
 {
     #region Variables
-    EnemyNPC enemynpc;
+    NPCRich enemynpc;
     private WallCollision _wallCollision;
     private GameManager _gameManager;
     [System.Serializable] // class를 인스펙터에서 보여줌
@@ -90,88 +90,99 @@ public class ClickMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();//이 캐릭터가 왜 NPC하고 부딪혔을때 안멈추는지 모르겠음
         anim = GetComponent<Animator>();
         AttackRange.SetActive(false);
+        Stair.SetActive(false);
         _gameManager = GameManager._instance;
 
     }
 
     void Update()
     {
-        if(!EventSystem.current.IsPointerOverGameObject())
-        {
-            #region MouseClick
-        
-        if (isSecond_ing == false)
-        {
-            if (Input.GetMouseButtonUp(0))
+        #region MouseClick
+
+            if (isSecond_ing == false)
             {
-                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);//항상 제일 먼저
-                if (transform.position.x > MousePosition.x) // 가야할 방향이 왼쪽이면
+                if (Input.GetMouseButtonUp(0))
                 {
-                    LeftRight = -1;
-                }
-                else LeftRight = 1;
-                //Debug.Log(LeftRight);
-
-                if (isWall)
-                {
-                    if (_wallCollision.iscollide)
+                    MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //항상 제일 먼저
+                    if (transform.position.x > MousePosition.x) // 가야할 방향이 왼쪽이면
                     {
-                        //Debug.Log(_wallCollision.LeftOrRight);
-                        Debug.Log("벽과 닿은상태입니다");
-                        if (_wallCollision.LeftOrRight == LeftRight)
-                        {
-                            WhereToGo();
-                            EnemyClick();
-                            Debug.Log("Wheretogo: " + Wheretogo);
+                        LeftRight = -1;
+                    }
+                    else LeftRight = 1;
+                    //Debug.Log(LeftRight);
 
-                            if (Wheretogo != 0)//집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                    if (isWall)//벽이랑 닿은 상태일때
+                    {
+                        if (_wallCollision.iscollide)
+                        {
+                            //Debug.Log(_wallCollision.LeftOrRight);
+                            Debug.Log("벽과 닿은상태입니다");
+                            if (_wallCollision.LeftOrRight == LeftRight)
                             {
-                                WhereCharacter();
-                                CaseSetting();
+                                WhereToGo();
+                                ButtonClick();
+                                EnemyClick();
+                                Debug.Log("Wheretogo: " + Wheretogo);
+
+                                if (Wheretogo != 0) //집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                                {
+                                    WhereCharacter();
+                                    CaseSetting();
+                                }
                             }
                         }
                     }
-                }
-                else
-                {
-                    WhereToGo();
-                    EnemyClick();
-
-                    if (Wheretogo != 0)//집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                    else
                     {
-                        WhereCharacter();
-                        CaseSetting();
+                        WhereToGo();
+                        ButtonClick();
+                        EnemyClick();
+
+                        if (Wheretogo != 0) //집밖을 선택하지 않았을때만 캐릭터의 위치를 구하고, 케이스를 정해줌
+                        {
+                            WhereCharacter();
+                            CaseSetting();
+                        }
                     }
                 }
-
-            }
-            else if (isSecond_ing_click == true)//isSecond_ing일때 클릭했다면 isSecond_ing이 false일때 다시 움직임 시작
-            {
-                WhereCharacter();
-                CaseSetting();
-                EnemyClick();
-                isSecond_ing_click = false;
-                
-            }
-        }
-        if (isSecond_ing)
-        {
-            if (Input.GetMouseButtonUp(0))
-            {
-                rb.isKinematic = true;
-                
-                MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                WhereToGo();
-                //Debug.Log("Wheretogo: " + Wheretogo);
-                if (Wheretogo != 0)
+                else if (isSecond_ing_click == true) //isSecond_ing일때 클릭했다면 isSecond_ing이 false일때 다시 움직임 시작
                 {
-                    isSecond_ing_click = true;
+                    WhereCharacter();
+                    CaseSetting();
+                    EnemyClick();
+                    ButtonClick();
+                    isSecond_ing_click = false;
+
                 }
             }
-        }
-        #endregion
+
+            if (isSecond_ing)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    rb.isKinematic = true;
+
+                    MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    WhereToGo();
+                    //Debug.Log("Wheretogo: " + Wheretogo);
+                    if (Wheretogo != 0)
+                    {
+                        isSecond_ing_click = true;
+                    }
+                }
+            }
+
+            #endregion
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            
         }
         
+        else //UI를 클릭했을때
+        {
+            
+        }
+
     }
     //계단 올라가는중 => 클릭 => 일단 위치 저장 => 계단 이동이 끝나면 바로 이 저장한 위치로 이동해야함
     private void OnCollisionEnter2D(Collision2D collision)//문이랑 부딪히면
@@ -245,7 +256,7 @@ public class ClickMovement : MonoBehaviour
             {
                 if (attack == true)
                 {
-                    enemynpc.EnemyHP -= 5;
+                    enemynpc.health -= 5;
                     attack = false;
                     StartCoroutine(WaitForAttack());
                 }
@@ -348,10 +359,21 @@ public class ClickMovement : MonoBehaviour
     void ButtonClick()//layermask가 Button인 콜라이더만 인식(레이어마스크 인스펙터에서 설정 가능)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        hit = Physics2D.Raycast(ray.origin, ray.direction, 10f, layerMask);
+        hit = Physics2D.Raycast(ray.origin, ray.direction, 10f);
         if (hit)
         {
-            Debug.Log(hit.collider.tag);
+            if (hit.collider.CompareTag("Button"))
+            {
+                isButtonClick = true;
+            }
+            else
+            {
+                isButtonClick = false;
+            }
+        }
+        else
+        {
+            isButtonClick = false;
         }
     }
     void EnemyClick()//이함수를 적대적 엔피시가 스폰됐을때만 실행시켜야 Good! 이라고 생각했지만 이함수로 버튼을 구분할거임
@@ -366,12 +388,12 @@ public class ClickMovement : MonoBehaviour
             //Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("EnemyNPC"))
             {
-                enemynpc = hit.collider.GetComponent<EnemyNPC>();
+                enemynpc = hit.collider.GetComponent<NPCRich>();
                 //Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
                 isClickEnemy = true;
                 rb.isKinematic = false;
             }
-            else if (hit.collider.CompareTag("Button"))
+            else if(hit.collider.CompareTag("Button"))
             {
                 isButtonClick = true;
             }
@@ -380,7 +402,7 @@ public class ClickMovement : MonoBehaviour
                 
                 anim.SetBool("isPunching", false);
                 isClickEnemy = false;
-                isButtonClick = false;
+                //isButtonClick = false;
                 AttackRange.SetActive(false);
             }
         }
@@ -388,7 +410,7 @@ public class ClickMovement : MonoBehaviour
         {
             anim.SetBool("isPunching", false);
             isClickEnemy = false;
-            isButtonClick = false;
+            //isButtonClick = false;
             AttackRange.SetActive(false);
         }
     }
@@ -461,8 +483,9 @@ public class ClickMovement : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(pos.position, boxSize);
     }
-    private void GoUp()
+    public void isButtonTrue()
     {
+        isButtonClick = true;
 
     }
     private void GoDown()

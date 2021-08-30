@@ -15,7 +15,7 @@ public class GaugeBar : MonoBehaviour
     
     public GameObject LockButton;
     private WallCollision _wallCollision;
-    private ButtonRemover _buttonRemover;
+    private WalkToWallRemoveButton _buttonRemover;
     
     Coroutine co_my_coroutine;
     Coroutine co_my_coroutine_1;
@@ -30,7 +30,7 @@ public class GaugeBar : MonoBehaviour
     void Start()
     {
         _wallCollision = BeforeDoor.GetComponent<WallCollision>();
-        _buttonRemover = LockButton.GetComponent<ButtonRemover>();
+        _buttonRemover = LockButton.GetComponent<WalkToWallRemoveButton>();
         speed = 100f / Second;
     }
 

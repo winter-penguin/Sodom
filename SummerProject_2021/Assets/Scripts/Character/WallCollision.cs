@@ -9,6 +9,7 @@ public class WallCollision : MonoBehaviour
     public int LeftOrRight;
     public Image _image;
     ClickMovement clickmovement;
+    public bool isCollideButton = false;
     public bool iscollide;
 
     public GameObject DoorPoint;
@@ -63,5 +64,26 @@ public class WallCollision : MonoBehaviour
     {
         //this.gameObject.SetActive(false);
         //_image.sprite = Resources.Load<Sprite>("Sprites/House/door_side_open_sample") as Sprite;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player")) 
+        {
+            isCollideButton = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isCollideButton = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isCollideButton = false;
+        }
     }
 }
