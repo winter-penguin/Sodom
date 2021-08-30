@@ -95,7 +95,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -123,9 +123,11 @@ MonoBehaviour:
   move_speed: 0
   dead: 0
   isAttack: 0
+  iscollide: 0
   floor:
-  - up: {fileID: 0}
-    down: {fileID: 0}
+  - up: {fileID: 4326379156641574951, guid: 05b1cb90ed7e0df4bb8cfe0a1b4c0d41, type: 3}
+    down: {fileID: 2492611329262528609, guid: 0e9d4dc37dfe804458fb4e64a597dc98, type: 3}
+  MovingCase: 0
 --- !u!95 &1929385190075454853
 Animator:
   serializedVersion: 3

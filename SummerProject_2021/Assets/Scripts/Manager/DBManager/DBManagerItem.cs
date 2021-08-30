@@ -26,7 +26,6 @@ public struct Craft
     public int Necessary_Material_ID1, Amount_Of_Material1, Necessary_Material_ID2, Amount_Of_Material2,
                 Necessary_Material_ID3, Amount_Of_Material3, Necessary_Object_ID;
 }
-
 public class DBManagerItem: DBManager
 {
     [SerializeField]
@@ -69,19 +68,19 @@ public class DBManagerItem: DBManager
             itemDB[i].ID = Convert.ToInt32(GetDataValue(item[i], "ID:", "|"));
             itemDB[i].name = GetDataValue(item[i], "Name:", "|");
             itemDB[i].Item_Type = Convert.ToInt32(GetDataValue(item[i], "Item_Type:", "|"));
-            if(itemDB[i].Item_Type == 0 || itemDB[i].Item_Type == 4)
+            if(itemDB[i].Item_Type == 1 || itemDB[i].Item_Type == 2 || itemDB[i].Item_Type == 3)
             {
                 itemDB[i].Hunger = Convert.ToInt32(GetDataValue(item[i], "Hunger:", "|"));
                 itemDB[i].Thirst = Convert.ToInt32(GetDataValue(item[i], "Thirst:", "|"));
                 itemDB[i].Heal = Convert.ToInt32(GetDataValue(item[i], "Heal:", "|"));
                 itemDB[i].Fatigue = Convert.ToInt32(GetDataValue(item[i], "Fatigue:", "|"));
             }
-            if(itemDB[i].Item_Type == 1 || itemDB[i].Item_Type == 2)
+            if(itemDB[i].Item_Type == 4 || itemDB[i].Item_Type == 5)
             {
                 itemDB[i].AD = Convert.ToInt32(GetDataValue(item[i], "AD:", "|"));
                 itemDB[i].Attack_Range = Convert.ToInt32(GetDataValue(item[i], "Attack_Range:", "|"));
             }
-            if(itemDB[i].Item_Type == 5)
+            if(itemDB[i].Item_Type == 6)
             {
                 string Fatigue = GetDataValue(item[i], "Fatigue:", "|");
                 string Capacity = GetDataValue(item[i], "Capacity:", "|");

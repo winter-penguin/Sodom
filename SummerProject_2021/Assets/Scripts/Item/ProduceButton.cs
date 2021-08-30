@@ -30,7 +30,7 @@ public class ProduceButton : MonoBehaviour
                 MaterialItem[i].ItemCount -= slots[i].ProduceItemCount;
             }
         }
-        if (item.ItemType == 5)
+        if (item.ItemType == 6)
         {
             product.Product = true;
         }
