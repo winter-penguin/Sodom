@@ -101,7 +101,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 9
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -309,7 +308,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 5
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -439,7 +437,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 16
-  CurrentItemType: 4
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -494,6 +491,7 @@ GameObject:
   - component: {fileID: 789669341965531716}
   - component: {fileID: 309313706608814686}
   - component: {fileID: 6041604076116602892}
+  - component: {fileID: 7371518125321995067}
   m_Layer: 5
   m_Name: Wood
   m_TagString: Item
@@ -559,6 +557,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7371518125321995067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154397874743496376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft: []
+  CurrentItem: 0
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 0}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &1200704820817048202
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +687,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 4
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -1194,7 +1220,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 14
-  CurrentItemType: 4
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -1339,7 +1364,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 7
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -1469,7 +1493,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 15
-  CurrentItemType: 4
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -1524,6 +1547,7 @@ GameObject:
   - component: {fileID: 3583824150001315249}
   - component: {fileID: 3928294714299765958}
   - component: {fileID: 1866403794658331700}
+  - component: {fileID: 7908610137424405991}
   m_Layer: 5
   m_Name: Iron
   m_TagString: Item
@@ -1589,6 +1613,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7908610137424405991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382700065488281836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft: []
+  CurrentItem: 3
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 0}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &3393389601444295619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,7 +1744,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 19
-  CurrentItemType: 5
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -2002,8 +2054,7 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 9
-  CurrentItemType: 1
+  CurrentItem: 11
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -2219,8 +2270,7 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 9
-  CurrentItemType: 1
+  CurrentItem: 10
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -2428,7 +2478,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 8
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -3271,7 +3320,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 9
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -3549,7 +3597,6 @@ GameObject:
   - component: {fileID: 7279837708052400964}
   - component: {fileID: 7279837708052400967}
   - component: {fileID: 4748124415531519683}
-  - component: {fileID: 4548796747756433452}
   m_Layer: 5
   m_Name: Box
   m_TagString: Item
@@ -3644,7 +3691,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 21
-  CurrentItemType: 5
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -3660,18 +3706,6 @@ MonoBehaviour:
   useItem: 0
   ItemEquip: 0
   ItemCount: 0
---- !u!114 &4548796747756433452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7279837708052400985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcafb5900a0452c4e868e15d5414d388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7279837708297995491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4188,6 +4222,7 @@ GameObject:
   - component: {fileID: 2660551294576634537}
   - component: {fileID: 4911252058323883821}
   - component: {fileID: 2850444758560215389}
+  - component: {fileID: 4927246668111186768}
   m_Layer: 5
   m_Name: Stone
   m_TagString: Item
@@ -4253,6 +4288,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4927246668111186768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577702460658505992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft: []
+  CurrentItem: 1
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 0}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
 --- !u!1 &8589129337460580913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4354,7 +4418,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 6
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -4484,7 +4547,6 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 13
-  CurrentItemType: 3
   ID: 0
   ItemType: 0
   Hunger: 0
@@ -4934,6 +4996,7 @@ GameObject:
   - component: {fileID: 6835750015011233061}
   - component: {fileID: 8968127209049150240}
   - component: {fileID: 5059966916093461582}
+  - component: {fileID: 3176845191095601020}
   m_Layer: 5
   m_Name: Cloth
   m_TagString: Item
@@ -4999,3 +5062,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3176845191095601020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046456974240304485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCraft: []
+  CurrentItem: 2
+  ID: 0
+  ItemType: 0
+  Hunger: 0
+  Thirst: 0
+  Heal: 0
+  Fatigue: 0
+  AD: 0
+  Attack_Range: 0
+  Capacity: 0
+  Charge_Space: 0
+  Value: 0
+  itemImage: {fileID: 0}
+  useItem: 0
+  ItemEquip: 0
+  ItemCount: 0
