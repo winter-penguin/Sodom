@@ -49,10 +49,10 @@ public class Item : MonoBehaviour
         {
             DataSet();
         }
-        if (farmingSystem.isfarming && !itemfarming)
+/*        if (farmingSystem.isfarming && !itemfarming)
         {
             SetCount();
-        }
+        }*/
     }
     protected void DataSet()
     {
@@ -101,7 +101,7 @@ public class Item : MonoBehaviour
                 Debug.Log(farmingInfos[i].amount);
                 ItemCount += farmingInfos[i].amount;
                 itemfarming = true;
-                farmingSystem.isfarming = false;
+                //farmingSystem.isfarming = false;
             }
         }
     }
