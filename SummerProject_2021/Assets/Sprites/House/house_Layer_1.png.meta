@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 06045e176208028498d313c7b81d64c1
+guid: 5ea3634d055989540822ee26fae1de9e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -1334324264606035852
-    second: character1_attack(punch)_0
-  - first:
-      213: 2223458029569785359
-    second: character1_attack(punch)_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -38,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,49 +89,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: character1_attack(punch)_0
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 3
-        width: 112
-        height: 193
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 47019f0a6278b7de0800000000000000
-      internalID: -1334324264606035852
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character1_attack(punch)_1
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 3
-        width: 161
-        height: 193
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0e3f792c4f4bde10800000000000000
-      internalID: 2223458029569785359
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

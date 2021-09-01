@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 06045e176208028498d313c7b81d64c1
+guid: 533bff796ecaa964d9e2804115c81bfd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1334324264606035852
-    second: character1_attack(punch)_0
+      213: 8707401959911851687
+    second: character1_idle_temp_0
   - first:
-      213: 2223458029569785359
-    second: character1_attack(punch)_1
+      213: 8168191868274980384
+    second: character1_idle_temp_1
+  - first:
+      213: 2956662196027389253
+    second: character1_idle_temp_2
+  - first:
+      213: -2786118287959886268
+    second: character1_idle_temp_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -97,43 +103,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character1_attack(punch)_0
+      name: character1_idle_temp_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 3
-        width: 112
-        height: 193
+        x: 11
+        y: 2
+        width: 114
+        height: 204
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47019f0a6278b7de0800000000000000
-      internalID: -1334324264606035852
+      spriteID: 7a60611e2f7e6d870800000000000000
+      internalID: 8707401959911851687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_attack(punch)_1
+      name: character1_idle_temp_1
       rect:
         serializedVersion: 2
         x: 138
-        y: 3
-        width: 161
-        height: 193
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        y: 2
+        width: 114
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0e3f792c4f4bde10800000000000000
-      internalID: 2223458029569785359
+      spriteID: 026b3cd2a3f3b5170800000000000000
+      internalID: 8168191868274980384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character1_idle_temp_2
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 2
+        width: 114
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 545f90b2a9c280920800000000000000
+      internalID: 2956662196027389253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character1_idle_temp_3
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 2
+        width: 114
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4467ee7bd28b559d0800000000000000
+      internalID: -2786118287959886268
       vertices: []
       indices: 
       edges: []

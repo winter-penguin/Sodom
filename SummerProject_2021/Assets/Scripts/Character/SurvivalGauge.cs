@@ -27,7 +27,7 @@ public class SurvivalGauge : MonoBehaviour
 
     void Update()
     {
-        Minute = _clockSystem.DayTime.min;
+        //Minute = _clockSystem.DayTime.min;
     }
 /// <summary>
 /// 

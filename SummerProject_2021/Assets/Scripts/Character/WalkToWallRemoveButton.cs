@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class ButtonRemover : MonoBehaviour
+public class WalkToWallRemoveButton : MonoBehaviour
 {
     // Start is called before the first frame update
     private Image _image;
     public float alpha;
     public GameObject ButtonParent;
-    public GameObject mainCharacter;
+    
     public GameObject GaugeBarObject;
+    public GameObject HandButton;
     private ClickMovement _clickMovement;
     private WallCollision _wallCollision;
     private GaugeBar _gaugeBar;
@@ -21,11 +22,11 @@ public class ButtonRemover : MonoBehaviour
     Coroutine co_my_coroutine;
     
     //public bool isClickButton;
-    void Start()
+    void Start()//잠금 버튼 오브젝트 시작
     {
         _image = this.gameObject.GetComponent<Image>();
         _wallCollision = ButtonParent.GetComponent<WallCollision>();
-        _clickMovement = mainCharacter.GetComponent<ClickMovement>();
+        _clickMovement = GameObject.FindWithTag("Player").GetComponent<ClickMovement>();
         _gaugeBar = GaugeBarObject.GetComponent<GaugeBar>();
 
     }
@@ -69,9 +70,10 @@ public class ButtonRemover : MonoBehaviour
         {
             
             yield return new WaitForSeconds(0.1f);
-            Debug.Log("Waiting...");
-            if (!_clickMovement.isButtonClick)//문과 닿지 않았는데 버튼말고 다른곳을 눌렀을 때 
+            Debug.Log("Wait for touching button...");
+            if (!_clickMovement.isButtonClick)//문과 닿지 않았는데 버튼말고 다른곳을 눌렀을 때 이 코루틴 중지
             {
+                Debug.Log("끝!");
                 StopCoroutine(co_my_coroutine);
                 Button_ing = false;
             }
@@ -81,7 +83,8 @@ public class ButtonRemover : MonoBehaviour
         if (_clickMovement.isButtonClick)
         {
             //StartCoroutine(ButtonFade());
-            _gaugeBar.StartPercentGauge();
+            Debug.Log("시작!");
+            _gaugeBar.StartPercentGauge(); ////게이지바 오브젝트 시작1
             
         }
 
@@ -90,7 +93,7 @@ public class ButtonRemover : MonoBehaviour
     
     //IEnumerator ReachDoor()
 
-    IEnumerator ButtonFade()//이건 중간에 끊키면 안되기때문에 if문 뺌, 이거 실행후 게이지UI 띄우고 실행, 그다음 손모양 버튼 활성화
+    IEnumerator ButtonFade()//이건 중간에 끊키면 안되기때문에 if문 뺌, 게이지UI 실행시키고 띄우기, 그다음 손모양 버튼 활성화
     {
         //_image.CrossFadeAlpha(1,1,true);
         while (_image.color.a > 0)
@@ -98,7 +101,9 @@ public class ButtonRemover : MonoBehaviour
             _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _image.color.a - 0.1f);
             yield return new WaitForSeconds(0.1f);
         }
-        this.gameObject.SetActive(false);
+        HandButton.SetActive(true);
+        this.gameObject.SetActive(false);//잠금 버튼 오브젝트 끝
+        
     }
 
     // Update is called once per frame
@@ -106,6 +111,5 @@ public class ButtonRemover : MonoBehaviour
     {
         alpha = _image.color.a;
         isCollide = _clickMovement.isButtonClick;
-        
     }
 }
