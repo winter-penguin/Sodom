@@ -13,9 +13,9 @@ public class GaugeBar : MonoBehaviour
     public GameObject AfterDoor;
     public GameObject HandButton;
     
-    public GameObject ButtonRemove;
+    public GameObject LockButton;
     private WallCollision _wallCollision;
-    private ButtonRemover _buttonRemover;
+    private WalkToWallRemoveButton _buttonRemover;
     
     Coroutine co_my_coroutine;
     Coroutine co_my_coroutine_1;
@@ -30,7 +30,8 @@ public class GaugeBar : MonoBehaviour
     void Start()
     {
         _wallCollision = BeforeDoor.GetComponent<WallCollision>();
-        _buttonRemover = ButtonRemove.GetComponent<ButtonRemover>();
+        _buttonRemover = LockButton.GetComponent<WalkToWallRemoveButton>();
+        speed = 100f / Second;
     }
 
     // Update is called once per frame
@@ -41,13 +42,13 @@ public class GaugeBar : MonoBehaviour
 
     public void StartPercentGauge()
     {
-        this.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);////게이지바 오브젝트 시작2
         co_my_coroutine = StartCoroutine(PercentGauge());
         co_my_coroutine_1 = StartCoroutine(GaugeText());
     }
     
 
-    IEnumerator PercentGauge()
+    IEnumerator PercentGauge() //LoadingBar.fillAmount이 1이 될때까지 점점 게이지를 추가해줌
     {
         while (currentValue < 100)
         {
@@ -62,8 +63,7 @@ public class GaugeBar : MonoBehaviour
         _buttonRemover.StartButtonFade();
         BeforeDoor.SetActive(false);
         AfterDoor.SetActive(true);
-        HandButton.SetActive(true);
-        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);//게이지바 오브젝트 끝
         
         
     }

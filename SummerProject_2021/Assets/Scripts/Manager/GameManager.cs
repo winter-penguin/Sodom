@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
 	// 게임이 끝났는가?
 	public bool isEnd;
-	public bool isUI;
+	public bool isUI; //필요없음
 	public bool isSecond_ing;
 	private void Awake()
 	{

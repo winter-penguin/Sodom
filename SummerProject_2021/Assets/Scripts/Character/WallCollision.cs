@@ -9,7 +9,10 @@ public class WallCollision : MonoBehaviour
     public int LeftOrRight;
     public Image _image;
     ClickMovement clickmovement;
+    public bool isCollideButton = false;
     public bool iscollide;
+
+    public GameObject DoorPoint;
     void Start()
     {
         _image = this.gameObject.GetComponent<Image>();
@@ -22,12 +25,19 @@ public class WallCollision : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)//얘는 가만히있는거고 캐릭터는 앞으로 부딪힐 콜라이더가 많으니깐 가만히있는 물체가 캐릭터 움직임을 멈추는게 좋지 않을까?
     {
+        if (collision.transform.position.x > transform.position.x)
+        {
+            LeftOrRight = 1;
+        }
+        else
+        {
+            LeftOrRight = -1;
+        }
         iscollide = true;
         clickmovement = collision.gameObject.GetComponent<ClickMovement>();
         clickmovement.isNormalMoving = false;
         clickmovement.isFirst_ing = false;
         clickmovement.anim.SetBool("isWalking", false);
-        
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -54,5 +64,26 @@ public class WallCollision : MonoBehaviour
     {
         //this.gameObject.SetActive(false);
         //_image.sprite = Resources.Load<Sprite>("Sprites/House/door_side_open_sample") as Sprite;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player")) 
+        {
+            isCollideButton = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isCollideButton = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isCollideButton = false;
+        }
     }
 }
