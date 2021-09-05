@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
@@ -11,33 +12,26 @@ public class Item : MonoBehaviour
         Wood, Stone, Cloth, Iron,
         Brown_Water, Water, Raw_Meat, Fried_Meat, Vegetable, Vegetable_Soup, Rotten_Food, Bandage, Pill,
         Shovel, Crowbar, Dagger, Sword,
-        Bonfire, Bed, Bag, Water_Purifier, Box
+        Bag, Water_Purifier, Bonfire, Box, Bed
     };
-
     public ItemName CurrentItem = ItemName.Wood;
-    public int ID, ItemType, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
-    public Sprite itemImage;
+    public int ID, ItemType, CurrentCapacity;
+    private int index;
     private DBManagerItem itemData;
-    // Start is called before the first frame update
     public bool useItem = false;
     public bool ItemEquip = false;
     #endregion
-    public int ItemCount;
     private SurvivalGauge survivalGauge;
     private CharacterValue playerValue;
 
-    bool itemDBloading = false;
-    bool craftloading = false;
-    bool itemfarming = false;
-    private FarmingSystem farmingSystem;
-    [SerializeField]
-    public List<FarmingSystem.FarmingInfo> farmingInfos = new List<FarmingSystem.FarmingInfo>();
+    private bool itemDBloading = false;
+    private bool craftloading = false;
+
     void Start()
     {
         survivalGauge = GameObject.FindGameObjectWithTag("Player").GetComponent<SurvivalGauge>();
         playerValue = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterValue>();
-        itemData = GameObject.Find("DBManager").GetComponent<DBManagerItem>();
-        farmingSystem = FindObjectOfType<FarmingSystem>();
+        itemData = GameObject.FindGameObjectWithTag("Manager").GetComponent<DBManagerItem>();
     }
     void Update()
     {
@@ -49,12 +43,8 @@ public class Item : MonoBehaviour
         {
             DataSet();
         }
-/*        if (farmingSystem.isfarming && !itemfarming)
-        {
-            SetCount();
-        }*/
     }
-    private void DataSet()
+    protected void DataSet()
     {
         for (int i = 0; i < itemData.itemDB.Length; i++)
         {
@@ -62,15 +52,7 @@ public class Item : MonoBehaviour
             {
                 ID = itemData.itemDB[i].ID;
                 ItemType = itemData.itemDB[i].Item_Type;
-                Hunger = itemData.itemDB[i].Hunger;
-                Thirst = itemData.itemDB[i].Thirst;
-                Heal = itemData.itemDB[i].Heal;
-                Fatigue = itemData.itemDB[i].Fatigue;
-                AD = itemData.itemDB[i].AD;
-                Attack_Range = itemData.itemDB[i].Attack_Range;
-                Capacity = itemData.itemDB[i].Capacity;
-                Charge_Space = itemData.itemDB[i].Charge_Space;
-                Value = itemData.itemDB[i].Value;
+                index = ID - 1;
                 itemDBloading = true;
                 break;
             }
@@ -85,43 +67,38 @@ public class Item : MonoBehaviour
             }
         }
     }
-    private void SetCount()
+    public void SetImage(int index)
     {
-        farmingInfos = farmingSystem.GetFarmingInfo();
-        for (int i = 0; i < farmingInfos.Count; i++)
-        {
-            if (ID == farmingInfos[i].itemID)
-            {
-                Debug.Log(ID);
-                Debug.Log(farmingInfos[i].itemID);
-                Debug.Log(farmingInfos[i].amount);
-                ItemCount += farmingInfos[i].amount;
-                itemfarming = true;
-            }
-        }
+
+    }
+    private void SetColor(Image image, float _alpha) //이미지 알파 조정
+    {
+        Color color = image.color;
+        color.a = _alpha;
+        image.color = color;
     }
     private void CheckUseItem()
     {
         if (ItemType == 1 || ItemType == 2 || ItemType == 3)
         {
-            playerValue.HpChanged(Heal);
-            survivalGauge.HungerMinus(Hunger);
-            survivalGauge.ThirstMinus(Thirst);
-            survivalGauge.FatiguePlus(Fatigue);
+            playerValue.HpChanged(itemData.itemDB[index].Heal);
+            survivalGauge.HungerMinus(itemData.itemDB[index].Hunger);
+            survivalGauge.ThirstMinus(itemData.itemDB[index].Thirst);
+            survivalGauge.FatiguePlus(itemData.itemDB[index].Fatigue);
         }
         else if (ItemType == 4 || ItemType == 5)
         {
             if (ItemEquip)
             {
-                playerValue.Atk_PowChanged(-AD);
-                playerValue.Atk_RangeChanged(-Attack_Range);
+                playerValue.Atk_PowChanged(-itemData.itemDB[index].AD);
+                playerValue.Atk_RangeChanged(-itemData.itemDB[index].Attack_Range);
                 ItemEquip = false;
                 Debug.Log("아이템 장착해제");
             }
             else if (ItemEquip == false)
             {
-                playerValue.Atk_PowChanged(AD);
-                playerValue.Atk_RangeChanged(Attack_Range);
+                playerValue.Atk_PowChanged(itemData.itemDB[index].AD);
+                playerValue.Atk_RangeChanged(itemData.itemDB[index].Attack_Range);
                 ItemEquip = true;
                 Debug.Log("아이템 장착");
             }

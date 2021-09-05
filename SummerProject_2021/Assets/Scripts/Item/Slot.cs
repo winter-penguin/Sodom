@@ -3,17 +3,18 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    public Item item;
     public int ProduceItemCount;
-    public int ItemCount;
-    private int num;
-    public Image itemImage;
+    [SerializeField]
+    private int ItemCount;
     [SerializeField]
     private Text text_Count;
+    private int num;
+    public Image itemImage;
     [SerializeField]
     private GameObject go_CountImage;
     public GameObject ProduceButton;
     private Slot[] slots;
+    private DBManagerItem ItemData;
     public bool isProduce = false;
     private void Start()
     {
@@ -30,13 +31,13 @@ public class Slot : MonoBehaviour
         image.color = color;
     }
 
-    public void AddItem(Item _item, int _count)
+    public void AddItem(int index, int _count)
     {
-        item = _item;
+        ItemData = GameObject.FindGameObjectWithTag("Manager").GetComponent<DBManagerItem>();
         ProduceItemCount = _count;
         num = _count;
-        ItemCount = item.ItemCount;
-        itemImage.sprite = item.itemImage;
+        ItemCount = ItemData.itemDB[index].ItemCount;
+        itemImage.sprite = ItemData.itemDB[index].ItemImage;
         go_CountImage.SetActive(true);
         if (this.gameObject.name != "CraftSlot")
         {
@@ -66,7 +67,7 @@ public class Slot : MonoBehaviour
         text_Count.text = ProduceItemCount.ToString();
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].item != null)
+            if (slots[i].ProduceItemCount != 0)
             {
                 slots[i].ProduceItemCount = slots[i].num * ProduceItemCount;
                 if (slots[i].ItemCount < slots[i].ProduceItemCount)
@@ -88,7 +89,6 @@ public class Slot : MonoBehaviour
 
     private void ClearSlot()
     {
-        item = null;
         ProduceItemCount = 0;
         itemImage.sprite = null;
         itemImage.color = new Color(1, 1, 1, 0);

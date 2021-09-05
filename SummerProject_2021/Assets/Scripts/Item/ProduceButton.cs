@@ -8,7 +8,8 @@ public class ProduceButton : MonoBehaviour
     private GameObject ProduceUI;
     public ProductItem product;
     public Item item;
-    public List<Item> MaterialItem = new List<Item>();
+    private DBManagerItem itemdata;
+    public List<ItemDB> MaterialItem = new List<ItemDB>();
     private Slot CraftSlot;
     private Slot[] slots;
     private void Start()
@@ -16,24 +17,29 @@ public class ProduceButton : MonoBehaviour
         CraftSlot = GameObject.Find("CraftSlot").GetComponent<Slot>();
         slots = GameObject.Find("ProduceGridSetting").GetComponentsInChildren<Slot>();
         ProduceUI = GameObject.Find("ProduceUI");
+        itemdata = GameObject.FindGameObjectWithTag("Manager").GetComponent<DBManagerItem>();
     }
-    
-    public void OnClickProduceButton()
+    private void OnDisable()
     {
         MaterialItem.RemoveAll(x => true);
-        ProduceUI.SetActive(false);
-        item.ItemCount += CraftSlot.ProduceItemCount;
+    }
+    public void OnClickProduceButton()
+    {
+        int index = item.ID - 1;
+        itemdata.itemDB[index].ItemCount += CraftSlot.ProduceItemCount;
         for (int i = 0; i < MaterialItem.Count; i++)
         {
-            if(MaterialItem[i] != null)
+            if(MaterialItem[i].ID != 0)
             {
-                MaterialItem[i].ItemCount -= slots[i].ProduceItemCount;
+                itemdata.SetCount(MaterialItem[i].ID - 1, -slots[i].ProduceItemCount);
+                //itemdata.itemDB[MaterialItem[i].ID - 1].ItemCount -= slots[i].ProduceItemCount;
             }
         }
         if (item.ItemType == 6)
         {
             product.Product = true;
         }
+        ProduceUI.SetActive(false);
     }
 
     public void OnClickCancelButton()

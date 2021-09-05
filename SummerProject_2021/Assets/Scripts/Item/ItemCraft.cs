@@ -8,10 +8,8 @@ public class ItemCraft : MonoBehaviour
 {
     [SerializeField]
     private GameObject ProduceUI;
-    [SerializeField]
-    public GameObject itemInformation;
-    private Item[] item;
-
+    //private Item[] item;
+    private DBManagerItem ItemData;
     [SerializeField]
     private GameObject ProduceGridSetting;
 
@@ -21,9 +19,9 @@ public class ItemCraft : MonoBehaviour
     private ProduceButton produce;
     void Start()
     {
-        itemInformation = GameObject.Find("ItemInformation");
         ProduceUI = GameObject.Find("MainUI").transform.Find("ProduceUI").gameObject;
         ProduceGridSetting = ProduceUI.transform.Find("ProduceGridSetting").gameObject;
+        ItemData = GameObject.FindGameObjectWithTag("Manager").GetComponent<DBManagerItem>();
     }
     void Update()
     {
@@ -39,45 +37,44 @@ public class ItemCraft : MonoBehaviour
         produce = GameObject.Find("ProduceButton").GetComponent<ProduceButton>();
         produce.product = this.gameObject.GetComponent<ProductItem>();
         produce.item = this.gameObject.GetComponent<Item>();
-
-        item = itemInformation.GetComponentsInChildren<Item>();
         Item mItem = this.gameObject.GetComponent<Item>();
+
         CraftItem = false;
-        ProduceItem(mItem);
-        for (int i = 0; i < item.Length; i++)
+        ProduceItem(mItem.ID - 1);
+        for (int i = 0; i < ItemData.itemDB.Length; i++)
         {
-            if(item[i].ID == mItem.itemCraft[0].Necessary_Material_ID1)
+            if(ItemData.itemDB[i].ID == mItem.itemCraft[0].Necessary_Material_ID1)
             {
-                produce.MaterialItem.Add(item[i]);
-                AcquireItem(item[i], mItem.itemCraft[0].Amount_Of_Material1);
+                produce.MaterialItem.Add(ItemData.itemDB[i]);
+                AcquireItem(i, mItem.itemCraft[0].Amount_Of_Material1);
                 if(mItem.itemCraft[0].Necessary_Material_ID2 == 0)
                 {
                     break;
                 }
             }
-            else if(item[i].ID == mItem.itemCraft[0].Necessary_Material_ID2)
+            else if(ItemData.itemDB[i].ID == mItem.itemCraft[0].Necessary_Material_ID2)
             {
-                produce.MaterialItem.Add(item[i]);
-                AcquireItem(item[i], mItem.itemCraft[0].Amount_Of_Material2);
+                produce.MaterialItem.Add(ItemData.itemDB[i]);
+                AcquireItem(i, mItem.itemCraft[0].Amount_Of_Material2);
                 if (mItem.itemCraft[0].Necessary_Material_ID3 == 0)
                 {
                     break;
                 }
             }
-            else if (item[i].ID == mItem.itemCraft[0].Necessary_Material_ID3)
+            else if (ItemData.itemDB[i].ID == mItem.itemCraft[0].Necessary_Material_ID3)
             {
-                produce.MaterialItem.Add(item[i]);
-                AcquireItem(item[i], mItem.itemCraft[0].Amount_Of_Material3);
+                produce.MaterialItem.Add(ItemData.itemDB[i]);
+                AcquireItem(i, mItem.itemCraft[0].Amount_Of_Material3);
             }
         }
     }
 
-    public void ProduceItem(Item _item, int _count = 1)
+    public void ProduceItem(int index, int _count = 1)
     {
         GameObject UpDownButton = GameObject.Find("CraftSlot").transform.Find("UpDownButton").gameObject;
         produceItem = ProduceGridSetting.transform.parent.GetChild(0).GetComponent<Slot>();
-        produceItem.AddItem(_item, _count);
-        if (_item.ID == 19 || _item.ID == 20 || _item.ID == 22)
+        produceItem.AddItem(index, _count);
+        if (ItemData.itemDB[index].ID == 19 || ItemData.itemDB[index].ID == 20 || ItemData.itemDB[index].ID == 22)
         {
             UpDownButton.SetActive(false);
         }
@@ -87,15 +84,15 @@ public class ItemCraft : MonoBehaviour
         }
     }
 
-    public void AcquireItem(Item _item, int _count)
+    public void AcquireItem(int index, int _count)
     {
         slots = ProduceGridSetting.GetComponentsInChildren<Slot>();
 
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].item == null)
+            if (slots[i].ProduceItemCount == 0)
             {
-                slots[i].AddItem(_item, _count);
+                slots[i].AddItem(index, _count);
                 return;
             }
         }
