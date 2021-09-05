@@ -117,6 +117,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: b9cbe67264d2059438cef838020e43b5, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -128,6 +131,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -139,6 +145,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 1627d9262c4caa9459e389da37f28ae1, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -150,6 +159,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: f3b97d89a7cb8a74bad18d1f94275b67, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -161,6 +173,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 83d65e466a52e5848a50ecc624f727b8, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -172,6 +187,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 7c16a94327dd2dd429564d6bea7b9012, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -183,6 +201,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 1c7a26ed91f99044eac5c87b96918117, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -194,6 +215,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 93795a98a94c5d34b80db7137446785c, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -205,6 +229,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 05fd5472ca6d3ec41b1b2a7b4d419ecf, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -216,6 +243,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 2727783c706e28749ab090d3ba037166, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -227,6 +257,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: c1039df3467529d40a148d98ce95de33, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -238,6 +271,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 973158efc1ac55841957a31590ca1ee6, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -249,6 +285,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 9606141b042324841af0b7c8d3c5c7c1, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -260,6 +299,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 9a93d9aab52b09648bad92e2a653a6c9, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -271,6 +313,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 7703b2feaaef0ea41a7b4d0a61b7f537, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -282,6 +327,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: ffb59fb0c0d456b429274a4e354aaaeb, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -293,6 +341,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 07ee3dfdb4f5ae24aaff988c21de9b70, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -304,6 +355,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 6ee4cff99a8027348b6c70f816c82f60, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -315,6 +369,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: d6b4c0e8c4b799b44a31ed05ddd4fa38, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -326,6 +383,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: d9b5de4d933da734d9084b8a80943a81, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -337,6 +397,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: 4cc90d833d37e11458332ac54c6a1952, type: 3}
   - ID: 0
     name: 
     Item_Type: 0
@@ -348,6 +411,9 @@ MonoBehaviour:
     Attack_Range: 0
     Capacity: 0
     Charge_Space: 0
+    Value: 0
+    ItemCount: 0
+    ItemImage: {fileID: 21300000, guid: da4695209f4ce3742a566f59179c8369, type: 3}
   item: []
   itemDBCraft:
   - ID: 0

@@ -103,19 +103,8 @@ MonoBehaviour:
   CurrentItem: 9
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 05fd5472ca6d3ec41b1b2a7b4d419ecf, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &7259760131427181529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,19 +299,8 @@ MonoBehaviour:
   CurrentItem: 5
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 65cf4e0ebac20014bb7b3e265e156f86, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &2399055935937632582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,19 +417,8 @@ MonoBehaviour:
   CurrentItem: 16
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 9606141b042324841af0b7c8d3c5c7c1, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &2324491409086937208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
   ProduceGridSetting: {fileID: 0}
   CraftItem: 0
 --- !u!114 &4964435901919021338
@@ -573,19 +539,8 @@ MonoBehaviour:
   CurrentItem: 0
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 0}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!1 &1200704820817048202
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,19 +644,8 @@ MonoBehaviour:
   CurrentItem: 4
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: b9cbe67264d2059438cef838020e43b5, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &1079936856753155263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,19 +1166,8 @@ MonoBehaviour:
   CurrentItem: 14
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: c1039df3467529d40a148d98ce95de33, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &8811142843226703639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
   ProduceGridSetting: {fileID: 0}
   CraftItem: 0
 --- !u!114 &431558415249932561
@@ -1366,19 +1298,8 @@ MonoBehaviour:
   CurrentItem: 7
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: f3b97d89a7cb8a74bad18d1f94275b67, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &2046205050044881920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,19 +1416,8 @@ MonoBehaviour:
   CurrentItem: 15
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 973158efc1ac55841957a31590ca1ee6, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &3385819888212030703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,7 +1431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
   ProduceGridSetting: {fileID: 0}
   CraftItem: 0
 --- !u!114 &768053580948506461
@@ -1629,19 +1538,8 @@ MonoBehaviour:
   CurrentItem: 3
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 0}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!1 &3393389601444295619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,22 +1641,11 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 19
+  CurrentItem: 17
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 6ee4cff99a8027348b6c70f816c82f60, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &6242102581928498869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,7 +1659,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
   ProduceGridSetting: {fileID: 0}
   CraftItem: 0
 --- !u!114 &3522592753242569828
@@ -2057,19 +1943,8 @@ MonoBehaviour:
   CurrentItem: 11
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 93795a98a94c5d34b80db7137446785c, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &8244373171751333428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2273,19 +2148,8 @@ MonoBehaviour:
   CurrentItem: 10
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 1c7a26ed91f99044eac5c87b96918117, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &5710205661436434734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2480,19 +2344,8 @@ MonoBehaviour:
   CurrentItem: 8
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 83d65e466a52e5848a50ecc624f727b8, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &5362653747888717057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3322,19 +3175,8 @@ MonoBehaviour:
   CurrentItem: 9
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 7c16a94327dd2dd429564d6bea7b9012, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &4433083303325455523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3690,22 +3532,11 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 21
+  CurrentItem: 20
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 0}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!1 &7279837708297995491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4304,19 +4135,8 @@ MonoBehaviour:
   CurrentItem: 1
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 0}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!1 &8589129337460580913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,19 +4240,8 @@ MonoBehaviour:
   CurrentItem: 6
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 1627d9262c4caa9459e389da37f28ae1, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &8589129337460580927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4549,19 +4358,8 @@ MonoBehaviour:
   CurrentItem: 13
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 2727783c706e28749ab090d3ba037166, type: 3}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &1951250721054003186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4575,7 +4373,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
   ProduceGridSetting: {fileID: 0}
   CraftItem: 0
 --- !u!114 &8589129337741650838
@@ -5078,16 +4875,5 @@ MonoBehaviour:
   CurrentItem: 2
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 0}
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
