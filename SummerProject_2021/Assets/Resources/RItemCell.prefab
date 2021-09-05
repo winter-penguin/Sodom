@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3595c7c3d292b7439cd55b02efa3ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemTitle: {fileID: 0}
 --- !u!1 &8000016526513355179
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9111509207966282472}
   - component: {fileID: 3038893818028233960}
+  - component: {fileID: 472187643821817606}
   m_Layer: 5
   m_Name: RItemCell
   m_TagString: Untagged
@@ -457,3 +459,16 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &472187643821817606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000016526513355179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3595c7c3d292b7439cd55b02efa3ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemTitle: {fileID: 0}

@@ -1,8 +1,17 @@
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+///  AUTHOR : Kim Jihun
+///  Last edit date : 2021-09-05
+///  Contact : kjhcorgi99@gmail.com
+///  Content : Trader에 넣어 모든 ItemCell 과의 상호작용을 담당
+/// +++++++++++++++++++++++++++++++++++++++++++++++++++
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// 아이템 정보 저장
+/// </summary>
 public struct itemStorage
 {
 	public int itemID;
@@ -28,6 +37,10 @@ public class TradingSystem : MonoBehaviour
 	private List<itemStorage> traderTable = new List<itemStorage>();
 	private List<itemStorage> traderVault = new List<itemStorage>();
 
+	[SerializeField] private GameObject traderContent;
+	[SerializeField] private GameObject playerContent;
+	
+
 	private void Init()
 	{
 		// TODO : item 스크립트에서 playerVault에 넣을 아이템(소유하고 있는 아이템) 리스트를 가져와 저장할것
@@ -39,13 +52,20 @@ public class TradingSystem : MonoBehaviour
 	/// </summary>
 	private void TraderVaultSetting()
 	{
+		for (var i = 0; i < traderVault.Count; i++)
+		{
+			itemStorage tempItem = traderVault[i];
+			GameObject button = Instantiate(Resources.Load("RItemCell", typeof(GameObject)), traderContent.transform, true) as GameObject;
+			button.GetComponent<StoragedItemInfo>().ItemInfo = new itemStorage(tempItem.itemID, tempItem.itemName,
+				tempItem.itemAmount, tempItem.itemValue);
+		}
 	}
 
 	private void TraderTableSetting()
 	{
 		for (var i = 0; i < transform.Find("TraderTable").childCount; i++)
 		{
-			playerTable.Add(transform.GetChild(i).GetComponent<StoragedItemInfo>().ItemInfo);
+			traderTable.Add(transform.GetChild(i).GetComponent<StoragedItemInfo>().ItemInfo);
 		}
 	}
 
@@ -57,7 +77,7 @@ public class TradingSystem : MonoBehaviour
 		for (var i = 0; i < playerVault.Count; i++)
 		{
 			itemStorage tempItem = playerVault[i];
-			GameObject button = Instantiate(Resources.Load("RItemCell", typeof(GameObject))) as GameObject;
+			GameObject button = Instantiate(Resources.Load("RItemCell", typeof(GameObject)), playerContent.transform, true) as GameObject;
 			button.GetComponent<StoragedItemInfo>().ItemInfo = new itemStorage(tempItem.itemID, tempItem.itemName,
 				tempItem.itemAmount, tempItem.itemValue);
 		}
@@ -65,6 +85,10 @@ public class TradingSystem : MonoBehaviour
 
 	private void PlayerTableSetting()
 	{
+		for (var i = 0; i < transform.Find("PlayerTable").childCount; i++)
+		{
+			playerTable.Add(transform.GetChild(i).GetComponent<StoragedItemInfo>().ItemInfo);
+		}
 	}
 
 	/// <summary>
@@ -84,23 +108,31 @@ public class TradingSystem : MonoBehaviour
 	/// <summary>
 	/// 아이템을 거래 하기 위에 아이템을 Table로 옮깁니다.
 	/// </summary>
+	/// <returns>교환하고 남은 아이템 정보</returns>
 	public itemStorage VaultToTable(itemStorage _itemStorage)
 	{
-		int i = 0;
-		itemStorage playerTableItem;
-		itemStorage tempVaultItem =
-			new itemStorage(_itemStorage.itemID, _itemStorage.itemName, _itemStorage.itemAmount - 1,
-				_itemStorage.itemValue);
-		do
+		itemStorage vaultItem;
+		itemStorage tableItem;
+		
+		for (var i = 0; i < playerTable.Count; i++)
 		{
-			playerTableItem = playerTable[i];
-			if (playerTableItem.itemID == tempVaultItem.itemID)
+			if (playerTable[i].itemID == _itemStorage.itemID)
 			{
-				
+				tableItem = playerTable[i];
+				break;
 			}
-
-			i++;
 		}
-		while (i < playerTable.Count);
+		
+		for (var i = 0; i < playerVault.Count; i++)
+		{
+			if (playerVault[i].itemID == _itemStorage.itemID)
+			{
+				vaultItem = playerVault[i];
+				break;
+			}
+		}
+		
+		/*vaultItem.itemAmount -= 1;	// Vault에 있는 아이템 갯수 1개 감소*/
+		return new itemStorage(0,"0",0,0);	// 임시로 작성해 놓은것 나중에 수정할 것
 	}
 }
