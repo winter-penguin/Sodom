@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631643557381926680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -557.7, y: -5.6, z: 0}
+  m_LocalPosition: {x: 415, y: -5.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2888186667702742302}
@@ -357,9 +357,6 @@ GameObject:
   - component: {fileID: 2422931821863639940}
   - component: {fileID: 7875502355549542202}
   - component: {fileID: 8491509602323536204}
-  - component: {fileID: 2422931821863639941}
-  - component: {fileID: 2422931821863639938}
-  - component: {fileID: 2422931821863639939}
   - component: {fileID: 174860447315659332}
   m_Layer: 0
   m_Name: Bed Sprite
@@ -376,7 +373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2422931821863639937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -555, y: -12.5, z: 0}
+  m_LocalPosition: {x: 417.7, y: -12.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2888186667702742302}
@@ -461,75 +458,6 @@ MonoBehaviour:
   Player: {fileID: 0}
   SleepingAnimation: {fileID: 631643557381926680}
   isSleeping: 0
---- !u!114 &2422931821863639941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2422931821863639937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8715489dad42d445a36a6064d4cad4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemCraft:
-  - ID: 0
-    name: 
-    Necessary_Material_ID1: 0
-    Amount_Of_Material1: 0
-    Necessary_Material_ID2: 0
-    Amount_Of_Material2: 0
-    Necessary_Material_ID3: 0
-    Amount_Of_Material3: 0
-    Necessary_Object_ID: 0
-  CurrentItem: 17
-  ID: 0
-  ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: da4695209f4ce3742a566f59179c8369, type: 3}
-  useItem: 0
-  ItemEquip: 0
-  ItemCount: 0
---- !u!114 &2422931821863639938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2422931821863639937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23d2765b8ab2ed64ea450874f3e953e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
-  ProduceGridSetting: {fileID: 0}
-  CraftItem: 0
---- !u!114 &2422931821863639939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2422931821863639937}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f62d3b487cbab547bba582833358d46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ProduceButton: {fileID: 0}
-  Product: 0
-  UseItem: 0
 --- !u!61 &174860447315659332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -592,7 +520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
+  m_AnchoredPosition: {x: 1932.7, y: 540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &441076435041806425
@@ -666,7 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2888186667702742302}
   m_Layer: 0
-  m_Name: Bed
+  m_Name: Bed(Sleep)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
