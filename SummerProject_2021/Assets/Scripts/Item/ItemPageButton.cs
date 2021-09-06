@@ -27,4 +27,8 @@ public class ItemPageButton : MonoBehaviour
             Page.text = "2 / 2";
         }
     }
+    public void CancelButton()
+    {
+        this.gameObject.transform.parent.gameObject.SetActive(false);
+    }
 }

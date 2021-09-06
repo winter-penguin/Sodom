@@ -69,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c16a94327dd2dd429564d6bea7b9012, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5af478015bdbdf4f836aa05604f0623, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -102,22 +102,11 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 9
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: 7c16a94327dd2dd429564d6bea7b9012, type: 3}
+  CurrentCapacity: 0
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &8010368028126866967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
   ProduceGridSetting: {fileID: 0}
   CraftItem: 0
 --- !u!1 &2710398559184836741
@@ -215,7 +203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f3b97d89a7cb8a74bad18d1f94275b67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2efa7400d9e441c4d903f550496f5846, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -248,22 +236,11 @@ MonoBehaviour:
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
   CurrentItem: 7
-  CurrentItemType: 1
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 21300000, guid: f3b97d89a7cb8a74bad18d1f94275b67, type: 3}
+  CurrentCapacity: 0
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
 --- !u!114 &2710398559184836747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProduceUI: {fileID: 0}
-  itemInformation: {fileID: 0}
   ProduceGridSetting: {fileID: 0}
   CraftItem: 0
 --- !u!1 &2710398560643529959
@@ -383,7 +359,6 @@ GameObject:
   - component: {fileID: 4010701012598600176}
   - component: {fileID: 4010701012598600179}
   - component: {fileID: 4534580831674851345}
-  - component: {fileID: 5092590375483108044}
   m_Layer: 5
   m_Name: Bonfire
   m_TagString: Item
@@ -472,35 +447,12 @@ MonoBehaviour:
     Necessary_Material_ID3: 0
     Amount_Of_Material3: 0
     Necessary_Object_ID: 0
-  CurrentItem: 17
-  CurrentItemType: 5
+  CurrentItem: 19
   ID: 0
   ItemType: 0
-  Hunger: 0
-  Thirst: 0
-  Heal: 0
-  Fatigue: 0
-  AD: 0
-  Attack_Range: 0
-  Capacity: 0
-  Charge_Space: 0
-  Value: 0
-  itemImage: {fileID: 0}
+  CurrentCapacity: 0
   useItem: 0
   ItemEquip: 0
-  ItemCount: 0
---- !u!114 &5092590375483108044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4010701012598600173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcafb5900a0452c4e868e15d5414d388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4010701012952022267
 GameObject:
   m_ObjectHideFlags: 0

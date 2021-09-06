@@ -37,14 +37,29 @@ public class TradingSystem : MonoBehaviour
 	private List<itemStorage> traderTable = new List<itemStorage>();
 	private List<itemStorage> traderVault = new List<itemStorage>();
 
+	[SerializeField] private List<GameObject> traderTableCells = new List<GameObject>();
 	[SerializeField] private GameObject traderContent;
+	[SerializeField] private List<GameObject> playerTableCells = new List<GameObject>();
 	[SerializeField] private GameObject playerContent;
 	
 
 	private void Init()
 	{
 		// TODO : item 스크립트에서 playerVault에 넣을 아이템(소유하고 있는 아이템) 리스트를 가져와 저장할것
-		// playerTable 과 traderTable 에 있는 버튼들 가져오기
+		
+		// traderTable 에 있는 itemCell 속 item 버튼들 가져오기
+		Transform tempTable = transform.Find("TraderTable");
+		for (var i = 0; i < tempTable.childCount; i++)
+		{
+			traderTableCells.Add(tempTable.GetChild(i).GetChild(0).gameObject);
+		}
+
+		// playerTable 에 있는 itemCell 속 item 버튼들 가져오기
+		tempTable = transform.Find("PlayerTable");
+		for (var i = 0; i < tempTable.childCount; i++)
+		{
+			playerTableCells.Add(tempTable.GetChild(i).GetChild(0).gameObject);
+		}
 	}
 
 	/// <summary>

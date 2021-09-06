@@ -13,7 +13,9 @@ public struct ItemDB
     [SerializeField]
     public string name;
     [SerializeField]
-    public int Item_Type, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value;
+    public int Item_Type, Hunger, Thirst, Heal, Fatigue, AD, Attack_Range, Capacity, Charge_Space, Value, ItemCount;
+    [SerializeField]
+    public Sprite ItemImage;
 }
 [System.Serializable]
 public struct Craft
@@ -37,9 +39,11 @@ public class DBManagerItem: DBManager
     private string[] ItemCraft;
 
     public bool DataLoading = false;
+    private Item _item;
     void Start()
     {
         StartCoroutine(ConnectItenDB());
+        _item = FindObjectOfType<Item>();
     }
 
     private IEnumerator ConnectItenDB()
@@ -89,9 +93,12 @@ public class DBManagerItem: DBManager
             }
             itemDB[i].Charge_Space = Convert.ToInt32(GetDataValue(item[i], "Charge_Space:", "|"));
             itemDB[i].Value = Convert.ToInt32(GetDataValue(item[i], "Value:", "|"));
+            itemDB[i].ItemCount = 10;
         }
-
         #region CraftDB
+        itemDB = itemDB.OrderBy(x => x.ID).ToArray();
+
+
         Init("ItemDataCraft.php");
         yield return StartCoroutine(ConnectDB());
         ItemCraft = queryResult.Split(';');
@@ -113,5 +120,11 @@ public class DBManagerItem: DBManager
         }
         #endregion
         DataLoading = true;
+
+    }
+    public void SetCount(int index, int Count)//index = id - 1
+    {
+        itemDB[index].ItemCount += Count;
+        _item.SetImage(index);
     }
 }

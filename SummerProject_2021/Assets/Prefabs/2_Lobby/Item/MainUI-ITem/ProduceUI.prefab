@@ -578,7 +578,6 @@ GameObject:
   - component: {fileID: 5039207650179182034}
   - component: {fileID: 5039207650179182032}
   - component: {fileID: 5039207650179182033}
-  - component: {fileID: 7887848894947432232}
   - component: {fileID: 3387802430833856219}
   - component: {fileID: 5816800937736750338}
   m_Layer: 5
@@ -641,7 +640,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 752e89f13df95c54689c443216e1cb83, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -649,18 +648,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7887848894947432232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5039207650179182035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcafb5900a0452c4e868e15d5414d388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!223 &3387802430833856219
 Canvas:
   m_ObjectHideFlags: 0
@@ -846,9 +833,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e9af1a7eda879c545a7d55d273e6d209, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -868,11 +855,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb4ab9faef065b4e9b7b3f26cc99463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
   ProduceItemCount: 0
   ItemCount: 0
-  itemImage: {fileID: 8597552613795727606}
   text_Count: {fileID: 3308238472819776794}
+  itemImage: {fileID: 8597552613795727606}
   go_CountImage: {fileID: 4492550306568008395}
   ProduceButton: {fileID: 9195621260764672981}
   isProduce: 0
@@ -1308,7 +1294,7 @@ PrefabInstance:
     - target: {fileID: 5024172352452071641, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: c90bb6ab758b34149a30cf371dfd4c13, type: 3}
     - target: {fileID: 5024172352452071641, guid: 55ae5af4acd7de84ca312c4d9e0417b8, type: 3}
       propertyPath: m_Color.a
       value: 0
