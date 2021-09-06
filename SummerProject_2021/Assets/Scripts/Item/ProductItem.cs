@@ -16,7 +16,7 @@ public class ProductItem : MonoBehaviour
     private void Start()
     {
         item = this.gameObject.GetComponent<Item>();
-        Water = GameObject.Find("Water").GetComponent<ItemCraft>();
+        Water = GameObject.Find("Water_Purifier").GetComponent<ItemCraft>();
         box = GameObject.Find("MainUI").transform.Find("Box").gameObject;
         bonfire = GameObject.Find("MainUI").transform.Find("Bonfire").gameObject;
         Player = GameObject.FindWithTag("Player");
