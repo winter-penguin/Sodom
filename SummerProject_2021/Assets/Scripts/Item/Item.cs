@@ -66,16 +66,32 @@ public class Item : MonoBehaviour
                 break;
             }
         }
+        //if(this.gameObject.transform.parent.parent.name == "Box" && index < 18)
+        //{
+        //    SetImage(index);
+        //}
+
     }
     public void SetImage(int index)
     {
-
+        if(index+1 == ID && ID < 18)
+        {
+            if(itemData.itemDB[index].ItemCount == 0)
+            {
+                SetColor(this.gameObject.GetComponent<Image>(), 0.3f, 0.3f);
+            }
+            else
+            {
+                SetColor(this.gameObject.GetComponent<Image>(), 1f ,1f);
+            }
+        }
     }
-    private void SetColor(Image image, float _alpha) //이미지 알파 조정
+    private void SetColor(Image image, float _alpha, float _color) //이미지 알파 조정
     {
         Color color = image.color;
         color.a = _alpha;
         image.color = color;
+        image.color = new Color(_color, _color, _color);
     }
     private void CheckUseItem()
     {

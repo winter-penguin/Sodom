@@ -39,13 +39,11 @@ public class DBManagerItem: DBManager
     private string[] ItemCraft;
 
     public bool DataLoading = false;
-    private FarmingSystem farmingSystem;
-    [SerializeField]
-    public List<FarmingSystem.FarmingInfo> farmingInfos = new List<FarmingSystem.FarmingInfo>();
+    private Item _item;
     void Start()
     {
         StartCoroutine(ConnectItenDB());
-        farmingSystem = FindObjectOfType<FarmingSystem>();
+        _item = FindObjectOfType<Item>();
     }
 
     private IEnumerator ConnectItenDB()
@@ -124,8 +122,9 @@ public class DBManagerItem: DBManager
         DataLoading = true;
 
     }
-    public void SetCount(int index, int Count)
+    public void SetCount(int index, int Count)//index = id - 1
     {
         itemDB[index].ItemCount += Count;
+        _item.SetImage(index);
     }
 }
