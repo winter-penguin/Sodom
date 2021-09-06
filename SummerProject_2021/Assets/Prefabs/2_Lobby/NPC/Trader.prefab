@@ -237,7 +237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traderFarming: {fileID: 0}
+  traderTableCells: []
   traderContent: {fileID: 4843537915389781201}
+  playerTableCells: []
   playerContent: {fileID: 8614447744672628478}
 --- !u!1 &1736280092637254304
 GameObject:
