@@ -10,13 +10,19 @@ public class SurvivalGauge : MonoBehaviour
     public bool isHunger;
     public bool isThirst;
     public bool isFatigue;
-    private ClockSystem _clockSystem;
+
+    private float hunger;
+
+    private float thirst;
+
+    private float fatigue;
+    //private ClockSystem _clockSystem;
     private GameManager GM;
 
     public int Minute;
     void Start()
     {
-        _clockSystem = GameObject.Find("Clock").GetComponent<ClockSystem>();
+        //_clockSystem = GameObject.Find("Clock").GetComponent<ClockSystem>();
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         Hunger = 75;
         Thirst = 75;
@@ -54,6 +60,22 @@ public class SurvivalGauge : MonoBehaviour
         Fatigue += value;
     }
 
+    IEnumerator Thirst_Coroutine()
+    {
+        while (!GM.isEnd)
+        {
+            Thirst--;
+            
+            hunger += Time.timeScale;
+            if (Thirst == 0)
+            {
+                //게임 종료
+            }
+
+            yield return new Time();
+        }
+        
+    }
     IEnumerator ThirstCoroutine()
     {
         while (!GM.isEnd)
@@ -64,7 +86,7 @@ public class SurvivalGauge : MonoBehaviour
                 //게임 종료
             }
             yield return new WaitForSeconds(18.765f);
-            
+            Debug.Log("한번");
         }
     }
     IEnumerator HungerCoroutine()
