@@ -14,6 +14,14 @@ using UnityEngine.UI;
 
 public class StoragedItemInfo : MonoBehaviour
 {
+	private enum CellType
+	{
+		Table,
+		Vault
+	}
+
+	[SerializeField] private CellType cellType = 0;
+	
 	private itemStorage itemInfo; // 교환한 아이템 정보
 	private TradingSystem tradingSystem;
 
@@ -58,6 +66,13 @@ public class StoragedItemInfo : MonoBehaviour
 	/// </summary>
 	private void ExchangeInfo()
 	{
-		itemInfo = tradingSystem.VaultToTable(itemInfo);
+		if (cellType == CellType.Table)
+		{
+			itemInfo = tradingSystem.VaultToTable(ref itemInfo)[0];
+		}else if (cellType == CellType.Vault)
+		{
+			itemInfo = tradingSystem.VaultToTable(ref itemInfo)[1];
+		}
+		
 	}
 }
