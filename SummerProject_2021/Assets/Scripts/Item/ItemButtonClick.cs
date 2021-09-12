@@ -29,8 +29,11 @@ public class ItemButtonClick : MonoBehaviour
         }
         else
         {
-            ButtonImage.sprite = UseButtonImage;
             product.UseItem = true;
         }
+    }
+    public void SetImage()
+    {
+        ButtonImage.sprite = UseButtonImage;
     }
 }

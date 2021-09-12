@@ -66,15 +66,15 @@ public class Item : MonoBehaviour
                 break;
             }
         }
-        //if(this.gameObject.transform.parent.parent.name == "Box" && index < 18)
-        //{
-        //    SetImage(index);
-        //}
-
+        SetImage(index);
+        if(this.gameObject.GetComponent<ItemText>() != null)
+        {
+            this.gameObject.GetComponent<ItemText>().SetText();
+        }
     }
-    public void SetImage(int index)
+    public void SetImage(int num)
     {
-        if(index+1 == ID && ID < 18)
+        if(this.gameObject.GetComponent<Image>() != null)
         {
             if(itemData.itemDB[index].ItemCount == 0)
             {
