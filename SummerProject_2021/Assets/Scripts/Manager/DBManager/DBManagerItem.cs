@@ -104,6 +104,7 @@ public class DBManagerItem: DBManager
             }
             itemDB[i].Charge_Space = Convert.ToInt32(GetDataValue(item[i], "Charge_Space:", "|"));
             itemDB[i].Value = Convert.ToInt32(GetDataValue(item[i], "Value:", "|"));
+            itemDB[i].ItemCount = 10;
             CurrentCapacity += itemDB[i].ItemCount * itemDB[i].Charge_Space;
         }
         #region CraftDB
