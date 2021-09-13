@@ -23,6 +23,7 @@ public class Item : MonoBehaviour
     #endregion
     private SurvivalGauge survivalGauge;
     private CharacterValue playerValue;
+    private ItemSlot itemslot;
 
     private bool itemDBloading = false;
     private bool craftloading = false;
@@ -32,6 +33,8 @@ public class Item : MonoBehaviour
         survivalGauge = GameObject.FindGameObjectWithTag("Player").GetComponent<SurvivalGauge>();
         playerValue = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterValue>();
         itemData = GameObject.FindGameObjectWithTag("Manager").GetComponent<DBManagerItem>();
+        itemslot = GameObject.Find("ItemSlot").GetComponent<ItemSlot>();
+
     }
     void Update()
     {
@@ -66,15 +69,15 @@ public class Item : MonoBehaviour
                 break;
             }
         }
-        //if(this.gameObject.transform.parent.parent.name == "Box" && index < 18)
-        //{
-        //    SetImage(index);
-        //}
-
+        SetImage(index);
+        if(this.gameObject.GetComponent<ItemText>() != null)
+        {
+            this.gameObject.GetComponent<ItemText>().SetText();
+        }
     }
-    public void SetImage(int index)
+    public void SetImage(int num)
     {
-        if(index+1 == ID && ID < 18)
+        if(this.gameObject.GetComponent<Image>() != null)
         {
             if(itemData.itemDB[index].ItemCount == 0)
             {
@@ -109,14 +112,14 @@ public class Item : MonoBehaviour
                 playerValue.Atk_PowChanged(-itemData.itemDB[index].AD);
                 playerValue.Atk_RangeChanged(-itemData.itemDB[index].Attack_Range);
                 ItemEquip = false;
-                Debug.Log("아이템 장착해제");
+                itemslot.DeleteImage();
             }
             else if (ItemEquip == false)
             {
                 playerValue.Atk_PowChanged(itemData.itemDB[index].AD);
                 playerValue.Atk_RangeChanged(itemData.itemDB[index].Attack_Range);
                 ItemEquip = true;
-                Debug.Log("아이템 장착");
+                itemslot.SetImage(ID);
             }
         }
         useItem = false;

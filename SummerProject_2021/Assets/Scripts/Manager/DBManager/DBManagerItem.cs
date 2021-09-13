@@ -40,6 +40,17 @@ public class DBManagerItem: DBManager
 
     public bool DataLoading = false;
     private Item _item;
+    public int currentCapacity;
+    public bool capacity = false;
+    public int CurrentCapacity
+    {
+        get { return currentCapacity; }
+        set
+        {
+            currentCapacity = value;
+            capacity = true;
+        }
+    }
     void Start()
     {
         StartCoroutine(ConnectItenDB());
@@ -94,6 +105,7 @@ public class DBManagerItem: DBManager
             itemDB[i].Charge_Space = Convert.ToInt32(GetDataValue(item[i], "Charge_Space:", "|"));
             itemDB[i].Value = Convert.ToInt32(GetDataValue(item[i], "Value:", "|"));
             itemDB[i].ItemCount = 10;
+            CurrentCapacity += itemDB[i].ItemCount * itemDB[i].Charge_Space;
         }
         #region CraftDB
         itemDB = itemDB.OrderBy(x => x.ID).ToArray();
@@ -126,5 +138,6 @@ public class DBManagerItem: DBManager
     {
         itemDB[index].ItemCount += Count;
         _item.SetImage(index);
+        CurrentCapacity += Count * itemDB[index].Charge_Space;
     }
 }
