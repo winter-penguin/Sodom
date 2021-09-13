@@ -20,10 +20,10 @@ public class DBManager : MonoBehaviour
 /// <param name="_phpFile">php 파일 이름</param>
     protected void Init(string _phpFile)
     {
-        url = "http://220.127.167.244:8080/summerproject_2021/";
+        //url = "http://220.127.167.244:8080/summerproject_2021/";
 
         //url = "http://220.127.167.244:8080/summerproject_2021/"; //한결서버
-        //url = "http://121.143.51.173:8080/2021summerproject/"; //희경서버
+        url = "http://175.210.65.153:8080/2021summerproject/"; //희경서버
         //url = "http://127.0.0.1/2021summerproject/"; //나은서버
         phpFile = _phpFile;
     }

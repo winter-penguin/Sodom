@@ -15,6 +15,7 @@ public class ClickMovement : MonoBehaviour
     #region Variables
     NPCRich enemynpc;
     private WallCollision _wallCollision;
+    private SoundManager _soundManager;
     private GameManager _gameManager;
     [System.Serializable] // class를 인스펙터에서 보여줌
     //[SerializeField] // private 변수를 인스펙터에서 보여줌
@@ -60,7 +61,8 @@ public class ClickMovement : MonoBehaviour
     public bool isSecondChanged = false;
     [HideInInspector]
     public bool isNormalChanged = false;
-    
+
+    public bool isBackHouse = false;
 
     public bool isWall = false;
 
@@ -92,6 +94,7 @@ public class ClickMovement : MonoBehaviour
         AttackRange.SetActive(false);
         Stair.SetActive(false);
         _gameManager = GameManager._instance;
+        _soundManager = GameObject.FindWithTag("GameController").GetComponent<SoundManager>();
 
     }
 
@@ -289,47 +292,73 @@ public class ClickMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        switch (MovingCase)
+        if (isBackHouse)
         {
-            case 1:
-                if(isNormalMoving == true) NormalMove();
-                break;
-            case 2:
-                if (isFirst == false && isFirst_ing)
-                {
-                    Firstmove();
+            switch (MovingCase)
+            {
+                
+                case 1:
+                
+                    if(isNormalMoving == true) NormalMove();
+                    break;
+                case 2:
+                
                     
-                }
-                else if (isFirst == true && isSecond == false)
-                {
-                    //rb.isKinematic = true;
-                    Secondmove();
-                    if (isSecond_ing_click)
-                    {
-                        break;
-                    }
-                }
-                else if(isSecond)
-                {
-                    if (isNormalMoving) NormalMove();
-                }
-                break;
-            case 3:
-                if (isFirst == false && isSecond_ing == false)
-                {
-                    Firstmove();
-                }
-                else if (isFirst == true && isSecond == false)
-                {
-                    //rb.isKinematic = true;
-                    Secondmove();
-                }
-                else if (isSecond == true)
-                {
-                    if (isNormalMoving == true) NormalMove();
-                }
-                break;
+                    break;
+                case 3:
+                
+                    break;
+            }
         }
+        else
+        {
+            switch (MovingCase)
+            {
+                
+                case 1:
+                
+                    if(isNormalMoving == true) NormalMove();
+                    break;
+                case 2:
+                
+                    if (isFirst == false && isFirst_ing)
+                    {
+                        Firstmove();
+                    
+                    }
+                    else if (isFirst == true && isSecond == false)
+                    {
+                        //rb.isKinematic = true;
+                        Secondmove();
+                        if (isSecond_ing_click)
+                        {
+                            break;
+                        }
+                    }
+                    else if(isSecond)
+                    {
+                        if (isNormalMoving) NormalMove();
+                    }
+                    break;
+                case 3:
+                
+                    if (isFirst == false && isSecond_ing == false)
+                    {
+                        Firstmove();
+                    }
+                    else if (isFirst == true && isSecond == false)
+                    {
+                        //rb.isKinematic = true;
+                        Secondmove();
+                    }
+                    else if (isSecond == true)
+                    {
+                        if (isNormalMoving == true) NormalMove();
+                    }
+                    break;
+            }
+        }
+        
         
         if (isClickEnemy == true)
         {
@@ -342,6 +371,18 @@ public class ClickMovement : MonoBehaviour
                     StartCoroutine(WaitForAttack());
                 }
             }
+        }
+    }
+
+    public void BackHouse()
+    {
+        if (isBackHouse)
+        {
+            isBackHouse = false;
+        }
+        else
+        {
+            isBackHouse = true;
         }
     }
     IEnumerator WaitForAttack()
@@ -402,6 +443,7 @@ public class ClickMovement : MonoBehaviour
             isNormalMoving = false;
             anim.SetBool("isWalking", false);
             rb.isKinematic = false;
+            
             //isClick = false;
         }
     }
