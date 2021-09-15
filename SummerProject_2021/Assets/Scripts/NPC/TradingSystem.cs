@@ -118,8 +118,7 @@ public class TradingSystem : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 두 수의 가치를 비교합니다.
-	/// </summary>
+ 	/// </summary>
 	/// <param name="traderValue"></param>
 	/// <param name="playerValue"></param>
 	/// <returns>거래 성공 여부</returns>
@@ -136,7 +135,7 @@ public class TradingSystem : MonoBehaviour
 	/// </summary>
 	/// <param name="_itemStorage">vault/table 아이템 정보</param>
 	/// <returns>교환하고 남은 아이템 정보(tableInfo, vaultInfo)</returns>
-	public itemStorage[] VaultToTable(ref itemStorage _itemStorage)
+	public itemStorage[] VaultToTablePlayer(ref itemStorage _itemStorage)
 	{
 		itemStorage vaultItem = new itemStorage(0,"0",0,0);
 		itemStorage tableItem = new itemStorage(0,"0",0,0);
@@ -144,10 +143,10 @@ public class TradingSystem : MonoBehaviour
 		
 		for (var i = 0; i < playerTable.Count; i++)
 		{
-			if (playerTable[i].itemID == _itemStorage.itemID)
+			if (playerTable[i].itemID == _itemStorage.itemID) // 테이블에 아이템이 이미 있을 경우
 			{
 				tableItem = playerTable[i];
-				tableItem.itemAmount++;	// 아이템 한개 증가
+				tableItem.itemAmount++; // 아이템 한개 증가
 				playerTable[i] = tableItem;
 				break;
 			}
@@ -169,4 +168,44 @@ public class TradingSystem : MonoBehaviour
 		
 		return resultItemStorages;	// 임시로 작성해 놓은것 나중에 수정할 것
 	}
+	
+	public itemStorage[] VaultToTableTrader(ref itemStorage _itemStorage)
+	{
+		itemStorage vaultItem = new itemStorage(0,"0",0,0);
+		itemStorage tableItem = new itemStorage(0,"0",0,0);
+		itemStorage[] resultItemStorages = new itemStorage[2];
+		
+		for (var i = 0; i < traderTable.Count; i++)
+		{
+			if (traderTable[i].itemID == _itemStorage.itemID) // 테이블에 아이템이 이미 있을 경우
+			{
+				tableItem = traderTable[i];
+				tableItem.itemAmount++;	// 아이템 한개 증가
+				traderTable[i] = tableItem;
+				break;
+			}
+		}
+		
+		for (var i = 0; i < traderVault.Count; i++)
+		{
+			if (traderVault[i].itemID == _itemStorage.itemID)
+			{
+				vaultItem = playerVault[i];
+				vaultItem.itemAmount--;	// 아이템 한개 감소
+				traderVault[i] = vaultItem;
+				break;
+			}
+		}
+		
+		resultItemStorages[0] = vaultItem;
+		resultItemStorages[1] = tableItem;
+		
+		return resultItemStorages;	// 임시로 작성해 놓은것 나중에 수정할 것
+	}
+
+	/*public itemStorage[] TableToVault(ref itemStorage _itemStorage)
+	{
+		
+		
+	}*/
 }

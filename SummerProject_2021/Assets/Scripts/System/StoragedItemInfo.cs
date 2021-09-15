@@ -68,10 +68,10 @@ public class StoragedItemInfo : MonoBehaviour
 	{
 		if (cellType == CellType.Table)
 		{
-			itemInfo = tradingSystem.VaultToTable(ref itemInfo)[0];
+			// itemInfo = tradingSystem.VaultToTable(ref itemInfo)[0];
 		}else if (cellType == CellType.Vault)
 		{
-			itemInfo = tradingSystem.VaultToTable(ref itemInfo)[1];
+			// itemInfo = tradingSystem.VaultToTable(ref itemInfo)[1];
 		}
 		
 	}
