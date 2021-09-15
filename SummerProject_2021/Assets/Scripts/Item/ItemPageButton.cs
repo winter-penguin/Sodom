@@ -9,6 +9,10 @@ public class ItemPageButton : MonoBehaviour
     public GameObject BoxGridSetting1;
     public GameObject BoxGridSetting2;
     public Text Page;
+    private void OnEnable()
+    {
+        LeftButton();
+    }
     public void LeftButton()
     {
         if(BoxGridSetting2.active == true)

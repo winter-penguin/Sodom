@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ProductItem : MonoBehaviour
 {
+    public Sprite ItemImage;
+    public Sprite NoneImage;
     public GameObject ProduceButton;
-    public bool Product = false;
+    public bool produce = false;
     public bool UseItem = false;
     private Item item;
     private ItemCraft Water;
@@ -16,7 +18,7 @@ public class ProductItem : MonoBehaviour
     private void Start()
     {
         item = this.gameObject.GetComponent<Item>();
-        Water = GameObject.Find("Water").GetComponent<ItemCraft>();
+        Water = GameObject.Find("Water_Purifier").GetComponent<ItemCraft>();
         box = GameObject.Find("MainUI").transform.Find("Box").gameObject;
         bonfire = GameObject.Find("MainUI").transform.Find("Bonfire").gameObject;
         Player = GameObject.FindWithTag("Player");
@@ -35,6 +37,22 @@ public class ProductItem : MonoBehaviour
         else
         {
             ProduceButton.SetActive(false);
+        }
+    }
+    public bool Product
+    {
+        get { return produce; }
+        set {
+            produce = value;
+            if (produce)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = ItemImage;
+                ProduceButton.GetComponent<ItemButtonClick>().SetImage();
+                if(item.ID == 20)
+                {
+                    this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            }
         }
     }
     IEnumerator CheckItem()
